@@ -63,7 +63,7 @@
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "codelyzer": "^6.0.2",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.1",
     "eslint-plugin-ban": "^1.5.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-rxjs": "^5.0.3",
