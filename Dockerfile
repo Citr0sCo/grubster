@@ -8,7 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN yarn install --silent --non-interactive --frozen-lockfile
+RUN npm install --legacy-peer-deps
+RUN npm install -g @angular/cli@19.2.5
 
 # Copy the rest of the application code
 COPY . .
