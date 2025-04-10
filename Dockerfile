@@ -8,13 +8,14 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --legacy-peer-deps
+RUN npm install -g @angular/cli@19.2.5
 
 # Copy the rest of the application code
 COPY . .
 
 # Build the Angular app for production
-RUN npm run build --prod
+RUN npm run build
 
 # Step 2: Use Nginx to serve the Angular app
 FROM nginx:alpine

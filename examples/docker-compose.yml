@@ -1,0 +1,5 @@
+services:
+    grubster:
+        image: citr0s/grubster
+        ports:
+            - '83:80'

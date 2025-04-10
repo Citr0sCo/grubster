@@ -65,8 +65,6 @@ export class TabItemComponent implements OnInit, OnDestroy {
     }
 
     public setCurrentTab(event: MouseEvent, tab: ITab): void {
-        console.log(event, tab, this.isTab);
-
         if (!this.isTab || event.ctrlKey) {
             this._tabsService.duplicateTab(tab);
             return;
