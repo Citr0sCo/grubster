@@ -7,15 +7,9 @@ import { WindowControlsModule } from './window-controls/window-controls.module';
 
 @NgModule({
     declarations: [ToolbarComponent],
-    imports: [
-        BrowserModule,
-        LogoModule,
-        TabsModule,
-        WindowControlsModule
-    ],
+    imports: [BrowserModule, LogoModule, TabsModule, WindowControlsModule],
     providers: [],
     bootstrap: [],
     exports: [ToolbarComponent]
 })
-export class ToolbarModule {
-}
+export class ToolbarModule {}

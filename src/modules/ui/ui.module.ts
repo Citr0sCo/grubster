@@ -38,5 +38,4 @@ const declarations = [
     bootstrap: [],
     exports: declarations
 })
-export class UiModule {
-}
+export class UiModule {}

@@ -21,11 +21,7 @@ export class SettingsViewComponent implements OnInit, OnDestroy {
     private _notificationService: NotificationService;
     private _store: Store;
 
-    constructor(
-        settingsService: SettingsService,
-        collectionManagementService: CollectionManagementService,
-        notificationService: NotificationService
-    ) {
+    constructor(settingsService: SettingsService, collectionManagementService: CollectionManagementService, notificationService: NotificationService) {
         this._settingsService = settingsService;
         this._collectionManagementService = collectionManagementService;
         this._notificationService = notificationService;

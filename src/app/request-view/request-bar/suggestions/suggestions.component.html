@@ -1,7 +1,3 @@
 <div class="suggestions">
-    <suggestion-item
-        (suggestionClicked)="handleClick($event)"
-        *ngFor="let suggestion of suggestions"
-        [suggestion]="suggestion"
-    ></suggestion-item>
+    <suggestion-item (suggestionClicked)="handleClick($event)" *ngFor="let suggestion of suggestions" [suggestion]="suggestion"></suggestion-item>
 </div>
