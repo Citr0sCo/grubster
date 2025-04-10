@@ -33,5 +33,4 @@ import { CurlParserService } from './curl-parser/curl-parser.service';
     bootstrap: [],
     exports: []
 })
-export class UtilityModule {
-}
+export class UtilityModule {}

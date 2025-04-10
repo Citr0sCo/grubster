@@ -7,7 +7,6 @@ import { ISuggestion } from '../types/suggestion.model';
     styleUrls: ['./suggestions.component.scss']
 })
 export class SuggestionsComponent {
-
     @Input()
     public suggestions: ISuggestion[];
 

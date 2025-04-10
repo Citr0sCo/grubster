@@ -5,7 +5,7 @@
         (rightClick)="openContextMenu($event, tab)"
         *ngFor="let tab of tabs"
         class="tabs__tab o-grid__col o-grid__col--fixed u-pl-2 u-pr-2"
-        [ngClass]="{'tabs__tab--active': currentTab.id === tab.id}"
+        [ngClass]="{ 'tabs__tab--active': currentTab.id === tab.id }"
         middle-click
         right-click
     >

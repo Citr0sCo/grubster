@@ -19,17 +19,7 @@ import { GlobalErrorHandler } from '../modules/utility/error-handling/global-err
     declarations: [AppComponent],
     exports: [],
     bootstrap: [AppComponent],
-    imports: [
-        FormsModule,
-        BrowserModule,
-        TimeagoModule.forRoot(),
-        RouterModule.forRoot(appRoutes),
-        MonacoEditorModule,
-        UtilityModule,
-        UiModule,
-        ToolbarModule,
-        SidebarModule
-    ],
+    imports: [FormsModule, BrowserModule, TimeagoModule.forRoot(), RouterModule.forRoot(appRoutes), MonacoEditorModule, UtilityModule, UiModule, ToolbarModule, SidebarModule],
     providers: [
         AppInterceptor.forRoot(),
         { provide: MONACO_PATH, useValue: environment.monacoLocation },
@@ -37,5 +27,4 @@ import { GlobalErrorHandler } from '../modules/utility/error-handling/global-err
         provideHttpClient(withInterceptorsFromDi())
     ]
 })
-export class AppModule {
-}
+export class AppModule {}

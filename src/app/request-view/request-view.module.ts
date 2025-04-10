@@ -10,16 +10,9 @@ import { RequestPaneModule } from './request-pane/request-pane.module';
 
 @NgModule({
     declarations: [RequestViewComponent, RequestBarComponent],
-    imports: [
-        RouterModule.forChild(requestViewRoutes),
-        FormsModule,
-        CommonModule,
-        UiModule,
-        RequestPaneModule
-    ],
+    imports: [RouterModule.forChild(requestViewRoutes), FormsModule, CommonModule, UiModule, RequestPaneModule],
     providers: [],
     bootstrap: [],
     exports: []
 })
-export class RequestViewModule {
-}
+export class RequestViewModule {}

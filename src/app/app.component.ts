@@ -10,10 +10,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly _settingsService: SettingsService;
     private readonly _collectionManagementService: CollectionManagementService;
 
-    constructor(
-        settingsService: SettingsService,
-        collectionManagementService: CollectionManagementService
-    ) {
+    constructor(settingsService: SettingsService, collectionManagementService: CollectionManagementService) {
         this._settingsService = settingsService;
         this._collectionManagementService = collectionManagementService;
     }
