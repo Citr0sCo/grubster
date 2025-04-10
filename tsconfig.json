@@ -1,0 +1,38 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "dist",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es5",
+        "lib": [
+            "es2018",
+            "dom"
+        ],
+        "allowJs": true,
+        "noImplicitAny": true,
+        "resolveJsonModule": true,
+        "paths": {
+            "*": [
+                "node_modules/*"
+            ]
+        },
+        "typeRoots": [
+            "node_modules/@types",
+            "src/app/json-typings.d.ts"
+        ]
+    },
+    "include": [
+        "src/core/**/*"
+    ],
+    "angularCompilerOptions": {
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true
+    }
+}

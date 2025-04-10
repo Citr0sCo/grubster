@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "module": "esnext",
+    "target": "ES2019",
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "dom",
+      "ESNext"
+    ],
+    "paths": {
+    }
+  },
+  "exclude": [
+  ]
+}

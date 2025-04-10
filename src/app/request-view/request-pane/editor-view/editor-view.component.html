@@ -1,0 +1,11 @@
+<div [ngClass]="{ 'editor-view--vertical': isVertical, 'editor-view--full-height': fullHeight }" class="editor-view">
+    <ngx-monaco-editor
+        (ngModelChange)="updateBody($event)"
+        [(ngModel)]="requestBody"
+        [ngClass]="{ 'editor-view--vertical__editor': isVertical }"
+        [options]="options"
+        class="editor-view__editor"
+        (init)="initEditor($event)"
+    >
+    </ngx-monaco-editor>
+</div>

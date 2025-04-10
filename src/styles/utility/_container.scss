@@ -1,0 +1,18 @@
+@import 'variables';
+
+.o-container {
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow: auto;
+    height: calc(100vh - #{$toolbar-height});
+
+    &--contain {
+        max-width: 1000px;
+        margin: 0 auto;
+
+        @media (max-width: $step-lg) {
+            width: 100%;
+        }
+    }
+}

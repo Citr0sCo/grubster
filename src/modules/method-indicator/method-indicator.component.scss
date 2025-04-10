@@ -1,0 +1,7 @@
+@import './mixins';
+
+.environment-indicator {
+    .method {
+        @include http-verbs-badge;
+    }
+}

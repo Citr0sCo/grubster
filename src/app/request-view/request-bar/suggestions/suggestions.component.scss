@@ -1,0 +1,17 @@
+@import './variables';
+@import './mixins';
+
+.suggestions {
+    position: absolute;
+    border: 1px solid var(--border-color);
+    border-radius: 0 0 $border-radius $border-radius;
+    border-top: none;
+    color: var(--text-color);
+    background-color: var(--card-bg-color);
+    transition: border-color ease-in var(--animation-speed);
+    z-index: 100;
+    width: 100%;
+    overflow: auto;
+    max-height: 50vh;
+    box-shadow: var(--box-shadow);
+}

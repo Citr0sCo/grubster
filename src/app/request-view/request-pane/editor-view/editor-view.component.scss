@@ -1,0 +1,33 @@
+@import './variables';
+@import './mixins';
+
+.editor-view {
+    height: calc(100% - #{$request-pane-tabs-height} - #{$request-pane-footer-height});
+    width: 100%;
+
+    &__editor {
+        height: 100%;
+
+        ::ng-deep .editor-container {
+            height: 100%;
+        }
+    }
+
+    &--vertical {
+        &__editor {
+            height: calc(100vh - #{$toolbar-height} - #{$request-bar-height} - #{$request-pane-tabs-height} - #{$request-pane-footer-height});
+        }
+
+        ::ng-deep .editor-container {
+            width: 100%;
+        }
+    }
+
+    &--full-height {
+        height: calc(100% - 35px);
+
+        &__editor {
+            height: calc(100% - 35px);
+        }
+    }
+}

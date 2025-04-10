@@ -1,0 +1,3 @@
+<div (click)="callback()" [ngClass]="{ 'quick-action--primary': isPrimary, 'quick-action--danger': isDangerous }" class="quick-action u-mr-3">
+    <i class="{{ prefix ? prefix : 'fa' }} {{ icon }}" [ngClass]="{ 'fa-spin': isSyncing }"></i> {{ label }}
+</div>

@@ -1,0 +1,7 @@
+@import './mixins';
+
+.status-code-indicator {
+    .status-code {
+        @include http-status;
+    }
+}

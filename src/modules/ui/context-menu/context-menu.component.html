@@ -1,0 +1,5 @@
+<div *ngIf="isShowing" class="context-menu" [ngStyle]="{ 'top.px': contextMenu.y, 'left.px': contextMenu.x }">
+    <ul>
+        <li *ngFor="let action of contextMenu.actions" (mousedown)="execute(action)"><i class="{{ action.icon }}"></i> {{ action.name }}</li>
+    </ul>
+</div>

@@ -1,0 +1,17 @@
+@import './variables';
+
+.dashboard-view {
+    .key {
+        border: 1px solid var(--border-color);
+        background-color: var(--card-bg-color);
+        padding: 5px 7px;
+        border-radius: 5px;
+        font-family: Consolas, serif;
+        font-size: 0.75rem;
+        margin: 0 3px;
+    }
+
+    small {
+        color: var(--transparent-active-bg);
+    }
+}

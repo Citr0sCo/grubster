@@ -1,0 +1,39 @@
+@import '../../../styles/variables';
+
+.badge {
+    display: inline;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0 5px;
+    border-radius: $border-radius;
+    font-size: 0.5rem;
+    background-color: $brand-primary;
+    overflow: hidden;
+    vertical-align: middle;
+
+    &.removable {
+        cursor: pointer;
+        position: relative;
+
+        &:hover {
+            background-color: $danger-color;
+
+            &:before {
+                content: 'REMOVE';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                text-align: center;
+                background-color: $danger-color;
+            }
+        }
+    }
+
+    &.large {
+        font-size: 0.75rem;
+        padding: 0 7.5px;
+    }
+}

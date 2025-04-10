@@ -1,0 +1,183 @@
+@import 'variables';
+
+@mixin slim-scroll-bar() {
+    scrollbar-color: rgba(var(--theme-rgba-contrast), 0.2) transparent;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+        height: 8px;
+        width: 8px;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(var(--theme-rgba-contrast), 0.2);
+        border-radius: $border-radius;
+
+        &:hover {
+            background-color: $brand-primary;
+        }
+    }
+}
+
+@mixin http-verbs {
+    font-weight: bolder;
+    font-style: italic;
+
+    &._delete {
+        color: $delete;
+    }
+    &._get {
+        color: $get;
+    }
+    &._post {
+        color: $post;
+    }
+    &._put {
+        color: $put;
+    }
+    &._patch {
+        color: $patch;
+    }
+    &._head {
+        color: $head;
+    }
+    &._options {
+        color: $options;
+    }
+}
+
+@mixin http-verbs-border {
+    &._delete {
+        border-color: $delete;
+    }
+    &._get {
+        border-color: $get;
+    }
+    &._post {
+        border-color: $post;
+    }
+    &._put {
+        border-color: $put;
+    }
+    &._patch {
+        border-color: darken($patch, 10%);
+    }
+    &._head {
+        border-color: $head;
+    }
+    &._options {
+        border-color: $options;
+    }
+}
+
+@mixin http-verbs-select {
+    &._delete {
+        border-bottom: 2px solid $delete;
+    }
+    &._get {
+        border-bottom: 2px solid $get;
+    }
+    &._post {
+        border-bottom: 2px solid $post;
+    }
+    &._put {
+        border-bottom: 2px solid $put;
+    }
+    &._patch {
+        border-bottom: 2px solid darken($patch, 10%);
+    }
+    &._head {
+        border-bottom: 2px solid $head;
+    }
+    &._options {
+        border-bottom: 2px solid $options;
+    }
+}
+
+@mixin http-verbs-badge {
+    color: white !important;
+    &._delete {
+        background-color: $delete !important;
+        border-color: darken($delete, 10%) !important;
+    }
+    &._get {
+        background-color: $get !important;
+        border-color: darken($get, 10%) !important;
+    }
+    &._post {
+        background-color: $post !important;
+        border-color: darken($post, 10%) !important;
+    }
+    &._put {
+        background-color: $put !important;
+        border-color: darken($put, 10%) !important;
+    }
+    &._patch {
+        color: #000 !important;
+        background-color: $patch !important;
+        border-color: darken($patch, 10%) !important;
+    }
+    &._head {
+        background-color: $head !important;
+        border-color: darken($head, 10%) !important;
+    }
+    &._options {
+        background-color: $options !important;
+        border-color: darken($options, 10%) !important;
+    }
+}
+
+@mixin environment-badge {
+    color: white !important;
+    &._local {
+        background-color: #1fc2e9 !important;
+        border-color: darken(#1fc2e9, 10%) !important;
+    }
+
+    &._demo {
+        background-color: orange !important;
+        border-color: darkorange !important;
+    }
+
+    &._live {
+        background-color: red !important;
+        border-color: darkred !important;
+    }
+}
+
+@mixin http-status {
+    &[class^='_2'] {
+        background-color: $post !important;
+        border-color: darken($post, 20%) !important;
+    }
+    &[class^='_3'] {
+        background-color: #1fc2e9 !important;
+        border-color: darken(#1fc2e9, 20%) !important;
+    }
+    &[class^='_4'] {
+        background-color: $options !important;
+        border-color: darken($options, 20%) !important;
+    }
+    &[class^='_5'] {
+        background-color: $delete !important;
+        border-color: darken($delete, 20%) !important;
+    }
+}
+
+@mixin http-status-left-border {
+    border-left: 4px solid transparent;
+
+    &[class^='_2'] {
+        border-left: 4px solid $post;
+    }
+    &[class^='_3'] {
+        border-left: 4px solid #1fc2e9;
+    }
+    &[class^='_4'] {
+        border-left: 4px solid $options;
+    }
+    &[class^='_5'] {
+        border-left: 4px solid $delete;
+    }
+}

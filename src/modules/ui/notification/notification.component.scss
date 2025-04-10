@@ -1,0 +1,48 @@
+@import '../../../styles/variables';
+
+.notification {
+    border: 1px solid var(--border-color);
+    min-height: 75px;
+    width: 300px;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background-color: var(--card-bg-color-alt);
+    box-shadow: var(--box-shadow);
+    border-radius: $border-radius;
+    padding: 10px;
+
+    &--error {
+        .icon {
+            color: $danger-color;
+        }
+    }
+
+    &--warn {
+        .icon {
+            color: $warning-color;
+        }
+    }
+
+    &--success {
+        .icon {
+            color: $success-color;
+        }
+    }
+
+    .icon {
+        padding: 5px;
+        padding-right: 10px;
+        padding-left: 0;
+        font-size: 2rem;
+    }
+
+    .title {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .message {
+        color: var(--text-color-alt);
+    }
+}

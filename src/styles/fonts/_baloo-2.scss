@@ -1,0 +1,43 @@
+$font-path: '../../assets/fonts/baloo-2';
+$font-family: 'Baloo2';
+$font-name: 'Baloo 2';
+
+@font-face {
+    font-family: $font-name;
+    src: url('#{$font-path}/#{$font-family}-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: $font-name;
+    src: url('#{$font-path}/#{$font-family}-ExtraBold.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: $font-name;
+    src: url('#{$font-path}/#{$font-family}-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: $font-name;
+    src: url('#{$font-path}/#{$font-family}-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: $font-name;
+    src: url('#{$font-path}/#{$font-family}-SemiBold.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: block;
+}

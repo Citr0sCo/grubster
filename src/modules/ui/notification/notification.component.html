@@ -1,0 +1,15 @@
+<div class="notifications">
+    <div *ngFor="let notification of notifications" [@slideInUp]>
+        <div [class]="'notification ' + notification.class()">
+            <div class="o-grid">
+                <div class="o-grid__col o-grid__col--fixed">
+                    <i [class]="'icon ' + notification.icon()"></i>
+                </div>
+                <div class="o-grid__col">
+                    <div class="title">{{ notification.title() }}</div>
+                    <div class="message">{{ notification.message() }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

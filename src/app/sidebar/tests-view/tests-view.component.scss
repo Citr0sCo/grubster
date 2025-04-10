@@ -1,0 +1,36 @@
+@import '../../../styles/variables';
+
+.tests-view {
+    color: var(--text-color);
+    cursor: pointer;
+
+    &__item {
+        padding: 10px 15px;
+
+        &:hover {
+            background-color: var(--transparent-hover-bg);
+        }
+
+        &--inactive {
+            opacity: 0.5;
+        }
+
+        &__resource {
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        &__host {
+            color: var(--text-color-alt);
+            font-size: 1rem;
+            margin-top: -5px;
+        }
+
+        &__ocurred-at {
+            color: var(--text-color-alt);
+            font-size: 0.75rem;
+            font-style: italic;
+            font-weight: bold;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+@import 'variables';
+
+.text {
+    &--primary {
+        color: $brand-primary;
+    }
+
+    &--secondary {
+        color: $brand-secondary;
+    }
+
+    &--secondary-alt {
+        color: var(--card-bg-alt);
+    }
+
+    &--success {
+        color: $success-color;
+    }
+
+    &--danger {
+        color: $danger-color;
+    }
+
+    &--warning {
+        color: $warning-color;
+    }
+
+    &--info {
+        color: $info-color;
+    }
+
+    &--grey {
+        color: #999;
+    }
+
+    &--italic {
+        font-style: italic;
+    }
+
+    &[disabled] {
+        color: var(--card-bg-color);
+        cursor: not-allowed;
+    }
+}

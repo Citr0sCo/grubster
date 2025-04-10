@@ -1,0 +1,6 @@
+<div class="payload-size-indicator badge-wrapper">
+    <div [ngClass]="{ 'badge--small': isSmall }" class="badge time-taken">
+        <span *ngIf="!timeTaken">0</span>
+        <span [innerHTML]="formatResponseTime(timeTaken)"></span>
+    </div>
+</div>

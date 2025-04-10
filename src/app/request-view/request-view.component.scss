@@ -1,0 +1,34 @@
+@import './variables';
+@import './mixins';
+
+.request-view {
+    &--half {
+        height: calc(50vh - 50px);
+    }
+}
+
+.splitter {
+    width: 5px;
+    cursor: col-resize;
+    height: calc(100vh - #{$toolbar-height} - #{$request-bar-height});
+    background-color: var(--card-bg-color);
+
+    &--horizontal {
+        height: 5px;
+        width: 100%;
+        cursor: row-resize;
+    }
+
+    &:hover {
+        background-color: $brand-primary;
+    }
+}
+
+.splitter-container {
+    height: calc(100vh - #{$toolbar-height} - #{$request-bar-height});
+}
+
+.splitter-left,
+.splitter-right {
+    overflow: hidden;
+}

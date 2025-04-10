@@ -1,0 +1,11 @@
+@import './variables';
+
+.settings-view {
+    small {
+        color: var(--transparent-active-bg);
+    }
+
+    toggle-switch {
+        pointer-events: none;
+    }
+}

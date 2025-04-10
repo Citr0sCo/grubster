@@ -1,0 +1,20 @@
+<div (click)="editTest($event, testCase)" class="test-item-entry">
+    <div class="o-grid">
+        <div class="o-grid__col o-grid__col--fixed u-pr-2" *ngIf="testCase.asserts.length === 0">
+            <i class="fas fa-flask"></i>
+        </div>
+        <div class="o-grid__col o-grid__col--fixed u-pr-2" *ngIf="testCase.asserts.length > 0">
+            <i class="fa fa-times-circle text--danger u-pr-2" *ngIf="getStatusOfTest(testCase) === 'FAILED'" [title]="getStatusOfTest(testCase)"></i>
+            <i class="fa fa-check-circle text--success u-pr-2" *ngIf="getStatusOfTest(testCase) === 'PASSED'" [title]="getStatusOfTest(testCase)"></i>
+            <i class="fa fa-minus-circle text--grey u-pr-2" *ngIf="getStatusOfTest(testCase) === 'UNKNOWN'" [title]="getStatusOfTest(testCase)"></i>
+            <i *ngIf="isRunning" class="fa fa-spinner fa-spin"></i>
+            <i (click)="runTest()" class="fas fa-play test-item-entry--edit" [ngClass]="{ 'u-pl-2': isRunning }"></i>
+        </div>
+        <div class="o-grid__col test-item-entry__item__resource">
+            {{ testCase.name ? testCase.name : getResource(testCase.url) }}
+        </div>
+        <div (click)="editTest($event, testCase)" class="o-grid__col o-grid__col--fixed">
+            <i class="fa fa-pen test-item-entry--edit"></i>
+        </div>
+    </div>
+</div>

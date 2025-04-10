@@ -1,0 +1,138 @@
+<div *ngIf="test" class="o-container edit-test-item">
+    <div class="o-container--contain">
+        <div class="o-grid">
+            <div class="o-grid__col">
+                <h1>Edit Test Case</h1>
+            </div>
+            <div class="o-grid__col o-grid__col--fixed" style="margin-bottom: 0; margin-top: 45px" *ngIf="test.asserts.length > 0">
+                <small
+                    class="text--italic"
+                    *ngIf="getStatusOfTest(test) !== 'UNKNOWN'"
+                    [ngClass]="{ 'text--success': getStatusOfTest(test) === 'PASSED', 'text--danger': getStatusOfTest(test) === 'FAILED' }"
+                >
+                    {{ getNumberOfSuccessfulAsserts(test).length }} out of {{ test.asserts.length }} asserts passed.
+                </small>
+                <small class="text--italic text--grey" *ngIf="getStatusOfTest(test) !== 'UNKNOWN'"> Last ran {{ test.asserts[0].result.timestamp | timeago }}. </small>
+            </div>
+        </div>
+
+        <div class="c-field-group u-mt-1">
+            <label class="c-label">Name</label>
+            <input [(ngModel)]="test.name" class="c-field" type="text" />
+        </div>
+
+        <div class="c-field-group u-mt-1">
+            <label class="c-label">URL</label>
+            <input [(ngModel)]="test.url" class="c-field" type="text" />
+        </div>
+
+        <div class="c-field-group u-mt-1">
+            <label class="c-label">Method</label>
+            <select [(ngModel)]="test.method" [class]="['_' + test.method]" class="c-field c-field__select edit-test-item--field__verb">
+                <option *ngFor="let verb of verbs" [value]="verb">{{ verb.toUpperCase() }}</option>
+            </select>
+        </div>
+
+        <div class="c-field-group u-mt-1">
+            <label class="c-label">Headers</label>
+            <headers-view
+                (headersChanged)="test.request.headers = $event"
+                [isVertical]="false"
+                [isEditable]="true"
+                [removePadding]="true"
+                [requestHeaders]="test.request.headers"
+            ></headers-view>
+        </div>
+
+        <div class="c-field-group u-mt-1">
+            <label class="c-label">Basic Auth</label>
+            <basic-auth-view [isVertical]="false" [auth]="test.request.auth"></basic-auth-view>
+        </div>
+
+        <div class="c-field-group u-mt-1" style="height: 500px">
+            <label class="c-label">Request</label>
+            <editor-view (bodyChanged)="test.request.body = $event" [isVertical]="false" [fullHeight]="true" [requestBody]="test.request.body"></editor-view>
+        </div>
+
+        <div class="c-field-group u-mt-1">
+            <label class="c-label">Asserts</label>
+            <div class="assert" *ngFor="let assert of test.asserts">
+                <div class="o-grid">
+                    <div class="o-grid__col o-grid__col--fixed u-mr-2">
+                        <div class="test-status-indicator">
+                            <i class="fa fa-minus-circle text--secondary-alt" *ngIf="getStatusOfAssert(assert) === 'UNKNOWN'" [title]="getStatusOfAssert(assert)"></i>
+                            <i class="fa fa-times-circle text--danger" *ngIf="getStatusOfAssert(assert) === 'FAILED'" [title]="getStatusOfAssert(assert)"></i>
+                            <i class="fa fa-check-circle text--success" *ngIf="getStatusOfAssert(assert) === 'PASSED'" [title]="getStatusOfAssert(assert)"></i>
+                        </div>
+                    </div>
+                    <div class="o-grid__col u-mr-2">
+                        <div class="c-field-group u-mt-1">
+                            <label class="c-label">JSON Path Query</label>
+                            <input type="text" class="c-field" placeholder="JSON Path Query" [(ngModel)]="assert.jsonPathQuery" />
+                        </div>
+                    </div>
+
+                    <div class="o-grid__col u-mr-2">
+                        <div class="c-field-group u-mt-1">
+                            <label class="c-label">Comparison Strategy</label>
+                            <select [(ngModel)]="assert.comparisonStrategy" class="c-field c-field__select edit-test-item--field__verb">
+                                <option *ngFor="let key of objectValues(comparisonStrategy)" [ngValue]="comparisonStrategy[key]">{{ comparisonStrategy[key] }}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="o-grid__col u-mr-2">
+                        <div class="c-field-group u-mt-1">
+                            <label class="c-label">Expected</label>
+                            <input
+                                type="text"
+                                class="c-field"
+                                placeholder="Expected"
+                                [(ngModel)]="assert.value"
+                                [disabled]="assert.comparisonStrategy !== comparisonStrategy.Equals"
+                            />
+                        </div>
+                    </div>
+                    <div class="o-grid__col u-mr-2">
+                        <div class="c-field-group u-mt-1">
+                            <label class="c-label">Actual</label>
+                            <input type="text" class="c-field" placeholder="Actual" disabled="disabled" [value]="assert.result ? assert.result.actual : ''" />
+                        </div>
+                    </div>
+                    <div class="o-grid__col o-grid__col--fixed">
+                        <div class="c-btn c-btn--small c-btn--secondary" style="margin-top: 40px" (click)="removeAssert(assert)"><i class="fa fa-minus"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="c-btn c-btn--small c-btn--secondary w-100 u-mt-2" (click)="createNewAssert()"><i class="fa fa-plus"></i> Add Assert</div>
+        </div>
+        <div class="c-field-group u-mt-1" style="height: 500px" *ngIf="test.response && test.response.body">
+            <label class="c-label">Response</label>
+            <editor-view [isVertical]="false" [isReadOnly]="true" [fullHeight]="true" [requestBody]="test.response.body"></editor-view>
+        </div>
+
+        <hr />
+
+        <div class="o-grid u-mb-3">
+            <div class="o-grid__col o-grid__col--fixed">
+                <button (click)="updateTest()" [disabled]="!isValid()" class="c-btn c-btn--primary u-mr-2"><i class="fa fa-save"></i> Save</button>
+            </div>
+            <div class="o-grid__col o-grid__col--fixed">
+                <button (click)="runTest()" [disabled]="!isValid()" class="c-btn c-btn--success u-mr-2">
+                    <i class="fa fa-play" *ngIf="!isRunning"></i>
+                    <i class="fa fa-spinner fa-spin" *ngIf="isRunning"></i>
+                    Run
+                </button>
+            </div>
+            <div class="o-grid__col o-grid__col--fixed">
+                <button (click)="duplicateTest()" class="c-btn c-btn--secondary u-mr-2"><i class="fa fa-copy"></i> Duplicate</button>
+            </div>
+            <div class="o-grid__col">
+                <button (click)="beautifyRequest()" class="c-btn c-btn--secondary u-mr-2"><i class="fa fa-hand-sparkles"></i> Beautify</button>
+            </div>
+            <div class="o-grid__col o-grid__col--fixed">
+                <button (click)="deleteTest()" class="c-btn c-btn--danger"><i class="fa fa-trash"></i> Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

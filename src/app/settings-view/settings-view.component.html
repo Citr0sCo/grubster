@@ -1,0 +1,143 @@
+<div class="settings-view o-container">
+    <div class="o-grid">
+        <div class="o-grid__col">
+            <h1>Settings</h1>
+        </div>
+        <div class="o-grid__col o-grid__col--fixed">
+            <h2>
+                <small>Grubster {{ version }}</small>
+            </h2>
+        </div>
+    </div>
+
+    <div *ngIf="settings" class="o-grid u-mb-3">
+        <div class="o-grid__col o-grid__col--half u-pr-3">
+            <h2>Collections</h2>
+            <div class="o-grid">
+                <input type="file" id="import-collections-field" style="display: none" />
+                <quick-action (clicked)="openImportBox()" [icon]="'fa-file-import'" [label]="'Import Collection'" class="o-grid__col o-grid__col--fixed"></quick-action>
+                <a id="export-collections-field" download="GrubsterCollection.json"></a>
+                <quick-action (clicked)="exportCollections()" [icon]="'fa-file-export'" [label]="'Export Collection'" class="o-grid__col o-grid__col--fixed"></quick-action>
+            </div>
+
+            <h2>Requests</h2>
+            <div class="c-input-group">
+                <div class="c-label">Default to HTTPS</div>
+                <div (click)="toggleDefaultToHttps()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.defaultToHttps"></toggle-switch>
+                </div>
+            </div>
+            <div class="c-input-group">
+                <label class="c-label">Request Timeout (Ms)</label>
+                <input [(ngModel)]="settings.requestTimeoutInMs" class="c-field" id="setting-requestTimeoutInMs" type="text" (keyup)="applySettings(settings)" />
+            </div>
+            <div class="c-input-group">
+                <div class="c-label">Include Custom Headers</div>
+                <div (click)="toggleIncludeCustomHeaders()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.includeCustomHeaders"></toggle-switch>
+                </div>
+            </div>
+
+            <h2>Server</h2>
+            <div class="c-input-group">
+                <div class="c-label">Auto Sync</div>
+                <div (click)="toggleAutoSync()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.autoSync"></toggle-switch>
+                </div>
+            </div>
+
+            <h2>Debug</h2>
+            <div class="o-grid">
+                <quick-action
+                    (clicked)="clearLocalStorage()"
+                    [icon]="'fa-trash'"
+                    [isDangerous]="true"
+                    [label]="'Clear Local Storage'"
+                    class="o-grid__col o-grid__col--fixed"
+                ></quick-action>
+            </div>
+        </div>
+
+        <div class="o-grid__col o-grid__col--half">
+            <h2>UI</h2>
+            <div class="c-input-group">
+                <div class="c-label">Dark Mode</div>
+                <div (click)="toggleDarkMode()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.isDarkModeEnabled"></toggle-switch>
+                </div>
+            </div>
+            <div class="c-input-group">
+                <div class="c-label">Max History Entries</div>
+                <input [(ngModel)]="settings.maxHistorySize" class="c-field" type="number" (keyup)="applySettings(settings)" />
+            </div>
+
+            <h2>Sidebar</h2>
+            <div class="c-input-group">
+                <div class="c-label">Lock Sidebar</div>
+                <div (click)="toggleSidebar()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.isSidebarLocked"></toggle-switch>
+                </div>
+            </div>
+            <div class="c-input-group">
+                <div class="c-label">Show Collections</div>
+                <div (click)="toggleCollections()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.isCollectionsOpen"></toggle-switch>
+                </div>
+            </div>
+            <div class="c-input-group">
+                <div class="c-label">Show Tests</div>
+                <div (click)="toggleTests()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.isTestsOpen"></toggle-switch>
+                </div>
+            </div>
+            <div class="c-input-group">
+                <div class="c-label">Show History</div>
+                <div (click)="toggleHistory()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.isHistoryOpen"></toggle-switch>
+                </div>
+            </div>
+            <div class="c-input-group">
+                <div class="c-label">Tabs In Sidebar</div>
+                <div (click)="toggleTabsInSidebar()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.isTabsInSidebar"></toggle-switch>
+                </div>
+            </div>
+
+            <h2>Editors</h2>
+            <div class="c-input-group">
+                <div class="c-label">Vertical Editors</div>
+                <div (click)="toggleVerticalEditors()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.isEditorVertical"></toggle-switch>
+                </div>
+            </div>
+            <div class="c-input-group">
+                <div class="c-label">Editor Word Wrap</div>
+                <div (click)="toggleEditorWordWrap()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.editorWordWrap"></toggle-switch>
+                </div>
+            </div>
+            <div class="c-input-group">
+                <div class="c-label">Auto Beautify Request On Send</div>
+                <div (click)="toggleAutoBeautifyRequestOnSend()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.autoBeautifyRequestBodyOnSend"></toggle-switch>
+                </div>
+            </div>
+            <div class="c-input-group">
+                <div class="c-label">Auto Beautify Response On Send</div>
+                <div (click)="toggleAutoBeautifyResponseOnSend()" class="c-field">
+                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.autoBeautifyResponseBodyOnSend"></toggle-switch>
+                </div>
+            </div>
+            <div class="c-input-group">
+                <label class="c-label" for="setting-maxResponseSizeBeforePrompt">Max Response Size Before Prompt (bytes)</label>
+                <input
+                    [(ngModel)]="settings.maxResponseSizeBeforePromptInBytes"
+                    class="c-field"
+                    id="setting-maxResponseSizeBeforePrompt"
+                    type="text"
+                    (keyup)="applySettings(settings)"
+                />
+            </div>
+        </div>
+    </div>
+</div>

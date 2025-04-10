@@ -1,0 +1,115 @@
+@import './variables';
+
+.sidebar {
+    z-index: 101;
+    height: calc(100vh - #{$toolbar-height});
+    position: absolute;
+    background: var(--card-bg-alt);
+    box-shadow: var(--box-shadow);
+    overflow: auto;
+
+    &--locked {
+        position: relative;
+    }
+
+    &__quick-actions {
+        padding: 10px 0;
+        margin: 0;
+        border-right: 1px solid var(--border-color);
+        height: 100%;
+
+        &__item {
+            list-style: none;
+            font-size: 1.5rem;
+            line-height: 50px;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border-radius: $border-radius;
+            overflow: hidden;
+            margin: 0 10px 5px;
+
+            a {
+                display: block;
+            }
+
+            i {
+                display: block;
+                padding-top: 10px;
+            }
+
+            small {
+                font-size: 0.6rem;
+                position: relative;
+                top: -20px;
+            }
+
+            &--active,
+            &:hover {
+                background-color: var(--transparent-active-bg);
+            }
+        }
+    }
+
+    &__menu {
+        padding: 0;
+        margin: 0;
+        width: $sidebar-width;
+        height: 100%;
+        overflow: auto;
+
+        &__item {
+            list-style: none;
+            border-bottom: 1px solid var(--border-color);
+
+            p {
+                margin: 0;
+            }
+
+            a,
+            p {
+                display: block;
+                text-decoration: none;
+                width: 100%;
+                padding: 10px 15px;
+                color: var(--text-color);
+
+                &:hover {
+                    background-color: var(--transparent-hover-bg);
+                }
+
+                &:active {
+                    background-color: var(--transparent-active-bg);
+                }
+            }
+
+            &__badge {
+                margin-right: 0.5rem;
+            }
+
+            &--active {
+                border-left: 3px solid var(--text-color);
+                background-color: var(--transparent-active-bg);
+            }
+
+            &--inactive {
+                opacity: 0.5;
+            }
+
+            &--highlight {
+                color: $brand-primary;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.blackout {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}

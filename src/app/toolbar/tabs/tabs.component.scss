@@ -1,0 +1,65 @@
+@import './variables';
+
+$add-button-width: calc(#{$toolbar-height} - 0.5rem);
+
+:host {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.tabs {
+    height: $toolbar-height;
+    -webkit-app-region: drag;
+
+    &__tab {
+        width: 200px;
+        background-color: var(-card-bg-color);
+        line-height: $toolbar-height;
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+        cursor: pointer;
+        color: var(--text-color);
+        opacity: 0.8;
+        transition: all ease-in-out var(--transition-speed);
+        -webkit-app-region: no-drag;
+
+        &--active {
+            background-color: var(--card-bg-color-alt);
+            color: var(--text-color);
+            opacity: 1;
+        }
+
+        &--add {
+            background-color: transparent;
+            text-align: center;
+            width: $add-button-width;
+            line-height: $add-button-width;
+            border-radius: 50%;
+            padding-top: 0.15rem;
+        }
+
+        &:hover {
+            background-color: var(--card-bg-color-alt);
+            opacity: 1;
+        }
+
+        &__close {
+            border-radius: 50%;
+            text-align: center;
+            padding: 5px;
+            width: 20px;
+            height: 20px;
+            font-size: 0.75rem;
+
+            &:hover {
+                background-color: $danger-color;
+            }
+        }
+
+        &__label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

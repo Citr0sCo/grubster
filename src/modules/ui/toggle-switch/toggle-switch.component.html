@@ -1,0 +1,4 @@
+<label class="switch">
+    <input (ngModelChange)="toggle()" [(ngModel)]="switchValue" [disabled]="isDisabled" name="includeArchived" type="checkbox" />
+    <span [ngClass]="{ disabled: isDisabled }" class="slider round"></span>
+</label>

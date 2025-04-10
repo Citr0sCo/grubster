@@ -1,0 +1,65 @@
+@import './variables';
+@import './mixins';
+
+$add-button-width: calc(#{$toolbar-height} - 0.5rem);
+
+.headers-view {
+    height: calc(100vh - #{$toolbar-height} - #{$request-bar-height} - #{$request-pane-tabs-height} - #{$request-pane-footer-height});
+    padding-bottom: 10px;
+
+    &--horizontal {
+        height: calc(100% - #{$request-pane-tabs-height} - #{$request-pane-footer-height});
+    }
+
+    &--no-padding {
+        padding: 0;
+    }
+
+    &__header {
+        &__field {
+            position: relative;
+        }
+    }
+
+    &__action {
+        background-color: var(--card-bg-color);
+        cursor: pointer;
+        color: var(--text-color);
+        opacity: 0.8;
+        transition: all ease-in-out var(--transition-speed);
+        text-align: center;
+        width: $add-button-width;
+        line-height: $add-button-width;
+        border-radius: 50%;
+        padding-top: 0.15rem;
+
+        &:hover {
+            background-color: var(--card-bg-color-alt);
+            opacity: 1;
+        }
+
+        &--add:not(&--inactive) {
+            background-color: $brand-primary;
+        }
+
+        &--inactive {
+            opacity: 0.25;
+
+            &:hover {
+                opacity: 0.25;
+                background-color: transparent;
+            }
+        }
+    }
+
+    .no-headers-text {
+        text-align: center;
+        font-style: italic;
+        color: grey;
+        padding: 15px;
+    }
+
+    .o-container {
+        padding-bottom: 10px;
+    }
+}

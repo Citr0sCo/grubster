@@ -1,0 +1,82 @@
+@import './variables';
+@import './mixins';
+
+.request-bar {
+    height: $request-bar-height;
+
+    &__verb {
+        @include http-verbs-border;
+    }
+
+    &__url {
+        &__container {
+            position: relative;
+        }
+    }
+
+    &__send {
+        text-transform: uppercase;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: 1px solid transparent;
+
+        &--opened {
+            border-bottom-left-radius: 0;
+            border-bottom: 1px solid transparent;
+        }
+    }
+
+    &__cancel {
+        text-transform: uppercase;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        padding: 9px 10px;
+
+        &__label {
+            display: block;
+            font-weight: bold;
+        }
+    }
+
+    &__chevron {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        padding: 15px 5px;
+
+        &--opened {
+            border-bottom-right-radius: 0;
+            border-bottom: 1px solid transparent;
+        }
+    }
+
+    &__send-settings {
+        position: absolute;
+        z-index: 1;
+
+        &__send {
+            text-transform: uppercase;
+            width: 100%;
+            text-align: left;
+            border-radius: 0;
+            display: block;
+
+            &:first-of-type {
+                border-top-right-radius: $border-radius;
+            }
+
+            &:last-of-type {
+                &:not(:first-of-type) {
+                    border-top: transparent;
+                    border-top-right-radius: 0;
+                }
+
+                border-bottom-left-radius: $border-radius;
+                border-bottom-right-radius: $border-radius;
+            }
+        }
+    }
+
+    &__editor {
+        height: calc(100vh - #{$toolbar-height});
+    }
+}

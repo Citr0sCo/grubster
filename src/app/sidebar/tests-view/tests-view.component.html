@@ -1,0 +1,6 @@
+<div class="tests-view">
+    <test-plan *ngFor="let test of tests" [test]="test"></test-plan>
+    <div (click)="addTest()" class="o-grid tests-view__item">
+        <div class="o-grid__col"><i class="fa fa-plus u-mr-1"></i> Add Test Plan</div>
+    </div>
+</div>

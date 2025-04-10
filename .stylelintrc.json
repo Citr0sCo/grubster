@@ -1,0 +1,21 @@
+{
+  "plugins": [
+    "stylelint-selector-bem-pattern"
+  ],
+  "rules": {
+    "declaration-no-important": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
+    "property-no-vendor-prefix": true,
+    "plugin/selector-bem-pattern": {
+      "preset": "bem",
+      "componentName": "^[a-z](?![a-z]+--[a-z]+)[a-z-]+[a-z]$",
+      "componentSelectors": "^\\.([co]-)?{componentName}((__|--)[a-z-]+)*(:[a-z]+)?(\\[[a-z]+\\])?$",
+      "utilitySelectors": "^\\.u-[a-z-]+$",
+      "implicitComponents": true
+    }
+  }
+}

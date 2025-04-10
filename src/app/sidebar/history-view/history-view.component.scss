@@ -1,0 +1,12 @@
+@import '../../../styles/variables';
+
+.history-view {
+    color: var(--text-color);
+    cursor: pointer;
+
+    .empty-tab {
+        padding: 10px 15px;
+        color: var(--text-color-alt);
+        cursor: not-allowed;
+    }
+}

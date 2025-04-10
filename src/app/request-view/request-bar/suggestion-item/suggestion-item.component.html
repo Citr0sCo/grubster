@@ -1,0 +1,10 @@
+<div (click)="handleClick(suggestion)" class="suggestion">
+    <div class="o-grid">
+        <div class="o-grid__col">
+            {{ suggestion.value }}
+        </div>
+        <div class="o-grid__col o-grid__col--fixed" (click)="removeSuggestion(suggestion)">
+            <i class="fa fa-times-circle suggestion--edit"></i>
+        </div>
+    </div>
+</div>

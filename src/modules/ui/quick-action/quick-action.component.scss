@@ -1,0 +1,30 @@
+@import '../../../styles/variables';
+
+.quick-action {
+    padding: 15px;
+    background: var(--card-bg-color);
+    border-radius: $border-radius;
+    box-shadow: var(--box-shadow);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all ease-in-out var(--transition-speed);
+
+    &--primary {
+        background: var(--action-button-bg);
+        color: #fff;
+    }
+
+    &--danger {
+        background: $danger-color;
+        color: #fff;
+    }
+
+    &:hover {
+        transform: scale(1.02);
+    }
+
+    i {
+        font-size: 2rem;
+        margin-right: 5px;
+    }
+}

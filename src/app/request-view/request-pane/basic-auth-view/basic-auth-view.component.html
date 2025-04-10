@@ -1,0 +1,10 @@
+<div class="o-container basic-auth" [ngClass]="{ 'basic-auth--horizontal': !isVertical }">
+    <div class="o-grid headers-view__header u-mt-2">
+        <div class="o-grid__col u-mr-2">
+            <input [(ngModel)]="auth.username" class="c-field" placeholder="Username" type="text" />
+        </div>
+        <div class="o-grid__col">
+            <input [(ngModel)]="auth.password" class="c-field" placeholder="Password" type="password" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+@import './variables';
+
+.toolbar {
+    z-index: 101;
+    position: relative;
+    height: $toolbar-height;
+    background: var(--card-bg-alt);
+    box-shadow: var(--box-shadow);
+    -webkit-app-region: drag;
+}

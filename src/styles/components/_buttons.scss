@@ -1,0 +1,120 @@
+@import 'variables';
+
+.c-btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 15px;
+    border-radius: $border-radius;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    color: var(--text-color);
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+
+    &:hover {
+        background-color: var(--transparent-hover-bg);
+    }
+
+    &:active {
+        background-color: var(--transparent-active-bg);
+    }
+
+    &--primary {
+        background-color: $brand-primary;
+        border-color: darken($brand-primary, 10%);
+
+        &:hover {
+            background-color: darken($brand-primary, 10%);
+        }
+
+        &:active {
+            background-color: darken($brand-primary, 15%);
+        }
+    }
+
+    &--secondary {
+        background-color: var(--card-bg-color);
+        border-color: var(--card-bg-color-alt);
+
+        &:hover {
+            background-color: var(--card-bg-color-alt);
+        }
+
+        &:active {
+            background-color: var(--card-bg-color-alt);
+        }
+    }
+
+    &--remove-border-radius {
+        border-radius: 0 !important;
+    }
+
+    &--success {
+        background-color: $success-color;
+        border-color: darken($success-color, 10%);
+
+        &:hover {
+            background-color: darken($success-color, 10%);
+        }
+
+        &:active {
+            background-color: darken($success-color, 15%);
+        }
+    }
+
+    &--danger {
+        background-color: $danger-color;
+        border-color: darken($danger-color, 10%);
+
+        &:hover {
+            background-color: darken($danger-color, 10%);
+        }
+
+        &:active {
+            background-color: darken($danger-color, 15%);
+        }
+    }
+
+    &--warning {
+        color: #212529;
+        background-color: $warning-color;
+        border-color: darken($warning-color, 10%);
+
+        &:hover {
+            background-color: darken($warning-color, 10%);
+        }
+
+        &:active {
+            background-color: darken($warning-color, 15%);
+        }
+    }
+
+    &--info {
+        background-color: $info-color;
+        border-color: darken($info-color, 10%);
+
+        &:hover {
+            background-color: darken($info-color, 10%);
+        }
+
+        &:active {
+            background-color: darken($info-color, 15%);
+        }
+    }
+
+    &--small {
+        padding: 5px 10px;
+    }
+
+    &[disabled] {
+        background-color: var(--card-bg-color);
+        border-color: var(--border-color);
+        cursor: not-allowed;
+    }
+}

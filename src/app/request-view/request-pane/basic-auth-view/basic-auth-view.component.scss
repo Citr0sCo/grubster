@@ -1,0 +1,12 @@
+@import './variables';
+@import './mixins';
+
+$add-button-width: calc(#{$toolbar-height} - 0.5rem);
+
+.basic-auth {
+    height: calc(100vh - #{$toolbar-height} - #{$request-bar-height} - #{$request-pane-tabs-height} - #{$request-pane-footer-height});
+
+    &--horizontal {
+        height: calc(100% - #{$request-pane-tabs-height} - #{$request-pane-footer-height});
+    }
+}

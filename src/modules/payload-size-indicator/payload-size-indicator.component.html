@@ -1,0 +1,5 @@
+<div class="payload-size-indicator badge-wrapper">
+    <div [ngClass]="{ 'badge--small': isSmall }" class="badge payload-size">
+        <span [innerHTML]="getResponseSize(payloadSize)"></span>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+@import 'variables';
+
+@mixin rotation {
+    @for $i from 0 through 360 {
+        @if ($i % 45 == 0) {
+            .u-r-#{$i} {
+                transform: rotate(#{$i}deg) !important;
+            }
+        }
+    }
+}
+
+@include rotation;

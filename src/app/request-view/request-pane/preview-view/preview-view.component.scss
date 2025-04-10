@@ -1,0 +1,23 @@
+@import './variables';
+@import './mixins';
+
+$add-button-width: calc(#{$toolbar-height} - 0.5rem);
+
+.preview-view {
+    height: calc(100vh - #{$toolbar-height} - #{$request-bar-height} - #{$request-pane-tabs-height} - #{$request-pane-footer-height});
+
+    iframe {
+        width: 100%;
+        height: calc(100vh - #{$toolbar-height} - #{$request-bar-height} - #{$request-pane-tabs-height} - #{$request-pane-footer-height});
+        border: none;
+        background-color: #fff;
+    }
+
+    &--horizontal {
+        height: calc(100% - #{$request-pane-tabs-height} - #{$request-pane-footer-height});
+
+        iframe {
+            height: 100%;
+        }
+    }
+}

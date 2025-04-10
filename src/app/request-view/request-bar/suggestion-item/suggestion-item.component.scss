@@ -1,0 +1,31 @@
+@import './variables';
+@import './mixins';
+
+.suggestion {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:last-of-type {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background-color: var(--transparent-hover-bg);
+    }
+
+    &:active {
+        background-color: var(--transparent-active-bg);
+    }
+
+    &--edit {
+        opacity: 0.5;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

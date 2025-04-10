@@ -1,0 +1,102 @@
+<div class="dashboard-view o-container">
+    <div class="o-grid">
+        <div class="o-grid__col">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="o-grid__col o-grid__col--fixed">
+            <h2>
+                <small>Grubster {{ version }}</small>
+            </h2>
+        </div>
+    </div>
+
+    <div class="o-grid">
+        <quick-action (clicked)="createNewTab()" [icon]="'fa-plus'" [isPrimary]="true" [label]="'New Request'" class="o-grid__col o-grid__col--fixed"></quick-action>
+        <quick-action [icon]="'fa-cog'" [label]="'View Settings'" [routerLink]="['/settings']" class="o-grid__col o-grid__col--fixed"></quick-action>
+    </div>
+
+    <hr />
+
+    <div class="o-grid">
+        <quick-action (clicked)="openImportBox()" [icon]="'fa-file-import'" [label]="'Import Collection'" class="o-grid__col o-grid__col--fixed"></quick-action>
+        <input type="file" id="import-collections-field" style="display: none" />
+        <quick-action (clicked)="exportCollections()" [icon]="'fa-file-export'" [label]="'Export Collection'" class="o-grid__col o-grid__col--fixed"></quick-action>
+    </div>
+
+    <hr />
+
+    <div class="o-grid">
+        <a href="https://discord.com/invite/h6yzaWx8An" target="_blank" title="Open Grubster Discord">
+            <quick-action [icon]="'fa-discord'" [label]="'Discord'" [prefix]="'fab'" class="o-grid__col o-grid__col--fixed"></quick-action>
+        </a>
+    </div>
+
+    <hr />
+
+    <div class="o-grid">
+        <div class="o-grid__col">
+            <h3 class="u-mt-0 u-mb-0">Shortcuts</h3>
+        </div>
+    </div>
+
+    <div class="o-grid">
+        <div class="o-grid__col">
+            <h4 class="u-mt-1 u-mb-0">Tabs</h4>
+
+            <div class="o-grid u-m-1">
+                <div class="o-grid__col o-grid__col--fixed">New Tab -</div>
+                <div class="o-grid__col o-grid__col--fixed">
+                    <div class="o-grid">
+                        <div class="o-grid__col o-grid__col--fixed key">Ctrl</div>
+                        <div class="o-grid__col o-grid__col--fixed">+</div>
+                        <div class="o-grid__col o-grid__col--fixed key">T</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="o-grid u-m-1">
+                <div class="o-grid__col o-grid__col--fixed">Close Tab -</div>
+                <div class="o-grid__col o-grid__col--fixed">
+                    <div class="o-grid">
+                        <div class="o-grid__col o-grid__col--fixed key">Middle Mouse Click On Tab</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="o-grid u-m-1">
+                <div class="o-grid__col o-grid__col--fixed">Duplicate Tab -</div>
+                <div class="o-grid__col o-grid__col--fixed">
+                    <div class="o-grid">
+                        <div class="o-grid__col o-grid__col--fixed key">Right Mouse Click On Tab</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="o-grid__col">
+            <h4 class="u-mt-1 u-mb-0">Debug</h4>
+
+            <div class="o-grid u-m-1">
+                <div class="o-grid__col o-grid__col--fixed">Refresh App -</div>
+                <div class="o-grid__col o-grid__col--fixed">
+                    <div class="o-grid">
+                        <div class="o-grid__col o-grid__col--fixed key">F5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="o-grid u-m-1">
+                <div class="o-grid__col o-grid__col--fixed">Dev Tools -</div>
+                <div class="o-grid__col o-grid__col--fixed">
+                    <div class="o-grid">
+                        <div class="o-grid__col o-grid__col--fixed key">Ctrl</div>
+                        <div class="o-grid__col o-grid__col--fixed">+</div>
+                        <div class="o-grid__col o-grid__col--fixed key">Shift</div>
+                        <div class="o-grid__col o-grid__col--fixed">+</div>
+                        <div class="o-grid__col o-grid__col--fixed key">I</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

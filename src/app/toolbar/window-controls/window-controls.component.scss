@@ -1,0 +1,34 @@
+@import './variables';
+
+$control-height: calc(#{$toolbar-height} - 0.5rem);
+
+.window-controls {
+    color: var(--text-color);
+    margin: 0.25rem;
+    -webkit-app-region: no-drag;
+
+    &__control {
+        border: 1px solid var(--border-color);
+        height: $control-height;
+        width: $toolbar-height;
+        text-align: center;
+        line-height: $control-height;
+        cursor: pointer;
+        border-radius: $border-radius;
+        transition: all ease-in-out var(--transition-speed);
+
+        &:hover {
+            background-color: var(--transparent-hover-bg);
+        }
+
+        &:active {
+            background-color: var(--transparent-active-bg);
+        }
+
+        &--danger {
+            &:hover {
+                background-color: $danger-color;
+            }
+        }
+    }
+}

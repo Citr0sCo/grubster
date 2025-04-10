@@ -1,0 +1,5 @@
+<div class="status-code-indicator badge-wrapper">
+    <div [ngClass]="{ 'badge--small': isSmall }" [title]="statusText" class="{{ '_' + statusCode }} badge status-code">
+        {{ statusCode }}
+    </div>
+</div>

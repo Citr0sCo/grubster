@@ -1,0 +1,13 @@
+@import './mixins';
+
+.edit-test-item {
+    &--field {
+        &__verb {
+            @include http-verbs-border;
+        }
+    }
+
+    .test-status-indicator {
+        margin-top: 45px;
+    }
+}
