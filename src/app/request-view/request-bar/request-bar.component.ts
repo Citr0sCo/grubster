@@ -100,7 +100,6 @@ export class RequestBarComponent implements OnInit, OnDestroy {
             this._activatedRoute.params.subscribe((payload) => {
                 if (!payload.id) {
                     if (this._tabs.length > 0) {
-                        console.log(1, ['/request', this._tabs[0].id]);
                         this._router.navigate(['/request', this._tabs[0].id]);
                     } else {
                         this._router.navigate(['/dashboard']);

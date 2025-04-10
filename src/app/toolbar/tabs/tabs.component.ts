@@ -55,7 +55,6 @@ export class TabsComponent implements OnInit, OnDestroy {
             this._tabsService.duplicateTab(tab);
             return;
         }
-        console.log(2, ['/request', tab.id]);
         this._router.navigate(['/request', tab.id]);
         this._tabsService.setCurrentTab(tab);
     }

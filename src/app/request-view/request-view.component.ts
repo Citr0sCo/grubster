@@ -95,7 +95,6 @@ export class RequestViewComponent implements OnInit, OnDestroy {
                     }
                 } else {
                     if (this._tabs.length > 0) {
-                        console.log(4, ['/request', this._tabs[0].id]);
                         this._router.navigate(['/request', this._tabs[0].id]);
                         return;
                     } else {
