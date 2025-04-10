@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/assets/apps/default.png" width="100" alt="Logo" >
+  <img src="src/assets/icon.png" width="100" alt="Logo" >
 </p>
 
 <h1 align="center">Grubster</h1>
