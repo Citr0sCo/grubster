@@ -47,7 +47,7 @@
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
-                            "deployUrl": "./app/",
+                            "deployUrl": "./",
                             "fileReplacements": [
                                 {
                                     "replace": "src/environments/environment.ts",
