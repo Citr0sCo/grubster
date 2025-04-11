@@ -6016,8 +6016,11 @@ readers do not read off random characters that represent icons */
     font-weight: 400;
     font-display: block;
     src: url('#{$font-path}/fa-brands-400.eot');
-    src: url('#{$font-path}/fa-brands-400.eot?#iefix') format('embedded-opentype'), url('#{$font-path}/fa-brands-400.woff2') format('woff2'),
-        url('#{$font-path}/fa-brands-400.woff') format('woff'), url('#{$font-path}/fa-brands-400.ttf') format('truetype'),
+    src:
+        url('#{$font-path}/fa-brands-400.eot?#iefix') format('embedded-opentype'),
+        url('#{$font-path}/fa-brands-400.woff2') format('woff2'),
+        url('#{$font-path}/fa-brands-400.woff') format('woff'),
+        url('#{$font-path}/fa-brands-400.ttf') format('truetype'),
         url('#{$font-path}/fa-brands-400.svg#fontawesome') format('svg');
 }
 
@@ -6033,8 +6036,11 @@ readers do not read off random characters that represent icons */
     font-weight: 400;
     font-display: block;
     src: url('#{$font-path}/fa-regular-400.eot');
-    src: url('#{$font-path}/fa-regular-400.eot?#iefix') format('embedded-opentype'), url('#{$font-path}/fa-regular-400.woff2') format('woff2'),
-        url('#{$font-path}/fa-regular-400.woff') format('woff'), url('#{$font-path}/fa-regular-400.ttf') format('truetype'),
+    src:
+        url('#{$font-path}/fa-regular-400.eot?#iefix') format('embedded-opentype'),
+        url('#{$font-path}/fa-regular-400.woff2') format('woff2'),
+        url('#{$font-path}/fa-regular-400.woff') format('woff'),
+        url('#{$font-path}/fa-regular-400.ttf') format('truetype'),
         url('#{$font-path}/fa-regular-400.svg#fontawesome') format('svg');
 }
 
@@ -6050,8 +6056,11 @@ readers do not read off random characters that represent icons */
     font-weight: 900;
     font-display: block;
     src: url('#{$font-path}/fa-solid-900.eot');
-    src: url('#{$font-path}/fa-solid-900.eot?#iefix') format('embedded-opentype'), url('#{$font-path}/fa-solid-900.woff2') format('woff2'),
-        url('#{$font-path}/fa-solid-900.woff') format('woff'), url('#{$font-path}/fa-solid-900.ttf') format('truetype'),
+    src:
+        url('#{$font-path}/fa-solid-900.eot?#iefix') format('embedded-opentype'),
+        url('#{$font-path}/fa-solid-900.woff2') format('woff2'),
+        url('#{$font-path}/fa-solid-900.woff') format('woff'),
+        url('#{$font-path}/fa-solid-900.ttf') format('truetype'),
         url('#{$font-path}/fa-solid-900.svg#fontawesome') format('svg');
 }
 
