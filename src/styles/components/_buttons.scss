@@ -12,7 +12,11 @@
     user-select: none;
     padding: 15px;
     border-radius: $border-radius;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition:
+        color 0.15s ease-in-out,
+        background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
     color: var(--text-color);
     background-color: transparent;
     border: 1px solid var(--border-color);

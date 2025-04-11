@@ -3,9 +3,9 @@
         <div class="o-grid__col">
             <i [class]="[isCollectionsOpen ? 'fa-folder-open' : 'fa-folder']" class="fa u-mr-1"></i>
             <span *ngIf="filterMatches">
-                {{ collection.name | slice : 0 : filterIndex
-                }}<span class="collections-item__item--highlight">{{ collection.name | slice : filterIndex : filterIndex + filter.length }}</span
-                >{{ collection.name | slice : filterIndex + filter.length : collection.name.length }}
+                {{ collection.name | slice: 0 : filterIndex
+                }}<span class="collections-item__item--highlight">{{ collection.name | slice: filterIndex : filterIndex + filter.length }}</span
+                >{{ collection.name | slice: filterIndex + filter.length : collection.name.length }}
             </span>
             <span *ngIf="!filterMatches">
                 {{ collection.name }}
