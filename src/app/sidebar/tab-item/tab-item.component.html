@@ -19,7 +19,7 @@
         </div>
     </div>
     <div *ngIf="!isEditable && entry.response.occurredAt" class="tab-item__item__occurred-at">
-        {{ entry.response.occurredAt | date: 'yyyy-MM-dd HH:mm:ss' : 'UTC' }} ({{ entry.response.occurredAt | timeago }})
+        {{ entry.response.occurredAt | date : 'yyyy-MM-dd HH:mm:ss' : 'UTC' }} ({{ entry.response.occurredAt | timeago }})
     </div>
     <div *ngIf="isTab" class="tab-item__item__resource">
         {{ hasProperName(entry.name, entry.url) ? entry.name : getResource(entry.url) }}
@@ -27,8 +27,9 @@
     <div *ngIf="!isTab" class="tab-item__item__resource">
         <span *ngIf="!entry.url">
             <span *ngIf="filterMatches">
-                {{ entry.name | slice: 0 : filterIndex }}<span class="tab-item__item__resource--highlight">{{ entry.name | slice: filterIndex : filterIndex + filter.length }}</span
-                >{{ entry.name | slice: filterIndex + filter.length : entry.name.length }}
+                {{ entry.name | slice : 0 : filterIndex
+                }}<span class="tab-item__item__resource--highlight">{{ entry.name | slice : filterIndex : filterIndex + filter.length }}</span
+                >{{ entry.name | slice : filterIndex + filter.length : entry.name.length }}
             </span>
             <span *ngIf="!filterMatches">
                 {{ entry.name }}
