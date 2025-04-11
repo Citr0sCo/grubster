@@ -4,7 +4,8 @@ import { Component, OnInit } from '@angular/core';
     selector: 'window-controls',
     templateUrl: './window-controls.component.html',
     styleUrls: ['./window-controls.component.scss'],
-    providers: []
+    providers: [],
+    standalone: false
 })
 export class WindowControlsComponent implements OnInit {
     public isMaximized: boolean = false;

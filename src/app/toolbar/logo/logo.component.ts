@@ -7,7 +7,8 @@ import { DEPLOY_URL } from '../../deploy-url';
 @Component({
     selector: 'logo',
     templateUrl: './logo.component.html',
-    styleUrls: ['./logo.component.scss']
+    styleUrls: ['./logo.component.scss'],
+    standalone: false
 })
 export class LogoComponent implements OnInit, OnDestroy {
     public deployUrl: string;

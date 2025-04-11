@@ -3,7 +3,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
     selector: 'badge',
     templateUrl: './badge.component.html',
-    styleUrls: ['./badge.component.scss']
+    styleUrls: ['./badge.component.scss'],
+    standalone: false
 })
 export class BadgeComponent {
     @Input()

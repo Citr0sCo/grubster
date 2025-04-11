@@ -3,7 +3,8 @@ import { Component, Input } from '@angular/core';
 @Component({
     selector: 'time-taken-indicator',
     templateUrl: './time-taken-indicator.component.html',
-    styleUrls: ['./time-taken-indicator.component.scss']
+    styleUrls: ['./time-taken-indicator.component.scss'],
+    standalone: false
 })
 export class TimeTakenIndicatorComponent {
     @Input()

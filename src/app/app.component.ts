@@ -4,7 +4,8 @@ import { CollectionManagementService } from '../modules/utility/collection-manag
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app.component.html'
+    templateUrl: './app.component.html',
+    standalone: false
 })
 export class AppComponent implements OnInit, OnDestroy {
     private readonly _settingsService: SettingsService;

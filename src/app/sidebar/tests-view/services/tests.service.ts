@@ -150,9 +150,9 @@ export class TestsService {
                                         }),
                                         language: testItem.request.language,
                                         method: testItem.method,
-                                        parameters: [],
+                                        parameters: [] as string[],
                                         url: testItem.url,
-                                        formdata: [],
+                                        formdata: [] as string[],
                                         auth: testItem.request.auth,
                                         asserts: testItem.asserts.map((assert) => {
                                             return {

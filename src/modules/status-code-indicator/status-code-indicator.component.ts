@@ -3,7 +3,8 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 @Component({
     selector: 'status-code-indicator',
     templateUrl: './status-code-indicator.component.html',
-    styleUrls: ['./status-code-indicator.component.scss']
+    styleUrls: ['./status-code-indicator.component.scss'],
+    standalone: false
 })
 export class StatusCodeIndicatorComponent implements OnChanges {
     @Input()

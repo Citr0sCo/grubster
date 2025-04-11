@@ -17,7 +17,8 @@ import { TestCaseHelper } from '../services/test-case.helper';
 @Component({
     selector: 'edit-test-item',
     templateUrl: './edit-test-case.component.html',
-    styleUrls: ['./edit-test-case.component.scss']
+    styleUrls: ['./edit-test-case.component.scss'],
+    standalone: false
 })
 export class EditTestCaseComponent implements OnInit, OnDestroy {
     public test: ITestCase;

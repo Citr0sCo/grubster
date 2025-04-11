@@ -9,13 +9,16 @@
             "projectType": "application",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
+                    "builder": "@angular-devkit/build-angular:application",
                     "options": {
-                        "outputPath": "dist/app",
+                        "outputPath": {
+                          "base": "dist/app"
+                        },
                         "index": "src/index.html",
-                        "main": "src/main.ts",
                         "tsConfig": "src/tsconfig.app.json",
-                        "polyfills": "src/polyfills.ts",
+                        "polyfills": [
+                          "src/polyfills.ts"
+                        ],
                         "deployUrl": "/",
                         "assets": [
                             "src/assets",
@@ -35,7 +38,8 @@
                                 "src/styles"
                             ]
                         },
-                        "scripts": []
+                        "scripts": [],
+                        "browser": "src/main.ts"
                     },
                     "configurations": {
                         "production": {
@@ -45,8 +49,6 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "vendorChunk": false,
-                            "buildOptimizer": true,
                             "deployUrl": "./",
                             "fileReplacements": [
                                 {
@@ -75,7 +77,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "grubster:build"
+                      "buildTarget": "grubster:build"
                     }
                 },
                 "lint": {
@@ -91,14 +93,14 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "grubster:build"
+                      "buildTarget": "grubster:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "grubster:build:production"
+                          "buildTarget": "grubster:build:production"
                         },
                         "local": {
-                            "browserTarget": "grubster:build:local"
+                          "buildTarget": "grubster:build:local"
                         }
                     }
                 }

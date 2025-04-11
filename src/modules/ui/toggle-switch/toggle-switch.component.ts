@@ -3,7 +3,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
     selector: 'toggle-switch',
     templateUrl: './toggle-switch.component.html',
-    styleUrls: ['./toggle-switch.component.scss']
+    styleUrls: ['./toggle-switch.component.scss'],
+    standalone: false
 })
 export class ToggleSwitchComponent {
     @Input()

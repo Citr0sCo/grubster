@@ -9,7 +9,8 @@ import { Store } from '../../core/database/store';
 @Component({
     selector: 'settings-view',
     templateUrl: './settings-view.component.html',
-    styleUrls: ['./settings-view.component.scss']
+    styleUrls: ['./settings-view.component.scss'],
+    standalone: false
 })
 export class SettingsViewComponent implements OnInit, OnDestroy {
     public version: string;

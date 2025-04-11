@@ -3,7 +3,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
     selector: 'quick-action',
     templateUrl: './quick-action.component.html',
-    styleUrls: ['./quick-action.component.scss']
+    styleUrls: ['./quick-action.component.scss'],
+    standalone: false
 })
 export class QuickActionComponent {
     @Input()

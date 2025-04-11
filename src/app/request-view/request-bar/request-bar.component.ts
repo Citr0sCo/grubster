@@ -18,7 +18,8 @@ import { CurlParserService } from '../../../modules/utility/curl-parser/curl-par
 @Component({
     selector: 'request-bar',
     templateUrl: './request-bar.component.html',
-    styleUrls: ['./request-bar.component.scss']
+    styleUrls: ['./request-bar.component.scss'],
+    standalone: false
 })
 export class RequestBarComponent implements OnInit, OnDestroy {
     @Input()

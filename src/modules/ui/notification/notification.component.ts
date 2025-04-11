@@ -11,7 +11,8 @@ import { Animations } from '../../../core/animations';
     templateUrl: './notification.component.html',
     styleUrls: ['./notification.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: [Animations.slideInUp()]
+    animations: [Animations.slideInUp()],
+    standalone: false
 })
 export class NotificationComponent implements OnInit, OnDestroy {
     public notifications: INotification[] = [];

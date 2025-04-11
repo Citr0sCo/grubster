@@ -3,7 +3,8 @@ import { Component, Input } from '@angular/core';
 @Component({
     selector: 'payload-size-indicator',
     templateUrl: './payload-size-indicator.component.html',
-    styleUrls: ['./payload-size-indicator.component.scss']
+    styleUrls: ['./payload-size-indicator.component.scss'],
+    standalone: false
 })
 export class PayloadSizeIndicatorComponent {
     @Input()

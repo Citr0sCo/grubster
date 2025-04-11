@@ -12,7 +12,8 @@ import { EditorResizeService } from './request-pane/services/editor-resize-servi
 @Component({
     selector: 'request-view',
     templateUrl: './request-view.component.html',
-    styleUrls: ['./request-view.component.scss']
+    styleUrls: ['./request-view.component.scss'],
+    standalone: false
 })
 export class RequestViewComponent implements OnInit, OnDestroy {
     public currentTab: ITab;

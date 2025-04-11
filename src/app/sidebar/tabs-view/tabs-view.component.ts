@@ -7,7 +7,8 @@ import { ITab } from '../../toolbar/tabs/types/tab.model';
 @Component({
     selector: 'tabs-view',
     templateUrl: './tabs-view.component.html',
-    styleUrls: ['./tabs-view.component.scss']
+    styleUrls: ['./tabs-view.component.scss'],
+    standalone: false
 })
 export class TabsViewComponent implements OnInit, OnDestroy {
     public tabs: ITab[];

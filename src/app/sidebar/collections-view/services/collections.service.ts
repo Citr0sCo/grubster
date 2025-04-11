@@ -150,9 +150,7 @@ export class CollectionsService {
                                             }),
                                             language: tab.request.language,
                                             method: tab.method,
-                                            parameters: [],
                                             url: tab.url,
-                                            formdata: [],
                                             auth: tab.request.auth
                                         }
                                     }

@@ -7,7 +7,8 @@ import { version } from './../../../package.json';
 @Component({
     selector: 'dashboard-view',
     templateUrl: './dashboard-view.component.html',
-    styleUrls: ['./dashboard-view.component.scss']
+    styleUrls: ['./dashboard-view.component.scss'],
+    standalone: false
 })
 export class DashboardViewComponent {
     public version: string;

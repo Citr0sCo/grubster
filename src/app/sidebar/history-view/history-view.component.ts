@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'history-view',
     templateUrl: './history-view.component.html',
-    styleUrls: ['./history-view.component.scss']
+    styleUrls: ['./history-view.component.scss'],
+    standalone: false
 })
 export class HistoryViewComponent implements OnInit, OnDestroy {
     public entries: ITab[];

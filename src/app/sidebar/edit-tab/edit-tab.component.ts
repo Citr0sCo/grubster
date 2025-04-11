@@ -8,7 +8,8 @@ import { ICollection } from '../collections-view/types/collection.model';
 @Component({
     selector: 'edit-tab',
     templateUrl: './edit-tab.component.html',
-    styleUrls: ['./edit-tab.component.scss']
+    styleUrls: ['./edit-tab.component.scss'],
+    standalone: false
 })
 export class EditTabComponent implements OnInit, OnDestroy {
     public tab: ITab;
