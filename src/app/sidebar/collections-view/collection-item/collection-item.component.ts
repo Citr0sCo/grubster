@@ -10,7 +10,8 @@ import { NotificationService } from '../../../../modules/ui/notification/notific
 @Component({
     selector: 'collection-item',
     templateUrl: './collection-item.component.html',
-    styleUrls: ['./collection-item.component.scss']
+    styleUrls: ['./collection-item.component.scss'],
+    standalone: false
 })
 export class CollectionItemComponent implements OnInit, OnDestroy, OnChanges {
     @Input()

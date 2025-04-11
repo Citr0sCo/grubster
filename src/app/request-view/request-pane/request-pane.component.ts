@@ -11,7 +11,8 @@ import { BeautifyHelper } from '../../../core/beautify.helper';
 @Component({
     selector: 'request-pane',
     templateUrl: './request-pane.component.html',
-    styleUrls: ['./request-pane.component.scss']
+    styleUrls: ['./request-pane.component.scss'],
+    standalone: false
 })
 export class RequestPaneComponent implements OnInit, OnDestroy {
     @Input()

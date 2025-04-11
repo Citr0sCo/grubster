@@ -6,7 +6,8 @@ import * as headers from '../../../../../assets/data/headers.json';
 @Component({
     selector: 'headers-item',
     templateUrl: './headers-item.component.html',
-    styleUrls: ['./headers-item.component.scss']
+    styleUrls: ['./headers-item.component.scss'],
+    standalone: false
 })
 export class HeadersItemComponent implements OnInit {
     @Input()

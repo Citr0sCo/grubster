@@ -1,7 +1,8 @@
 import { Directive, EventEmitter, HostListener, Output } from '@angular/core';
 
 @Directive({
-    selector: '[middle-click]'
+    selector: '[middle-click]',
+    standalone: false
 })
 export class MiddleClickDirective {
     @Output()

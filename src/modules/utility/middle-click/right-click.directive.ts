@@ -1,7 +1,8 @@
 import { Directive, EventEmitter, HostListener, Output } from '@angular/core';
 
 @Directive({
-    selector: '[right-click]'
+    selector: '[right-click]',
+    standalone: false
 })
 export class RightClickDirective {
     @Output()

@@ -12,7 +12,8 @@ import { HttpVerbs } from '../../../../core/http-verbs';
 @Component({
     selector: 'test-plan',
     templateUrl: './test-plan.component.html',
-    styleUrls: ['./test-plan.component.scss']
+    styleUrls: ['./test-plan.component.scss'],
+    standalone: false
 })
 export class TestPlanComponent implements OnInit, OnDestroy {
     @Input()

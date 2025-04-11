@@ -10,7 +10,8 @@ import { debounceTime } from 'rxjs/operators';
 @Component({
     selector: 'collections-view',
     templateUrl: './collections-view.component.html',
-    styleUrls: ['./collections-view.component.scss']
+    styleUrls: ['./collections-view.component.scss'],
+    standalone: false
 })
 export class CollectionsViewComponent implements OnInit, OnDestroy {
     public filter: string = '';

@@ -8,7 +8,8 @@ import { Subscription } from 'rxjs';
 @Component({
     selector: 'tab-item',
     templateUrl: './tab-item.component.html',
-    styleUrls: ['./tab-item.component.scss']
+    styleUrls: ['./tab-item.component.scss'],
+    standalone: false
 })
 export class TabItemComponent implements OnInit, OnDestroy {
     @Input()

@@ -18,7 +18,8 @@ export interface ILocalTest {
 @Component({
     selector: 'edit-test-plan',
     templateUrl: './edit-test-plan.component.html',
-    styleUrls: ['./edit-test-plan.component.scss']
+    styleUrls: ['./edit-test-plan.component.scss'],
+    standalone: false
 })
 export class EditTestPlanComponent implements OnInit, OnDestroy {
     public test: ITestPlan;

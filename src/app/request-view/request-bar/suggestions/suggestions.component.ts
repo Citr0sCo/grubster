@@ -4,7 +4,8 @@ import { ISuggestion } from '../types/suggestion.model';
 @Component({
     selector: 'suggestions',
     templateUrl: './suggestions.component.html',
-    styleUrls: ['./suggestions.component.scss']
+    styleUrls: ['./suggestions.component.scss'],
+    standalone: false
 })
 export class SuggestionsComponent {
     @Input()

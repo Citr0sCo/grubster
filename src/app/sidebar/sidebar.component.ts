@@ -16,7 +16,8 @@ import { ITestPlan } from './tests-view/types/test.model';
     selector: 'sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
-    animations: [Animations.slideInRight(), Animations.fadeIn()]
+    animations: [Animations.slideInRight(), Animations.fadeIn()],
+    standalone: false
 })
 export class SidebarComponent implements OnInit, OnDestroy {
     public isSidebarOpen: boolean = true;

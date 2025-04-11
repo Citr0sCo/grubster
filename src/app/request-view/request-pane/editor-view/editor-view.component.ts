@@ -8,7 +8,8 @@ import { MonacoStandaloneCodeEditor } from '@materia-ui/ngx-monaco-editor/lib/in
 @Component({
     selector: 'editor-view',
     templateUrl: './editor-view.component.html',
-    styleUrls: ['./editor-view.component.scss']
+    styleUrls: ['./editor-view.component.scss'],
+    standalone: false
 })
 export class EditorViewComponent implements OnInit, OnDestroy {
     @Input()

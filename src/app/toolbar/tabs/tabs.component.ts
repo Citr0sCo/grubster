@@ -10,7 +10,8 @@ import { ContextMenuService } from '../../../modules/ui/context-menu/services/co
 @Component({
     selector: 'tabs',
     templateUrl: './tabs.component.html',
-    styleUrls: ['./tabs.component.scss']
+    styleUrls: ['./tabs.component.scss'],
+    standalone: false
 })
 export class TabsComponent implements OnInit, OnDestroy {
     public tabs: ITab[];

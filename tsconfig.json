@@ -5,7 +5,7 @@
         "outDir": "dist",
         "sourceMap": true,
         "declaration": false,
-        "downlevelIteration": true,
+        "esModuleInterop": true,
         "experimentalDecorators": true,
         "module": "commonjs",
         "moduleResolution": "node",

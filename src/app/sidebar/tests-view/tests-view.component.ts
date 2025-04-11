@@ -10,7 +10,8 @@ import { ITestCase } from './types/test-item.model';
 @Component({
     selector: 'tests-view',
     templateUrl: './tests-view.component.html',
-    styleUrls: ['./tests-view.component.scss']
+    styleUrls: ['./tests-view.component.scss'],
+    standalone: false
 })
 export class TestsViewComponent implements OnInit, OnDestroy {
     public tests: ITestPlan[];

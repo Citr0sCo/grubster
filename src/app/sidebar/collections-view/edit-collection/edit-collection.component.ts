@@ -7,7 +7,8 @@ import { ICollection } from '../types/collection.model';
 @Component({
     selector: 'edit-collection',
     templateUrl: './edit-collection.component.html',
-    styleUrls: ['./edit-collection.component.scss']
+    styleUrls: ['./edit-collection.component.scss'],
+    standalone: false
 })
 export class EditCollectionComponent implements OnInit, OnDestroy {
     public collection: ICollection;

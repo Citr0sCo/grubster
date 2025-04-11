@@ -8,7 +8,8 @@ import { TestRunnerService } from '../services/test-runner.service';
 @Component({
     selector: 'test-case',
     templateUrl: './test-case.component.html',
-    styleUrls: ['./test-case.component.scss']
+    styleUrls: ['./test-case.component.scss'],
+    standalone: false
 })
 export class TestCaseComponent {
     @Input()

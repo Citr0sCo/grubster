@@ -4,7 +4,8 @@ import { IHeader } from '../../../toolbar/tabs/types/header.model';
 @Component({
     selector: 'headers-view',
     templateUrl: './headers-view.component.html',
-    styleUrls: ['./headers-view.component.scss']
+    styleUrls: ['./headers-view.component.scss'],
+    standalone: false
 })
 export class HeadersViewComponent implements OnInit {
     @Input()

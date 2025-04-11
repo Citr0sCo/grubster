@@ -7,7 +7,8 @@ import { IContextMenuAction } from './types/context-menu-action.model';
 @Component({
     selector: 'context-menu',
     templateUrl: './context-menu.component.html',
-    styleUrls: ['./context-menu.component.scss']
+    styleUrls: ['./context-menu.component.scss'],
+    standalone: false
 })
 export class ContextMenuComponent implements OnInit, OnDestroy {
     public isShowing: boolean;

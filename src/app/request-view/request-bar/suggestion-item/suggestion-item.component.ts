@@ -5,7 +5,8 @@ import { SuggestionsService } from '../services/suggestions.service';
 @Component({
     selector: 'suggestion-item',
     templateUrl: './suggestion-item.component.html',
-    styleUrls: ['./suggestion-item.component.scss']
+    styleUrls: ['./suggestion-item.component.scss'],
+    standalone: false
 })
 export class SuggestionItemComponent {
     @Input()
