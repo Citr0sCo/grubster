@@ -39,7 +39,7 @@
     "@materia-ui/ngx-monaco-editor": "6.0.0",
     "jsonpath": "^1.1.1",
     "monaco-editor": "^0.52.2",
-    "ngx-clipboard": "^14.0.2",
+    "ngx-clipboard": "^16.0.0",
     "ngx-monaco-editor": "^12.0.0",
     "ngx-timeago": "^3.0.0",
     "path": "^0.12.7",
