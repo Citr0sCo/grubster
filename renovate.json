@@ -2,7 +2,7 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "autodiscover": true,
     "autodiscoverFilter": [
-        "citr0sCo/grubster"
+        "Citr0sCo/grubster"
     ],
     "prHourlyLimit": 2,
     "prCreation": "immediate",
