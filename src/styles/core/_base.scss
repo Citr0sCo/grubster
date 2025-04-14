@@ -21,7 +21,7 @@
     .theme--dark {
         --body-background-color: #1c1e29ff;
         --text-color: #fff;
-        --text-color-alt: #282a3a;
+        --text-color-alt: #f3f3f3;
         --card-bg-color: #282a3a;
         --card-bg-color-alt: #1c1e29ff;
         --card-bg-alt: -webkit-linear-gradient(top right, #1c1e29ff 0%, #1c1e29ff 0%, #282a3a 100%, #282a3a 100%);
@@ -125,12 +125,11 @@ button {
 
 code {
     color: $brand-primary;
-    font-family:
-        Monaco,
-        Menlo,
-        Consolas,
-        Courier New,
-        monospace !important;
+    font-family: Monaco,
+    Menlo,
+    Consolas,
+    Courier New,
+    monospace !important;
     font-size: 12px;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -144,12 +143,11 @@ code {
 }
 
 pre {
-    font-family:
-        Monaco,
-        Menlo,
-        Consolas,
-        Courier New,
-        monospace !important;
+    font-family: Monaco,
+    Menlo,
+    Consolas,
+    Courier New,
+    monospace !important;
     font-size: 12px;
     white-space: pre-wrap;
     word-wrap: break-word;

@@ -49,4 +49,5 @@ import { TestRunnerService } from './tests-view/services/test-runner.service';
     bootstrap: [],
     exports: [SidebarComponent]
 })
-export class SidebarModule {}
+export class SidebarModule {
+}

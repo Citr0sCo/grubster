@@ -3,7 +3,6 @@ import { editorOptions } from '../../../editor.options';
 import { ISettings, SettingsService } from '../../../settings.service';
 import { Subscription } from 'rxjs';
 import { EditorResizeService } from '../services/editor-resize-service';
-import { MonacoStandaloneCodeEditor } from '@materia-ui/ngx-monaco-editor/lib/interfaces';
 
 @Component({
     selector: 'editor-view',
@@ -32,7 +31,7 @@ export class EditorViewComponent implements OnInit, OnDestroy {
     private _subscriptions: Subscription = new Subscription();
     private _settingsService: SettingsService;
     private _settings: ISettings;
-    private _rawElement: MonacoStandaloneCodeEditor;
+    private _rawElement: any;
     private _editorResizeService: EditorResizeService;
 
     constructor(settingsService: SettingsService, editorResizeService: EditorResizeService) {
@@ -69,8 +68,10 @@ export class EditorViewComponent implements OnInit, OnDestroy {
         this.bodyChanged.emit($event);
     }
 
-    public initEditor(e: MonacoStandaloneCodeEditor): void {
+    public initEditor(e: any): void {
+
         this._rawElement = e;
+        //this._rawElement = (window as any).monaco;
 
         this._rawElement.onKeyDown(($e: any) => {
             this.undo($e);

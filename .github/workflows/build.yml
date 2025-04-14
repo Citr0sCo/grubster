@@ -11,7 +11,7 @@ defaults:
         shell: bash
 
 jobs:
-    build:
+    build-fe:
         runs-on: self-hosted
         steps:
             -   uses: actions/checkout@v4
@@ -25,7 +25,19 @@ jobs:
             -   name: Build
                 run: yarn run build
 
-    test:
+    build-be:
+        runs-on: self-hosted
+        steps:
+            -   uses: actions/checkout@v4
+
+            -   uses: actions/setup-dotnet@v4
+                with:
+                    dotnet-version: '9.0.x'
+
+            -   name: Testing BE
+                run: dotnet build api/grubster/Grubster.sln
+
+    test-fe:
         runs-on: self-hosted
         timeout-minutes: 5
         steps:
@@ -40,7 +52,20 @@ jobs:
             -   name: Test
                 run: yarn test
 
-    lint:
+    test-be:
+        runs-on: self-hosted
+
+        steps:
+            -   uses: actions/checkout@v4
+
+            -   uses: actions/setup-dotnet@v4
+                with:
+                    dotnet-version: '9.0.x'
+
+            -   name: Testing BE
+                run: dotnet test api/grubster/Grubster.sln
+
+    lint-fe:
         runs-on: self-hosted
         steps:
             -   uses: actions/checkout@v4
