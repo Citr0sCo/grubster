@@ -24,7 +24,6 @@ export class HttpResponseMapper implements OnDestroy {
     }
 
     public map(payload: any): IResponse {
-
         const headers: IHeader[] = [];
 
         for (const header of payload.Headers) {
@@ -40,7 +39,13 @@ export class HttpResponseMapper implements OnDestroy {
             occurredAt: new Date(),
             size: headers.find((x) => x.key.toUpperCase() === 'Content-Length'.toUpperCase())?.value ?? FileSizeService.memorySizeOf(JSON.stringify(payload.Body)),
             language: headers.find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())
-                ? HttpResponseMapper.languages.find((x) => headers.find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())?.value.toUpperCase().indexOf(x.toUpperCase()) > -1)
+                ? HttpResponseMapper.languages.find(
+                      (x) =>
+                          headers
+                              .find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())
+                              ?.value.toUpperCase()
+                              .indexOf(x.toUpperCase()) > -1
+                  )
                 : 'JSON'
         };
     }
@@ -50,7 +55,6 @@ export class HttpResponseMapper implements OnDestroy {
     }
 
     private mapBody(payload: any): string {
-
         if (payload.Body.indexOf('<') === 0) {
             return payload.Body;
         }

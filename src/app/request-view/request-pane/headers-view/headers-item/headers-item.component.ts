@@ -10,7 +10,6 @@ import * as headers from '../../../../../assets/data/headers.json';
     standalone: false
 })
 export class HeadersItemComponent implements OnInit {
-
     @Input()
     public header: IHeader;
 

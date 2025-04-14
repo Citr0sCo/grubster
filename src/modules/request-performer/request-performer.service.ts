@@ -44,7 +44,10 @@ export class RequestPerformerService implements OnDestroy {
         const url = this.sanitizeUrl(tab.url);
 
         return this._httpClient
-            .request('POST', `${environment.apiUrl}/api/request`, { body: { 'Method': tab.method, Url: url, Headers: tab.request.headers, Body: tab.request.body }, observe: 'response' })
+            .request('POST', `${environment.apiUrl}/api/request`, {
+                body: { Method: tab.method, Url: url, Headers: tab.request.headers, Body: tab.request.body },
+                observe: 'response'
+            })
             .pipe(timeoutWhen(this._settings.requestTimeoutInMs && `${this._settings.requestTimeoutInMs}` !== '0', this._settings.requestTimeoutInMs))
             .pipe(
                 map((payload: any) => {

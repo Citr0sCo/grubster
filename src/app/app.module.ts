@@ -30,11 +30,6 @@ import { environment } from '../environments/environment';
         ToolbarModule,
         SidebarModule
     ],
-    providers: [
-        AppInterceptor.forRoot(),
-        { provide: ErrorHandler, useClass: GlobalErrorHandler },
-        provideHttpClient(withInterceptorsFromDi())
-    ]
+    providers: [AppInterceptor.forRoot(), { provide: ErrorHandler, useClass: GlobalErrorHandler }, provideHttpClient(withInterceptorsFromDi())]
 })
-export class AppModule {
-}
+export class AppModule {}

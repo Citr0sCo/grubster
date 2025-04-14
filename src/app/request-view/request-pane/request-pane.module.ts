@@ -13,15 +13,9 @@ import { EditorComponent } from 'ngx-monaco-editor-v2';
 
 @NgModule({
     declarations: [RequestPaneComponent, EditorViewComponent, HeadersViewComponent, HeadersItemComponent, PreviewViewComponent, BasicAuthViewComponent],
-    imports: [
-        FormsModule,
-        CommonModule,
-        UiModule,
-        EditorComponent
-    ],
+    imports: [FormsModule, CommonModule, UiModule, EditorComponent],
     providers: [EditorResizeService],
     bootstrap: [],
     exports: [RequestPaneComponent, EditorViewComponent, HeadersViewComponent, BasicAuthViewComponent]
 })
-export class RequestPaneModule {
-}
+export class RequestPaneModule {}

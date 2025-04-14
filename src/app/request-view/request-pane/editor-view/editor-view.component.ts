@@ -69,7 +69,6 @@ export class EditorViewComponent implements OnInit, OnDestroy {
     }
 
     public initEditor(e: any): void {
-
         this._rawElement = e;
         //this._rawElement = (window as any).monaco;
 
