@@ -2,5 +2,5 @@ export const environment = {
     production: true,
     application: false,
     apiUrl: '',
-    monacoLocation: '/app/assets/monaco/min/vs'
+    monacoLocation: '/assets/monaco/min/vs'
 };
