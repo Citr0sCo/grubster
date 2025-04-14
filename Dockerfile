@@ -1,31 +1,38 @@
-# Step 1: Use Node.js 22 as the build stage
-FROM node:22 AS build
+FROM node:22 AS angular-build
 
-# Set the working directory in the container
-WORKDIR /app
+WORKDIR /web-gui
+COPY ./ .
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Install dependencies
 RUN npm install --legacy-peer-deps
 RUN npm install -g @angular/cli@19.2.5
-
-# Copy the rest of the application code
-COPY . .
-
-# Build the Angular app for production
 RUN npm run build
 
-# Step 2: Use Nginx to serve the Angular app
-FROM nginx:alpine
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+WORKDIR /web-api/app
+EXPOSE 82
 
-# Copy the built Angular app to the Nginx HTML directory
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/dist/app/browser /usr/share/nginx/html
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /web-api/src
 
-# Expose port 80
-EXPOSE 80
+COPY ["/api/grubster/Grubster.Api/Grubster.Api.csproj", "api/"]
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+RUN dotnet restore "api/Grubster.Api.csproj"
+
+WORKDIR "/web-api/src/api"
+COPY . .
+
+RUN rm -rf /web-api/src/api/**/obj /web-api/src/api/**/bin
+
+RUN dotnet build "Grubster.Api.csproj" -c Release -o /web-api/app/build
+
+FROM build AS publish
+RUN dotnet publish "Grubster.Api.csproj" -c Release -o /web-api/app/publish
+
+FROM base AS final
+WORKDIR /web-api/app
+
+COPY --from=publish /web-api/app/publish .
+
+COPY --from=angular-build /web-gui/dist/app/browser /web-api/app/wwwroot
+
+CMD ["dotnet", "Grubster.Api.dll"]

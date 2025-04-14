@@ -19,7 +19,7 @@ export class AppInterceptor implements HttpInterceptor {
         const settings = JSON.parse(localStorage.getItem('settings'));
 
         if (settings.includeCustomHeaders) {
-            headers = headers.set('User-Agent', `GrubsterClient ${version}`);
+            //headers = headers.set('User-Agent', `GrubsterClient ${version}`);
         }
 
         return next.handle(request.clone({ headers: headers }));

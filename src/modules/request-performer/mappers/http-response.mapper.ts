@@ -26,22 +26,26 @@ export class HttpResponseMapper implements OnDestroy {
     public map(payload: any): IResponse {
         const headers: IHeader[] = [];
 
-        if (payload.headers) {
-            payload.headers.keys().forEach((key: string) => {
-                headers.push({ key: key, value: payload.headers.get(key) });
-            });
+        for (const header of payload.Headers) {
+            headers.push({ key: header.Key, value: header.Value });
         }
 
         return {
             headers: headers,
             body: this.mapBody(payload),
-            statusCode: payload.status,
-            statusText: payload.statusText,
+            statusCode: payload.StatusCode,
+            statusText: payload.StatusDescription,
             timeTaken: new Date(0),
             occurredAt: new Date(),
-            size: payload.headers?.get('Content-Length') ?? FileSizeService.memorySizeOf(JSON.stringify(payload.body)),
-            language: payload.headers?.get('content-type')
-                ? HttpResponseMapper.languages.find((x) => payload.headers?.get('content-type').toUpperCase().indexOf(x.toUpperCase()) > -1)
+            size: headers.find((x) => x.key.toUpperCase() === 'Content-Length'.toUpperCase())?.value ?? FileSizeService.memorySizeOf(JSON.stringify(payload.Body)),
+            language: headers.find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())
+                ? HttpResponseMapper.languages.find(
+                      (x) =>
+                          headers
+                              .find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())
+                              ?.value.toUpperCase()
+                              .indexOf(x.toUpperCase()) > -1
+                  )
                 : 'JSON'
         };
     }
@@ -51,12 +55,16 @@ export class HttpResponseMapper implements OnDestroy {
     }
 
     private mapBody(payload: any): string {
-        if (payload.status === 0) {
-            return payload.message;
+        if (payload.Body.indexOf('<') === 0) {
+            return payload.Body;
+        }
+
+        if (payload.StatusCode === 0) {
+            return JSON.parse(payload.Body);
         }
 
         const maxResponseSizeBeforePrompt = this._settings.maxResponseSizeBeforePromptInBytes;
-        if (FileSizeService.sizeOf(payload.body) > maxResponseSizeBeforePrompt) {
+        if (FileSizeService.sizeOf(payload.Body) > maxResponseSizeBeforePrompt) {
             const handledResponse = this._largeResponseHandlerService.handleResponse(payload, maxResponseSizeBeforePrompt);
 
             if (handledResponse) {
@@ -64,21 +72,21 @@ export class HttpResponseMapper implements OnDestroy {
             }
         }
 
-        if (payload.body) {
+        if (payload.Body) {
             if (this._settings.autoBeautifyResponseBodyOnSend) {
-                return JSON.stringify(payload.body, null, 4);
+                return JSON.stringify(JSON.parse(payload.Body), null, 4);
             }
-            return JSON.stringify(payload.body);
+            return JSON.stringify(JSON.parse(payload.Body));
         }
 
-        if (typeof payload.error === 'object') {
-            return JSON.stringify(payload.error, null, 4);
+        if (typeof payload.Error === 'object') {
+            return JSON.stringify(payload.Error, null, 4);
         }
 
-        if (payload.error) {
-            return payload.error;
+        if (payload.Error) {
+            return payload.Error;
         }
 
-        return payload.message;
+        return JSON.parse(payload.Body);
     }
 }

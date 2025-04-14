@@ -2125,13 +2125,6 @@
   resolved "https://registry.yarnpkg.com/@lmdb/lmdb-win32-x64/-/lmdb-win32-x64-3.2.6.tgz#729f2035ddef1975279b3329532f5c1f86c91918"
   integrity sha512-XlqVtILonQnG+9fH2N3Aytria7P/1fwDgDhl29rde96uH2sLB8CHORIf2PfuLVzFQJ7Uqp8py9AYwr3ZUCFfWg==
 
-"@materia-ui/ngx-monaco-editor@6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@materia-ui/ngx-monaco-editor/-/ngx-monaco-editor-6.0.0.tgz#9ae93666019e9a6d4f787370b4373cbb63a04a38"
-  integrity sha512-gTqNQjOGznZxOC0NlmKdKSGCJuTts8YmK4dsTQAGc5IgIV7cZdQWiW6AL742h0ruED6q0cAunEYjXT6jzHBoIQ==
-  dependencies:
-    tslib "^2.0.0"
-
 "@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.3":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@msgpackr-extract/msgpackr-extract-darwin-arm64/-/msgpackr-extract-darwin-arm64-3.0.3.tgz#9edec61b22c3082018a79f6d1c30289ddf3d9d11"
@@ -7967,10 +7960,10 @@ ngx-clipboard@^16.0.0:
     ngx-window-token ">=7.0.0"
     tslib "^2.0.0"
 
-ngx-monaco-editor@^12.0.0:
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/ngx-monaco-editor/-/ngx-monaco-editor-12.0.0.tgz#060b46d764df68319826e3664358cf1529c5ca11"
-  integrity sha512-/HXTILVwWvrk4OkT1p88nb+PGEqlecQot2VMTdSLbVW7A24fNZpDAF6tNR4Bp3V/abZjShDK8LfsqLePA0tPmw==
+ngx-monaco-editor-v2@^19.0.2:
+  version "19.0.2"
+  resolved "https://registry.yarnpkg.com/ngx-monaco-editor-v2/-/ngx-monaco-editor-v2-19.0.2.tgz#02fba22ea4d8a05053d2ee1eaf6a0c391b6d2a85"
+  integrity sha512-hkPiCnLU0vdIF2DW7Ko/EHoGCtLxuN85eygKuk3fXL2GRbEIl5VcbUXmRX9ItfLOI1F5QcH80HhavY5r0gNfEw==
   dependencies:
     tslib "^2.1.0"
 
