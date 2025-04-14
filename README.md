@@ -45,11 +45,13 @@ Start off by showing some ❤️ and give this repo a star. Then from your comma
 
 ```yml
 services:
-
     grubster:
         image: citr0s/grubster
         ports:
             - '83:80'
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_URLS=http://+:80
 ```
 
 ---
