@@ -22,6 +22,7 @@ app.UseStaticFiles();
 app.UseAuthorization();
 app.MapControllers();
 app.UseWebSockets();
+app.MapFallbackToFile("index.html");
 
 app.UseCors(setup => setup
     .SetIsOriginAllowed(_ => true)
