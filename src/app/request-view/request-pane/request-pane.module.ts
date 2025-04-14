@@ -8,19 +8,12 @@ import { HeadersViewComponent } from './headers-view/headers-view.component';
 import { PreviewViewComponent } from './preview-view/preview-view.component';
 import { BasicAuthViewComponent } from './basic-auth-view/basic-auth-view.component';
 import { EditorResizeService } from './services/editor-resize-service';
-import { MonacoEditorModule } from '@materia-ui/ngx-monaco-editor';
 import { HeadersItemComponent } from './headers-view/headers-item/headers-item.component';
+import { EditorComponent } from 'ngx-monaco-editor-v2';
 
 @NgModule({
     declarations: [RequestPaneComponent, EditorViewComponent, HeadersViewComponent, HeadersItemComponent, PreviewViewComponent, BasicAuthViewComponent],
-    imports: [
-        MonacoEditorModule,
-        FormsModule,
-        CommonModule,
-
-        // custom
-        UiModule
-    ],
+    imports: [FormsModule, CommonModule, UiModule, EditorComponent],
     providers: [EditorResizeService],
     bootstrap: [],
     exports: [RequestPaneComponent, EditorViewComponent, HeadersViewComponent, BasicAuthViewComponent]

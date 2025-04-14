@@ -5,7 +5,7 @@
         [ngClass]="{ 'editor-view--vertical__editor': isVertical }"
         [options]="options"
         class="editor-view__editor"
-        (init)="initEditor($event)"
+        (onInit)="initEditor($event)"
     >
     </ngx-monaco-editor>
 </div>

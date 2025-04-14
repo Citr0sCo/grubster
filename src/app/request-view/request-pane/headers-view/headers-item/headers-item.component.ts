@@ -34,9 +34,9 @@ export class HeadersItemComponent implements OnInit {
     private _allSuggestions: ISuggestion[] = [];
 
     constructor() {
-        this._allSuggestions = headers.map((x: string) => {
+        /*this._allSuggestions = headers.map((x: string) => {
             return { id: '', value: x } as ISuggestion;
-        });
+        });*/
     }
 
     public ngOnInit(): void {

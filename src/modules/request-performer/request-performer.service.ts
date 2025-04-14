@@ -9,6 +9,7 @@ import { Guid } from '../../core/guid';
 import { HistoryService } from '../../app/sidebar/history-view/services/history.service';
 import { HttpRequestMapper } from './mappers/http-request.mapper';
 import { ISettings, SettingsService } from '../../app/settings.service';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class RequestPerformerService implements OnDestroy {
@@ -43,12 +44,14 @@ export class RequestPerformerService implements OnDestroy {
         const url = this.sanitizeUrl(tab.url);
 
         return this._httpClient
-            .request(tab.method, url, this._httpRequestMapper.map(tab.request))
+            .request('POST', `${environment.apiUrl}/api/request`, {
+                body: { Method: tab.method, Url: url, Headers: tab.request.headers, Body: tab.request.body },
+                observe: 'response'
+            })
             .pipe(timeoutWhen(this._settings.requestTimeoutInMs && `${this._settings.requestTimeoutInMs}` !== '0', this._settings.requestTimeoutInMs))
             .pipe(
                 map((payload: any) => {
-                    console.log(payload);
-                    tab.response = this._httpResponseMapper.map(payload);
+                    tab.response = this._httpResponseMapper.map(payload.body);
                     tab.response.timeTaken = new Date(new Date().getTime() - startTime.getTime());
                     if (addToHistory) {
                         this._historyService.addEntry(tab);
