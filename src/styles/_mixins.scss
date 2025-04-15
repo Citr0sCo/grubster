@@ -22,7 +22,6 @@
 
 @mixin http-verbs {
     font-weight: bolder;
-    font-style: italic;
 
     &._delete {
         color: $delete;
