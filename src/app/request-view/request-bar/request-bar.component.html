@@ -1,7 +1,7 @@
 <div *ngIf="currentTab" class="request-bar">
-    <div class="o-grid">
+    <div class="o-grid o-grid--horizontal-align">
         <div class="o-grid__col o-grid__col--fixed u-p-2">
-            <select [(ngModel)]="currentTab.method" [class]="['_' + currentTab.method]" class="c-field c-field__select request-bar__verb">
+            <select [(ngModel)]="currentTab.method" [class]="['_' + currentTab.method]" class="c-field c-field--small c-field__select c-field__select--small request-bar__verb">
                 <option *ngFor="let verb of verbs" [value]="verb">{{ verb.toUpperCase() }}</option>
             </select>
         </div>
@@ -12,7 +12,7 @@
                     (focusout)="barLoseFocus()"
                     (keyup)="onUrlChange(currentTab)"
                     [(ngModel)]="currentTab.url"
-                    class="c-field"
+                    class="c-field c-field--small"
                     placeholder="e.g. https://examnple.com/api/test"
                     type="text"
                 />
@@ -26,7 +26,7 @@
                 ></suggestions>
             </div>
         </div>
-        <div class="o-grid__col o-grid__col--fixed u-p-2">
+        <div class="o-grid__col o-grid__col--fixed u-p-2 request-bar__send__wrapper">
             <button
                 (click)="performRequest(currentTab)"
                 (mouseout)="isAlmostReady = false"
@@ -34,19 +34,19 @@
                 *ngIf="!isSubmitting"
                 [disabled]="!currentTab.url"
                 [ngClass]="{ 'request-bar__send--opened': showSendOptions }"
-                class="c-btn c-btn--primary request-bar__send"
+                class="c-btn c-btn--small c-btn--primary request-bar__send"
             >
-                <i class="fa fa-play"></i> Send
+                <i class="fa fa-play"></i>&nbsp;Send
             </button>
-            <button (click)="cancelRequest()" *ngIf="isSubmitting" [ngClass]="{ 'request-bar__send--opened': showSendOptions }" class="c-btn c-btn--primary request-bar__cancel">
-                <i class="fa fa-stop"></i> Cancel
+            <button (click)="cancelRequest()" *ngIf="isSubmitting" [ngClass]="{ 'request-bar__send--opened': showSendOptions }" class="c-btn c-btn--small c-btn--danger request-bar__cancel">
+                <i class="fa fa-stop"></i>&nbsp;Cancel&nbsp;
                 <small [innerHTML]="runningTotal" class="request-bar__cancel__label"></small>
             </button>
             <button
                 (click)="showSendOptions = !showSendOptions"
                 [disabled]="!currentTab.url"
                 [ngClass]="{ 'request-bar__chevron--opened': showSendOptions }"
-                class="c-btn c-btn--primary request-bar__chevron"
+                class="c-btn c-btn--small c-btn--primary request-bar__chevron"
             >
                 <i [ngClass]="{ 'fa-chevron-up': showSendOptions }" class="fa fa-chevron-down"></i>
             </button>

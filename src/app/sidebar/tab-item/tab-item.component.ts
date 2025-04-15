@@ -70,7 +70,7 @@ export class TabItemComponent implements OnInit, OnDestroy {
             this._tabsService.duplicateTab(tab);
             return;
         }
-
+        
         this._tabsService.setCurrentTab(tab);
     }
 

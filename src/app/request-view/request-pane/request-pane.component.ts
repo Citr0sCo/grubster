@@ -42,6 +42,9 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
     @Input()
     public isFilterable: boolean = false;
 
+    @Input()
+    public requestUrl: string;
+
     @Output()
     public bodyChanged: EventEmitter<string> = new EventEmitter<string>();
 

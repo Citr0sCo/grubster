@@ -17,8 +17,8 @@ export class PayloadSizeIndicatorComponent {
         const size = this.formatResponseSize(payloadSize);
 
         if (typeof size.value === 'string') {
-            if (size.value.indexOf('bytes') > -1) {
-                return `${size.value.replace('bytes', '')}<small>bytes</small>`;
+            if (size.value.indexOf('B') > -1) {
+                return `${size.value.replace('B', '')}<small>bytes</small>`;
             }
             if (size.value.indexOf('KiB') > -1) {
                 return `${size.value.replace('KiB', '')}<small>Kb</small>`;

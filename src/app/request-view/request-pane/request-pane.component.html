@@ -34,7 +34,7 @@
             [isEditable]="areHeadersEditable"
             [requestHeaders]="requestHeaders"
         ></headers-view>
-        <preview-view *ngIf="selectedTab.id === 'preview'" [isVertical]="isVertical" [requestBody]="requestBody"></preview-view>
+        <preview-view *ngIf="selectedTab.id === 'preview'" [isVertical]="isVertical" [requestBody]="requestBody" [requestUrl]="requestUrl"></preview-view>
         <basic-auth-view *ngIf="selectedTab.id === 'basic-auth'" [isVertical]="isVertical" [auth]="currentTab.request.auth"></basic-auth-view>
 
         <div class="request-pane__footer">
