@@ -19,8 +19,6 @@ export interface ISettings {
     maxHistorySize: number;
     defaultToHttps: boolean;
     requestTimeoutInMs: number;
-    includeCustomHeaders: boolean;
-    autoSync: boolean;
 }
 
 @Injectable()
@@ -56,9 +54,7 @@ export class SettingsService {
                   maxResponseSizeBeforePromptInBytes: 10000000,
                   maxHistorySize: 100,
                   defaultToHttps: false,
-                  requestTimeoutInMs: 10000,
-                  includeCustomHeaders: true,
-                  autoSync: true
+                  requestTimeoutInMs: 10000
               };
 
         this.settingsEvents.next(this._settings);

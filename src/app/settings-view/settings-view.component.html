@@ -31,20 +31,6 @@
                 <label class="c-label">Request Timeout (Ms)</label>
                 <input [(ngModel)]="settings.requestTimeoutInMs" class="c-field" id="setting-requestTimeoutInMs" type="text" (keyup)="applySettings(settings)" />
             </div>
-            <div class="c-input-group">
-                <div class="c-label">Include Custom Headers</div>
-                <div (click)="toggleIncludeCustomHeaders()" class="c-field">
-                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.includeCustomHeaders"></toggle-switch>
-                </div>
-            </div>
-
-            <h2>Server</h2>
-            <div class="c-input-group">
-                <div class="c-label">Auto Sync</div>
-                <div (click)="toggleAutoSync()" class="c-field">
-                    <toggle-switch (switchValueChange)="applySettings(settings)" [switchValue]="settings.autoSync"></toggle-switch>
-                </div>
-            </div>
 
             <h2>Debug</h2>
             <div class="o-grid">
