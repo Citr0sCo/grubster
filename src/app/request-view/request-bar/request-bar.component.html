@@ -38,7 +38,12 @@
             >
                 <i class="fa fa-play"></i>&nbsp;Send
             </button>
-            <button (click)="cancelRequest()" *ngIf="isSubmitting" [ngClass]="{ 'request-bar__send--opened': showSendOptions }" class="c-btn c-btn--small c-btn--danger request-bar__cancel">
+            <button
+                (click)="cancelRequest()"
+                *ngIf="isSubmitting"
+                [ngClass]="{ 'request-bar__send--opened': showSendOptions }"
+                class="c-btn c-btn--small c-btn--danger request-bar__cancel"
+            >
                 <i class="fa fa-stop"></i>&nbsp;Cancel&nbsp;
                 <small [innerHTML]="runningTotal" class="request-bar__cancel__label"></small>
             </button>

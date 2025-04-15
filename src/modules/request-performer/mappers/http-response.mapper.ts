@@ -38,15 +38,18 @@ export class HttpResponseMapper implements OnDestroy {
             timeTaken: new Date(0),
             occurredAt: new Date(),
             size: headers.find((x) => x.key.toUpperCase() === 'Content-Length'.toUpperCase())?.value ?? FileSizeService.memorySizeOf(JSON.stringify(payload.Body)),
-            language: payload.Body.indexOf('<!DOCTYPE') === 0 ? 'HTML' : (headers.find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())
-                ? HttpResponseMapper.languages.find(
-                    (x) =>
-                        headers
-                            .find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())
-                            ?.value.toUpperCase()
-                            .indexOf(x.toUpperCase()) > -1
-                )
-                : 'JSON')
+            language:
+                payload.Body.indexOf('<!DOCTYPE') === 0
+                    ? 'HTML'
+                    : headers.find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())
+                      ? HttpResponseMapper.languages.find(
+                            (x) =>
+                                headers
+                                    .find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())
+                                    ?.value.toUpperCase()
+                                    .indexOf(x.toUpperCase()) > -1
+                        )
+                      : 'JSON'
         };
     }
 

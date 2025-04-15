@@ -8,15 +8,24 @@
         width: 80px;
         padding: 0 5px;
         font-size: 15px;
-        background-position: calc(100% - 10px) calc(1em + -5px), calc(100% - 5px) calc(1em + -5px), calc(100% - 2.5em) .5em;
+        background-position:
+            calc(100% - 10px) calc(1em + -5px),
+            calc(100% - 5px) calc(1em + -5px),
+            calc(100% - 2.5em) 0.5em;
         @include http-verbs;
 
         &:hover {
-            background-position: calc(100% - 10px) calc(1em + -5px), calc(100% - 5px) calc(1em + -5px), calc(100% - 2.5em) .5em;
+            background-position:
+                calc(100% - 10px) calc(1em + -5px),
+                calc(100% - 5px) calc(1em + -5px),
+                calc(100% - 2.5em) 0.5em;
         }
 
         &:focus {
-            background-position: calc(100% - 5px) 10px, calc(100% - 10px) 10px, calc(100% - 2.5em) 0.5em;
+            background-position:
+                calc(100% - 5px) 10px,
+                calc(100% - 10px) 10px,
+                calc(100% - 2.5em) 0.5em;
         }
     }
 

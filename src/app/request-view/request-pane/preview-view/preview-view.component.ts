@@ -7,7 +7,6 @@ import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular
     standalone: false
 })
 export class PreviewViewComponent implements AfterViewInit {
-
     @ViewChild('iframe')
     public iframe!: ElementRef;
 
