@@ -94,16 +94,6 @@ export class SettingsViewComponent implements OnInit, OnDestroy {
         this.applySettings(this.settings);
     }
 
-    public toggleIncludeCustomHeaders(): void {
-        this.settings.includeCustomHeaders = !this.settings.includeCustomHeaders;
-        this.applySettings(this.settings);
-    }
-
-    public toggleAutoSync(): void {
-        this.settings.autoSync = !this.settings.autoSync;
-        this.applySettings(this.settings);
-    }
-
     public applySettings(settings: ISettings): void {
         this._settingsService.update(settings);
         this._notificationService.logSuccess('Settings saved!', 'Settings have been saved successfully.');
