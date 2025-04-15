@@ -42,9 +42,9 @@
         flex-direction: column;
     }
 
-    @media (max-width: $mobile-width) {
+    /*@media (max-width: $mobile-width) {
         &:not(&--static) {
             flex-direction: column;
         }
-    }
+    }*/
 }
