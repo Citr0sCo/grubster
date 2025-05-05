@@ -3044,10 +3044,10 @@
   dependencies:
     undici-types "~6.21.0"
 
-"@types/node@^22.15.5":
-  version "22.15.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.15.5.tgz#187b472f09438783688c926ebe712ea3ae242bce"
-  integrity sha512-e3r3tiKxBr9e/+5uNRkF+K/2gnhR2V/EOY/gxNXviodSa3DYSqkYUR2Xp05l2uS/A7j864m8IQvdf+itWNIg1Q==
+"@types/node@^22.15.6":
+  version "22.15.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.15.6.tgz#30de231bec3efa73fe5c9b26b0784b53fdf7201f"
+  integrity sha512-jIdRQl0HWC2HNjV2HmX3Oq76keYInKHWQssGAZz++a9Tu7zGswzyhOFy3NNWI9pZPzCcUritUnkjBWSYA7lI4g==
   dependencies:
     undici-types "~6.21.0"
 
