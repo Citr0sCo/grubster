@@ -36,7 +36,7 @@ jobs:
 
             -   name: Setting Up Folders for Dotnet
                 run: |
-                    echo ${{ secrets.USERPWD }} | sudo -S mkdir /usr/share/dotnet
+                    echo ${{ secrets.USERPWD }} | sudo -S mkdir -p /usr/share/dotnet
                     echo ${{ secrets.USERPWD }} | sudo -S chmod -R 777 /usr/share/dotnet
 
             -   name: Testing BE
@@ -68,7 +68,7 @@ jobs:
 
             -   name: Setting Up Folders for Dotnet
                 run: |
-                    echo ${{ secrets.USERPWD }} | sudo -S mkdir /usr/share/dotnet
+                    echo ${{ secrets.USERPWD }} | sudo -S mkdir -p /usr/share/dotnet
                     echo ${{ secrets.USERPWD }} | sudo -S chmod -R 777 /usr/share/dotnet
 
             -   name: Testing BE
