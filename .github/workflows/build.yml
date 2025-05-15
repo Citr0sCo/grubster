@@ -34,6 +34,11 @@ jobs:
                 with:
                     dotnet-version: '9.0.x'
 
+            -   name: Setting Up Folders for Dotnet
+                run: |
+                    echo ${{ secrets.USERPWD }} | sudo -S mkdir /usr/share/dotnet
+                    echo ${{ secrets.USERPWD }} | sudo -S chmod -R 777 /usr/share/dotnet
+
             -   name: Testing BE
                 run: dotnet build api/grubster/Grubster.sln
 
@@ -60,6 +65,11 @@ jobs:
             -   uses: actions/setup-dotnet@v4
                 with:
                     dotnet-version: '9.0.x'
+
+            -   name: Setting Up Folders for Dotnet
+                run: |
+                    echo ${{ secrets.USERPWD }} | sudo -S mkdir /usr/share/dotnet
+                    echo ${{ secrets.USERPWD }} | sudo -S chmod -R 777 /usr/share/dotnet
 
             -   name: Testing BE
                 run: dotnet test api/grubster/Grubster.sln
