@@ -37,7 +37,7 @@ jobs:
             -   name: Setting Up Folders for Dotnet
                 run: |
                     echo ${{ secrets.USERPWD }} | sudo -S mkdir -p /usr/share/dotnet
-                    echo ${{ secrets.USERPWD }} | sudo -S chmod -R 777 /usr/share/dotnet
+                    echo ${{ secrets.USERPWD }} | sudo -S mkdir -p /usr/share/dotnet/host
 
             -   name: Testing BE
                 run: dotnet build api/grubster/Grubster.sln
@@ -69,7 +69,7 @@ jobs:
             -   name: Setting Up Folders for Dotnet
                 run: |
                     echo ${{ secrets.USERPWD }} | sudo -S mkdir -p /usr/share/dotnet
-                    echo ${{ secrets.USERPWD }} | sudo -S chmod -R 777 /usr/share/dotnet
+                    echo ${{ secrets.USERPWD }} | sudo -S mkdir -p /usr/share/dotnet/host
 
             -   name: Testing BE
                 run: dotnet test api/grubster/Grubster.sln
