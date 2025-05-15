@@ -11,6 +11,7 @@
     box-shadow: var(--box-shadow);
     border-radius: $border-radius;
     padding: 10px;
+    z-index: 999;
 
     &--error {
         .icon {

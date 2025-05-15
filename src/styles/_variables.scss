@@ -19,14 +19,10 @@ $head: #4dd0e1;
 $font-paragraph: 'Baloo 2', sans-serif;
 $border-radius: 3px;
 $toolbar-height: 40px;
-$request-bar-height: 60px;
+$request-bar-height: 45px;
 $request-pane-tabs-height: 45px;
 $request-pane-footer-height: 45px;
 $sidebar-width: 300px;
 
-$step-xs: 0px;
-$step-sm: 576px;
-$step-md: 768px;
-$step-lg: 992px;
-$step-xl: 1200px;
-$step-xxl: 1400px;
+$mobile-width: 768px;
+$tablet-width: 992px;

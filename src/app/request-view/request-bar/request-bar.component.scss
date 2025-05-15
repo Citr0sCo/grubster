@@ -5,13 +5,46 @@
     height: $request-bar-height;
 
     &__verb {
-        @include http-verbs-border;
+        width: 80px;
+        padding: 0 5px;
+        font-size: 15px;
+        background-position:
+            calc(100% - 10px) calc(1em + -5px),
+            calc(100% - 5px) calc(1em + -5px),
+            calc(100% - 2.5em) 0.5em;
+        @include http-verbs;
+
+        &:hover {
+            background-position:
+                calc(100% - 10px) calc(1em + -5px),
+                calc(100% - 5px) calc(1em + -5px),
+                calc(100% - 2.5em) 0.5em;
+        }
+
+        &:focus {
+            background-position:
+                calc(100% - 5px) 10px,
+                calc(100% - 10px) 10px,
+                calc(100% - 2.5em) 0.5em;
+        }
     }
 
     &__url {
         &__container {
             position: relative;
+
+            input {
+                padding: 0 5px;
+                font-size: 15px;
+            }
         }
+    }
+
+    &__send__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
     }
 
     &__send {
@@ -19,6 +52,9 @@
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         border-right: 1px solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &--opened {
             border-bottom-left-radius: 0;
@@ -30,7 +66,9 @@
         text-transform: uppercase;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
-        padding: 9px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &__label {
             display: block;
@@ -41,7 +79,6 @@
     &__chevron {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
-        padding: 15px 5px;
 
         &--opened {
             border-bottom-right-radius: 0;
@@ -52,6 +89,8 @@
     &__send-settings {
         position: absolute;
         z-index: 1;
+        top: 33px;
+        left: 7px;
 
         &__send {
             text-transform: uppercase;

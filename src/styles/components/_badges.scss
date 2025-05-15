@@ -4,7 +4,6 @@
     cursor: default;
     text-align: center;
     text-transform: uppercase;
-    height: 15px;
     display: inline-block;
     line-height: 15px;
     margin-right: 5px;
@@ -13,16 +12,12 @@
         text-transform: uppercase;
         font-size: 12px;
         display: inline-block;
-        margin-top: 10px;
-        border-radius: 3px;
+        border-radius: $border-radius;
         font-weight: bold;
         color: #000;
         background-color: #fff;
-        border: 1px solid darken(#fff, 20%);
-        border-bottom: 2px solid darken(#fff, 20%);
         padding: 5px 10px;
         line-height: unset;
-        font-family: $font-paragraph;
 
         &--small {
             height: inherit;

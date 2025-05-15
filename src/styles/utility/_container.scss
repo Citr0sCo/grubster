@@ -11,7 +11,7 @@
         max-width: 1000px;
         margin: 0 auto;
 
-        @media (max-width: $step-lg) {
+        @media (max-width: $mobile-width) {
             width: 100%;
         }
     }
