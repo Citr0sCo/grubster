@@ -36,7 +36,7 @@ jobs:
 
             -   name: Install Dotnet
                 run: |
-                    echo ${{ secrets.USERPWD }} | sudo apt install -y dotnet-sdk-9.0
+                    echo ${{ secrets.USERPWD }} | sudo -S apt install -y dotnet-sdk-9.0
 
             -   name: Testing BE
                 run: dotnet build api/grubster/Grubster.sln
