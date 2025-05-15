@@ -26,3 +26,4 @@ jobs:
                     sudo apt-get clean
                     echo "Disk space after cleanup:"
                     sudo du -h --max-depth=1 / | sort -hr
+                    docker system prune -a -f
