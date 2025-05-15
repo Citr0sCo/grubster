@@ -34,10 +34,9 @@ jobs:
                 with:
                     dotnet-version: '9.0.x'
 
-            -   name: Setting Up Folders for Dotnet
+            -   name: Install Dotnet
                 run: |
-                    echo ${{ secrets.USERPWD }} | sudo -S mkdir -p /usr/share/dotnet
-                    echo ${{ secrets.USERPWD }} | sudo -S mkdir -p /usr/share/dotnet/host
+                    echo ${{ secrets.USERPWD }} | sudo apt install -y dotnet-sdk-9.0
 
             -   name: Testing BE
                 run: dotnet build api/grubster/Grubster.sln
@@ -66,10 +65,9 @@ jobs:
                 with:
                     dotnet-version: '9.0.x'
 
-            -   name: Setting Up Folders for Dotnet
+            -   name: Install Dotnet
                 run: |
-                    echo ${{ secrets.USERPWD }} | sudo -S mkdir -p /usr/share/dotnet
-                    echo ${{ secrets.USERPWD }} | sudo -S mkdir -p /usr/share/dotnet/host
+                    echo ${{ secrets.USERPWD }} | sudo apt install -y dotnet-sdk-9.0
 
             -   name: Testing BE
                 run: dotnet test api/grubster/Grubster.sln
