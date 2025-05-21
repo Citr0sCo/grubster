@@ -202,10 +202,10 @@
   dependencies:
     "@angular-eslint/bundled-angular-compiler" "19.4.0"
 
-"@angular/animations@~19.2.11":
-  version "19.2.11"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-19.2.11.tgz#559bf225b6b793821efb0fd1064d0b26a78f263f"
-  integrity sha512-NR33bZVho7EgTc1fmCnmkwc2/U266n311Wfvk7VVtz+0Q9WliNdDLBon654V8IWSKvlqKXyU3W+fp0VjH/FvSw==
+"@angular/animations@~19.2.12":
+  version "19.2.12"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-19.2.12.tgz#dd2b0b376d36241cb09e74ec6c8c365c7fd4739f"
+  integrity sha512-PEONFwzhUzeAMFW2ehfL+uGnkeVsikoEOJ3RJVdHWH7W8GUgdN2ubogw6umu939/MqL1MsItImXQcBA7aWfzSg==
   dependencies:
     tslib "^2.3.0"
 
@@ -266,17 +266,17 @@
     symbol-observable "4.0.0"
     yargs "17.7.2"
 
-"@angular/common@~19.2.11":
-  version "19.2.11"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-19.2.11.tgz#6aacea2d653b1b1c3c68c5f5523b7306161a936c"
-  integrity sha512-/ZnF2Nfp6S6TAu3VlvUAIp4NVd81WE1Q95wuwSSuoEx2aSyXzI+1myyKWSYe/jYCyGuppmocjTciEh8mAInmOw==
+"@angular/common@~19.2.12":
+  version "19.2.12"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-19.2.12.tgz#cc5321ac4db4455dbb36c5a77790f88ab98a30c1"
+  integrity sha512-oE2KLvU+YUyq2pUPS8nBWxkPGj29JzslaFcS9vQgvuKZgBTIwAgKm8QHBsitiZ0V+kX8Agwnl5YSdxdtuV2gQQ==
   dependencies:
     tslib "^2.3.0"
 
-"@angular/compiler-cli@~19.2.11":
-  version "19.2.11"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-19.2.11.tgz#e5aabaf297747fab8b852c96120f9d9c3689a06b"
-  integrity sha512-15aoOg+qj7Z3Uap1JKHMy51y12M09AOnseDBa0SYKidSx15XwZi8d01hv7sRaQJX/6Ie5cug9GiAbLKts6R33w==
+"@angular/compiler-cli@~19.2.12":
+  version "19.2.12"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-19.2.12.tgz#46c4f885cc33f3de36ac617d42e557ba25800a32"
+  integrity sha512-w8XMBF9ifuQoL5+1dLTdiTGKHV5mwXVrQyfQufmlBUYkmMU0qVcx7OoabHkwols0LGhYY/vcoxWgM5eyUSF41A==
   dependencies:
     "@babel/core" "7.26.9"
     "@jridgewell/sourcemap-codec" "^1.4.14"
@@ -292,10 +292,10 @@
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-9.0.0.tgz#87e0bef4c369b6cadae07e3a4295778fc93799d5"
   integrity sha512-ctjwuntPfZZT2mNj2NDIVu51t9cvbhl/16epc5xEwyzyDt76pX9UgwvY+MbXrf/C/FWwdtmNtfP698BKI+9leQ==
 
-"@angular/compiler@~19.2.11":
-  version "19.2.11"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-19.2.11.tgz#41cc505db5c3cae6fed96aa1293bf02c87939e2c"
-  integrity sha512-/ZGFAEO2TyqkaE4neR8lGL9I2QeO2sRVFqulQv7Bu8zKTPStjcsFCwNkp+TNX8Oq/1rLcY9XWAOsUk1//AZd8Q==
+"@angular/compiler@~19.2.12":
+  version "19.2.12"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-19.2.12.tgz#a72f1bd7dd19a50052e974e0bbed01cf742e3d19"
+  integrity sha512-OXfnkrtPQ1n64zWv3I0Zhk4U+Xtsbc7Utc15vqc+9sYewFjH0Fdb7bsNZ31+unpn+icWlYELtGINh+ld/rqKQQ==
   dependencies:
     tslib "^2.3.0"
 
