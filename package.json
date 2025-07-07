@@ -75,7 +75,7 @@
         "jest": "29.7.0",
         "jest-preset-angular": "14.6.0",
         "jest-zone-patch": "^0.0.10",
-        "npm-run-all2": "^7.0.2",
+        "npm-run-all2": "^8.0.4",
         "prettier": "^3.6.2",
         "remove-html-comments": "^1.0.2",
         "rimraf": "^6.0.1",
