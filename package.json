@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "private": true,
   "volta": {
-    "node": "20.11.1",
+    "node": "20.19.0",
     "yarn": "1.22.22"
   },
   "author": {
