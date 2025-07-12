@@ -1,24 +1,24 @@
 @if (tab) {
-  <div class="o-container">
-    <div class="o-container--contain">
-      <h1>Edit Tab</h1>
-      <div class="c-field-group u-mt-1">
-        <label class="c-label">Name</label>
-        <input [(ngModel)]="tab.name" class="c-field" type="text" />
-      </div>
-      <div class="c-field-group u-mt-1">
-        <label class="c-label">Url</label>
-        <input [(ngModel)]="tab.url" class="c-field" disabled="disabled" type="text" />
-      </div>
-      <hr />
-      <div class="o-grid">
-        <div class="o-grid__col">
-          <button (click)="updateTab()" [disabled]="!isValid()" class="c-btn c-btn--primary"><i class="fa fa-save"></i> Save</button>
+    <div class="o-container">
+        <div class="o-container--contain">
+            <h1>Edit Tab</h1>
+            <div class="c-field-group u-mt-1">
+                <label class="c-label">Name</label>
+                <input [(ngModel)]="tab.name" class="c-field" type="text" />
+            </div>
+            <div class="c-field-group u-mt-1">
+                <label class="c-label">Url</label>
+                <input [(ngModel)]="tab.url" class="c-field" disabled="disabled" type="text" />
+            </div>
+            <hr />
+            <div class="o-grid">
+                <div class="o-grid__col">
+                    <button (click)="updateTab()" [disabled]="!isValid()" class="c-btn c-btn--primary"><i class="fa fa-save"></i> Save</button>
+                </div>
+                <div class="o-grid__col o-grid__col--fixed">
+                    <button (click)="deleteTab()" class="c-btn c-btn--danger"><i class="fa fa-trash"></i> Delete</button>
+                </div>
+            </div>
         </div>
-        <div class="o-grid__col o-grid__col--fixed">
-          <button (click)="deleteTab()" class="c-btn c-btn--danger"><i class="fa fa-trash"></i> Delete</button>
-        </div>
-      </div>
     </div>
-  </div>
 }

@@ -1,49 +1,49 @@
 @if (currentTab) {
-  <div class="request-view">
-    <request-bar [currentTab]="currentTab"></request-bar>
-    <div class="o-grid splitter-container" [ngClass]="{ 'o-grid--row': !settings.isEditorVertical }" (mousemove)="splitterMouseMove($event)" (mouseup)="splitterMouseUp()">
-      <div
-        class="o-grid__col splitter-left"
-        [ngStyle]="{ width: settings.isEditorVertical ? getLeftPanePercentage : 'auto', height: !settings.isEditorVertical ? getLeftPanePercentage : 'auto' }"
-        >
-        <request-pane
-          (bodyChanged)="currentTab.request.body = $event"
-          (headersChanged)="currentTab.request.headers = $event"
-          (languageChanged)="currentTab.request.language = $event"
-          [currentTab]="currentTab"
-          [extraTabs]="['basic-auth']"
-          [isVertical]="settings.isEditorVertical"
-          [requestBody]="currentTab.request.body"
-          [requestHeaders]="currentTab.request.headers"
-          [requestLanguage]="currentTab.request.language"
-          [requestUrl]="currentTab.url"
-        ></request-pane>
-      </div>
-      <div
-        class="o-grid__col o-grid__col--fixed splitter"
-        [ngClass]="{ 'splitter--horizontal': !settings.isEditorVertical }"
-        (mousemove)="splitterMouseMove($event)"
-        (mouseup)="splitterMouseUp()"
-        (mousedown)="splitterMouseDown()"
-        (click)="splitterOnClick()"
-      ></div>
-      <div
-        class="o-grid__col splitter-right"
-        [ngStyle]="{ width: settings.isEditorVertical ? getRightPanePercentage : 'auto', height: !settings.isEditorVertical ? getRightPanePercentage : 'auto' }"
-        >
-        <request-pane
-          [areHeadersEditable]="false"
-          [currentTab]="currentTab"
-          [extraTabs]="['preview']"
-          [isReadOnly]="true"
-          [isFilterable]="true"
-          [isVertical]="settings.isEditorVertical"
-          [requestBody]="currentTab.response.body"
-          [requestHeaders]="currentTab.response.headers"
-          [requestLanguage]="currentTab.response.language"
-          [requestUrl]="currentTab.url"
-        ></request-pane>
-      </div>
+    <div class="request-view">
+        <request-bar [currentTab]="currentTab"></request-bar>
+        <div class="o-grid splitter-container" [ngClass]="{ 'o-grid--row': !settings.isEditorVertical }" (mousemove)="splitterMouseMove($event)" (mouseup)="splitterMouseUp()">
+            <div
+                class="o-grid__col splitter-left"
+                [ngStyle]="{ width: settings.isEditorVertical ? getLeftPanePercentage : 'auto', height: !settings.isEditorVertical ? getLeftPanePercentage : 'auto' }"
+            >
+                <request-pane
+                    (bodyChanged)="currentTab.request.body = $event"
+                    (headersChanged)="currentTab.request.headers = $event"
+                    (languageChanged)="currentTab.request.language = $event"
+                    [currentTab]="currentTab"
+                    [extraTabs]="['basic-auth']"
+                    [isVertical]="settings.isEditorVertical"
+                    [requestBody]="currentTab.request.body"
+                    [requestHeaders]="currentTab.request.headers"
+                    [requestLanguage]="currentTab.request.language"
+                    [requestUrl]="currentTab.url"
+                ></request-pane>
+            </div>
+            <div
+                class="o-grid__col o-grid__col--fixed splitter"
+                [ngClass]="{ 'splitter--horizontal': !settings.isEditorVertical }"
+                (mousemove)="splitterMouseMove($event)"
+                (mouseup)="splitterMouseUp()"
+                (mousedown)="splitterMouseDown()"
+                (click)="splitterOnClick()"
+            ></div>
+            <div
+                class="o-grid__col splitter-right"
+                [ngStyle]="{ width: settings.isEditorVertical ? getRightPanePercentage : 'auto', height: !settings.isEditorVertical ? getRightPanePercentage : 'auto' }"
+            >
+                <request-pane
+                    [areHeadersEditable]="false"
+                    [currentTab]="currentTab"
+                    [extraTabs]="['preview']"
+                    [isReadOnly]="true"
+                    [isFilterable]="true"
+                    [isVertical]="settings.isEditorVertical"
+                    [requestBody]="currentTab.response.body"
+                    [requestHeaders]="currentTab.response.headers"
+                    [requestLanguage]="currentTab.response.language"
+                    [requestUrl]="currentTab.url"
+                ></request-pane>
+            </div>
+        </div>
     </div>
-  </div>
 }

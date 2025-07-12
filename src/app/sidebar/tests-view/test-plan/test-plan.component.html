@@ -1,29 +1,29 @@
 <div class="tests-item">
-  <div (click)="isTestsOpen = !isTestsOpen" class="o-grid tests-item__item">
-    <div class="o-grid__col">
-      <i class="fas fa-vial u-mr-1"></i>
-      {{ test.name }}
+    <div (click)="isTestsOpen = !isTestsOpen" class="o-grid tests-item__item">
+        <div class="o-grid__col">
+            <i class="fas fa-vial u-mr-1"></i>
+            {{ test.name }}
+        </div>
+        <div class="o-grid__col o-grid__col--fixed u-mr-2">
+            @if (numberOfTestItems > 0) {
+                <badge [isLarge]="true" [value]="numberOfTestItems.toString()"></badge>
+            }
+        </div>
+        <div class="o-grid__col o-grid__col--fixed u-mr-2">
+            <i (click)="editTest($event, test)" class="fa fa-pen tests-item__item--edit"></i>
+        </div>
+        <div class="o-grid__col o-grid__col--fixed">
+            <i [class]="[isTestsOpen ? 'fa-chevron-up' : 'fa-chevron-down']" class="fa tests-item__item--inactive"></i>
+        </div>
     </div>
-    <div class="o-grid__col o-grid__col--fixed u-mr-2">
-      @if (numberOfTestItems > 0) {
-        <badge [isLarge]="true" [value]="numberOfTestItems.toString()"></badge>
-      }
-    </div>
-    <div class="o-grid__col o-grid__col--fixed u-mr-2">
-      <i (click)="editTest($event, test)" class="fa fa-pen tests-item__item--edit"></i>
-    </div>
-    <div class="o-grid__col o-grid__col--fixed">
-      <i [class]="[isTestsOpen ? 'fa-chevron-up' : 'fa-chevron-down']" class="fa tests-item__item--inactive"></i>
-    </div>
-  </div>
-  @if (isTestsOpen) {
-    <div>
-      @for (test of test.tests; track test) {
-        <test-case [testCase]="test"></test-case>
-      }
-      <div (click)="createNewTest(test)" class="o-grid tests-item__item">
-        <div class="o-grid__col"><i class="fa fa-plus u-mr-1"></i> Add Test Case</div>
-      </div>
-    </div>
-  }
+    @if (isTestsOpen) {
+        <div>
+            @for (test of test.tests; track test) {
+                <test-case [testCase]="test"></test-case>
+            }
+            <div (click)="createNewTest(test)" class="o-grid tests-item__item">
+                <div class="o-grid__col"><i class="fa fa-plus u-mr-1"></i> Add Test Case</div>
+            </div>
+        </div>
+    }
 </div>

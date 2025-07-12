@@ -1,8 +1,8 @@
 <div class="tabs-view">
-  @for (tab of tabs; track tab) {
-    <tab-item (isRemoved)="removeTab($event)" [entry]="tab" [isRemovable]="true" [isTab]="true"></tab-item>
-  }
-  <div (click)="addTab()" class="o-grid collections-view__item">
-    <div class="tabs-view__item o-grid__col"><i class="fa fa-plus u-mr-1"></i> New Tab</div>
-  </div>
+    @for (tab of tabs; track tab) {
+        <tab-item (isRemoved)="removeTab($event)" [entry]="tab" [isRemovable]="true" [isTab]="true"></tab-item>
+    }
+    <div (click)="addTab()" class="o-grid collections-view__item">
+        <div class="tabs-view__item o-grid__col"><i class="fa fa-plus u-mr-1"></i> New Tab</div>
+    </div>
 </div>

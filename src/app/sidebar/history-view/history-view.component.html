@@ -1,14 +1,14 @@
 @if (entries.length > 0) {
-  <div class="history-view">
-    @for (entry of entries; track entry) {
-      <tab-item (isRemoved)="removeItem($event)" [entry]="entry" [isRemovable]="true"></tab-item>
-    }
-  </div>
+    <div class="history-view">
+        @for (entry of entries; track entry) {
+            <tab-item (isRemoved)="removeItem($event)" [entry]="entry" [isRemovable]="true"></tab-item>
+        }
+    </div>
 }
 @if (entries.length === 0) {
-  <div class="history-view">
-    <div class="empty-tab">
-      <div class="o-grid__col"><i class="fa fa-times u-mr-1"></i> History is empty!</div>
+    <div class="history-view">
+        <div class="empty-tab">
+            <div class="o-grid__col"><i class="fa fa-times u-mr-1"></i> History is empty!</div>
+        </div>
     </div>
-  </div>
 }

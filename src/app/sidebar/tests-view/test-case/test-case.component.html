@@ -1,32 +1,32 @@
 <div (click)="editTest($event, testCase)" class="test-item-entry">
-  <div class="o-grid">
-    @if (testCase.asserts.length === 0) {
-      <div class="o-grid__col o-grid__col--fixed u-pr-2">
-        <i class="fas fa-flask"></i>
-      </div>
-    }
-    @if (testCase.asserts.length > 0) {
-      <div class="o-grid__col o-grid__col--fixed u-pr-2">
-        @if (getStatusOfTest(testCase) === 'FAILED') {
-          <i class="fa fa-times-circle text--danger u-pr-2" [title]="getStatusOfTest(testCase)"></i>
+    <div class="o-grid">
+        @if (testCase.asserts.length === 0) {
+            <div class="o-grid__col o-grid__col--fixed u-pr-2">
+                <i class="fas fa-flask"></i>
+            </div>
         }
-        @if (getStatusOfTest(testCase) === 'PASSED') {
-          <i class="fa fa-check-circle text--success u-pr-2" [title]="getStatusOfTest(testCase)"></i>
+        @if (testCase.asserts.length > 0) {
+            <div class="o-grid__col o-grid__col--fixed u-pr-2">
+                @if (getStatusOfTest(testCase) === 'FAILED') {
+                    <i class="fa fa-times-circle text--danger u-pr-2" [title]="getStatusOfTest(testCase)"></i>
+                }
+                @if (getStatusOfTest(testCase) === 'PASSED') {
+                    <i class="fa fa-check-circle text--success u-pr-2" [title]="getStatusOfTest(testCase)"></i>
+                }
+                @if (getStatusOfTest(testCase) === 'UNKNOWN') {
+                    <i class="fa fa-minus-circle text--grey u-pr-2" [title]="getStatusOfTest(testCase)"></i>
+                }
+                @if (isRunning) {
+                    <i class="fa fa-spinner fa-spin"></i>
+                }
+                <i (click)="runTest()" class="fas fa-play test-item-entry--edit" [ngClass]="{ 'u-pl-2': isRunning }"></i>
+            </div>
         }
-        @if (getStatusOfTest(testCase) === 'UNKNOWN') {
-          <i class="fa fa-minus-circle text--grey u-pr-2" [title]="getStatusOfTest(testCase)"></i>
-        }
-        @if (isRunning) {
-          <i class="fa fa-spinner fa-spin"></i>
-        }
-        <i (click)="runTest()" class="fas fa-play test-item-entry--edit" [ngClass]="{ 'u-pl-2': isRunning }"></i>
-      </div>
-    }
-    <div class="o-grid__col test-item-entry__item__resource">
-      {{ testCase.name ? testCase.name : getResource(testCase.url) }}
+        <div class="o-grid__col test-item-entry__item__resource">
+            {{ testCase.name ? testCase.name : getResource(testCase.url) }}
+        </div>
+        <div (click)="editTest($event, testCase)" class="o-grid__col o-grid__col--fixed">
+            <i class="fa fa-pen test-item-entry--edit"></i>
+        </div>
     </div>
-    <div (click)="editTest($event, testCase)" class="o-grid__col o-grid__col--fixed">
-      <i class="fa fa-pen test-item-entry--edit"></i>
-    </div>
-  </div>
 </div>

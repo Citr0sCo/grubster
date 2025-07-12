@@ -1,23 +1,23 @@
 <div class="collections-view">
-  <div class="o-grid collections-view__item collections-view__item--no-border-top collections-view__item--border-bottom">
-    <div class="o-grid__col">
-      <input (keyup)="onFilterChange(filter)" [(ngModel)]="filter" class="c-field c-field--small" placeholder="Start typing to filter collections..." type="text" />
+    <div class="o-grid collections-view__item collections-view__item--no-border-top collections-view__item--border-bottom">
+        <div class="o-grid__col">
+            <input (keyup)="onFilterChange(filter)" [(ngModel)]="filter" class="c-field c-field--small" placeholder="Start typing to filter collections..." type="text" />
+        </div>
+        @if (filter.length > 0) {
+            <div class="o-grid__col o-grid__col--fixed" (click)="filter = ''; onFilterChange(filter)">
+                <i class="fa fa-times-circle collections-view__item--inactive u-ml-2 u-mt-2"></i>
+            </div>
+        }
+        <div class="o-grid__col o-grid__col--fixed">
+            <i class="fa fa-search collections-view__item--inactive u-ml-2 u-mt-2"></i>
+        </div>
     </div>
-    @if (filter.length > 0) {
-      <div class="o-grid__col o-grid__col--fixed" (click)="filter = ''; onFilterChange(filter)">
-        <i class="fa fa-times-circle collections-view__item--inactive u-ml-2 u-mt-2"></i>
-      </div>
+
+    @for (collection of filteredCollections; track collection) {
+        <collection-item [collection]="collection" [isOpened]="collection.tabs.length > 0" [filter]="filter"></collection-item>
     }
-    <div class="o-grid__col o-grid__col--fixed">
-      <i class="fa fa-search collections-view__item--inactive u-ml-2 u-mt-2"></i>
+
+    <div (click)="addCollection()" class="o-grid collections-view__item" [ngClass]="{ 'collections-view__item--no-border-top': filteredCollections.length == 0 }">
+        <div class="o-grid__col"><i class="fa fa-plus u-mr-1"></i> Add Collection</div>
     </div>
-  </div>
-
-  @for (collection of filteredCollections; track collection) {
-    <collection-item [collection]="collection" [isOpened]="collection.tabs.length > 0" [filter]="filter"></collection-item>
-  }
-
-  <div (click)="addCollection()" class="o-grid collections-view__item" [ngClass]="{ 'collections-view__item--no-border-top': filteredCollections.length == 0 }">
-    <div class="o-grid__col"><i class="fa fa-plus u-mr-1"></i> Add Collection</div>
-  </div>
 </div>

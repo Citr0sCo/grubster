@@ -1,5 +1,5 @@
 <div class="suggestions">
-  @for (suggestion of suggestions; track suggestion) {
-    <suggestion-item (suggestionClicked)="handleClick($event)" [suggestion]="suggestion"></suggestion-item>
-  }
+    @for (suggestion of suggestions; track suggestion) {
+        <suggestion-item (suggestionClicked)="handleClick($event)" [suggestion]="suggestion"></suggestion-item>
+    }
 </div>

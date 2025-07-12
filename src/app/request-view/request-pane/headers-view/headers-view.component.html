@@ -1,18 +1,18 @@
 <div class="o-container headers-view" [ngClass]="{ 'headers-view--horizontal': !isVertical, 'headers-view--no-padding': removePadding }">
-  @for (header of requestHeaders; track header; let i = $index) {
-    <div>
-      <headers-item
-        [header]="header"
-        [isEditable]="isEditable"
-        [isLastHeader]="i === requestHeaders.length - 1"
-        (headerChanged)="headerChanged(i, $event)"
-        (headerRemoved)="headerRemoved($event)"
-        (addHeader)="addHeader($event)"
-      ></headers-item>
-    </div>
-  }
+    @for (header of requestHeaders; track header; let i = $index) {
+        <div>
+            <headers-item
+                [header]="header"
+                [isEditable]="isEditable"
+                [isLastHeader]="i === requestHeaders.length - 1"
+                (headerChanged)="headerChanged(i, $event)"
+                (headerRemoved)="headerRemoved($event)"
+                (addHeader)="addHeader($event)"
+            ></headers-item>
+        </div>
+    }
 
-  @if (requestHeaders.length === 0) {
-    <div class="no-headers-text">No headers to show.</div>
-  }
+    @if (requestHeaders.length === 0) {
+        <div class="no-headers-text">No headers to show.</div>
+    }
 </div>

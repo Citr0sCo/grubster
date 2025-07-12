@@ -1,67 +1,62 @@
 <div (click)="setCurrentTab($event, entry)" [ngClass]="{ 'tab-item--active': currentTab?.id === entry.id, 'tab-item--darken': !isTab }" class="tab-item">
-  <div class="o-grid">
-    <div class="o-grid__col">
-      @if (entry.method) {
-        <method-indicator [isSmall]="true" [method]="entry.method"></method-indicator>
-      }
-      @if (!isEditable && entry.response.statusCode) {
-        <status-code-indicator
-          [isSmall]="true"
-          [statusCode]="entry.response.statusCode"
-          [statusText]="entry.response.statusText"
-        ></status-code-indicator>
-      }
-      @if (!isEditable && entry.response.size) {
-        <payload-size-indicator [isSmall]="true" [payloadSize]="entry.response.size"></payload-size-indicator>
-      }
-      @if (!isEditable && entry.response.timeTaken) {
-        <time-taken-indicator [isSmall]="true" [timeTaken]="entry.response.timeTaken"></time-taken-indicator>
-      }
+    <div class="o-grid">
+        <div class="o-grid__col">
+            @if (entry.method) {
+                <method-indicator [isSmall]="true" [method]="entry.method"></method-indicator>
+            }
+            @if (!isEditable && entry.response.statusCode) {
+                <status-code-indicator [isSmall]="true" [statusCode]="entry.response.statusCode" [statusText]="entry.response.statusText"></status-code-indicator>
+            }
+            @if (!isEditable && entry.response.size) {
+                <payload-size-indicator [isSmall]="true" [payloadSize]="entry.response.size"></payload-size-indicator>
+            }
+            @if (!isEditable && entry.response.timeTaken) {
+                <time-taken-indicator [isSmall]="true" [timeTaken]="entry.response.timeTaken"></time-taken-indicator>
+            }
+        </div>
+        @if (isEditable) {
+            <div (click)="editTab($event, entry)" class="o-grid__col o-grid__col--fixed">
+                <i class="fa fa-pen tab-item--edit"></i>
+            </div>
+        }
+        @if (isRemovable) {
+            <div (click)="removeCurrentTab(entry)" class="o-grid__col o-grid__col--fixed">
+                <i class="fa fa-times-circle tab-item--edit"></i>
+            </div>
+        }
     </div>
-    @if (isEditable) {
-      <div (click)="editTab($event, entry)" class="o-grid__col o-grid__col--fixed">
-        <i class="fa fa-pen tab-item--edit"></i>
-      </div>
+    @if (!isEditable && entry.response.occurredAt) {
+        <div class="tab-item__item__occurred-at">{{ entry.response.occurredAt | date: 'yyyy-MM-dd HH:mm:ss' : 'UTC' }} ({{ entry.response.occurredAt | timeago }})</div>
     }
-    @if (isRemovable) {
-      <div (click)="removeCurrentTab(entry)" class="o-grid__col o-grid__col--fixed">
-        <i class="fa fa-times-circle tab-item--edit"></i>
-      </div>
+    @if (isTab) {
+        <div class="tab-item__item__resource">
+            {{ hasProperName(entry.name, entry.url) ? entry.name : getResource(entry.url) }}
+        </div>
     }
-  </div>
-  @if (!isEditable && entry.response.occurredAt) {
-    <div class="tab-item__item__occurred-at">
-      {{ entry.response.occurredAt | date: 'yyyy-MM-dd HH:mm:ss' : 'UTC' }} ({{ entry.response.occurredAt | timeago }})
-    </div>
-  }
-  @if (isTab) {
-    <div class="tab-item__item__resource">
-      {{ hasProperName(entry.name, entry.url) ? entry.name : getResource(entry.url) }}
-    </div>
-  }
-  @if (!isTab) {
-    <div class="tab-item__item__resource">
-      @if (!entry.url) {
-        <span>
-          @if (filterMatches) {
-            <span>
-              {{ entry.name | slice: 0 : filterIndex }}<span class="tab-item__item__resource--highlight">{{ entry.name | slice: filterIndex : filterIndex + filter.length }}</span
-              >{{ entry.name | slice: filterIndex + filter.length : entry.name.length }}
-            </span>
-          }
-          @if (!filterMatches) {
-            <span>
-              {{ entry.name }}
-            </span>
-          }
-        </span>
-      }
-      @if (entry.url) {
-        <span>
-          {{ getResource(entry.url) }}
-        </span>
-      }
-    </div>
-  }
-  <div class="tab-item__item__host">{{ getHost(entry.url) }}</div>
+    @if (!isTab) {
+        <div class="tab-item__item__resource">
+            @if (!entry.url) {
+                <span>
+                    @if (filterMatches) {
+                        <span>
+                            {{ entry.name | slice: 0 : filterIndex
+                            }}<span class="tab-item__item__resource--highlight">{{ entry.name | slice: filterIndex : filterIndex + filter.length }}</span
+                            >{{ entry.name | slice: filterIndex + filter.length : entry.name.length }}
+                        </span>
+                    }
+                    @if (!filterMatches) {
+                        <span>
+                            {{ entry.name }}
+                        </span>
+                    }
+                </span>
+            }
+            @if (entry.url) {
+                <span>
+                    {{ getResource(entry.url) }}
+                </span>
+            }
+        </div>
+    }
+    <div class="tab-item__item__host">{{ getHost(entry.url) }}</div>
 </div>
