@@ -1,76 +1,85 @@
-<div *ngIf="currentTab" class="request-bar">
+@if (currentTab) {
+  <div class="request-bar">
     <div class="o-grid o-grid--horizontal-align">
-        <div class="o-grid__col o-grid__col--fixed u-p-2">
-            <select [(ngModel)]="currentTab.method" [class]="['_' + currentTab.method]" class="c-field c-field--small c-field__select c-field__select--small request-bar__verb">
-                <option *ngFor="let verb of verbs" [value]="verb">{{ verb.toUpperCase() }}</option>
-            </select>
+      <div class="o-grid__col o-grid__col--fixed u-p-2">
+        <select [(ngModel)]="currentTab.method" [class]="['_' + currentTab.method]" class="c-field c-field--small c-field__select c-field__select--small request-bar__verb">
+          @for (verb of verbs; track verb) {
+            <option [value]="verb">{{ verb.toUpperCase() }}</option>
+          }
+        </select>
+      </div>
+      <div class="o-grid__col u-p-2 request-bar__url">
+        <div class="request-bar__url__container">
+          <input
+            (focus)="urlbarFocused = true"
+            (focusout)="barLoseFocus()"
+            (keyup)="onUrlChange(currentTab)"
+            [(ngModel)]="currentTab.url"
+            class="c-field c-field--small"
+            placeholder="e.g. https://examnple.com/api/test"
+            type="text"
+            />
+          @if ((urlbarFocused || suggestionsHovered) && suggestions.length > 0 && currentTab.url.length > 0) {
+            <suggestions
+              (mouseenter)="suggestionsHovered = true"
+              (mouseleave)="suggestionsHovered = false"
+              (suggestionClicked)="currentTab.url = $event.value; onUrlChange(currentTab); urlbarFocused = false"
+              [suggestions]="suggestions"
+              class="request-bar__url__suggestions"
+            ></suggestions>
+          }
         </div>
-        <div class="o-grid__col u-p-2 request-bar__url">
-            <div class="request-bar__url__container">
-                <input
-                    (focus)="urlbarFocused = true"
-                    (focusout)="barLoseFocus()"
-                    (keyup)="onUrlChange(currentTab)"
-                    [(ngModel)]="currentTab.url"
-                    class="c-field c-field--small"
-                    placeholder="e.g. https://examnple.com/api/test"
-                    type="text"
-                />
-                <suggestions
-                    (mouseenter)="suggestionsHovered = true"
-                    (mouseleave)="suggestionsHovered = false"
-                    (suggestionClicked)="currentTab.url = $event.value; onUrlChange(currentTab); urlbarFocused = false"
-                    *ngIf="(urlbarFocused || suggestionsHovered) && suggestions.length > 0 && currentTab.url.length > 0"
-                    [suggestions]="suggestions"
-                    class="request-bar__url__suggestions"
-                ></suggestions>
-            </div>
-        </div>
-        <div class="o-grid__col o-grid__col--fixed u-p-2 request-bar__send__wrapper">
-            <button
-                (click)="performRequest(currentTab)"
-                (mouseout)="isAlmostReady = false"
-                (mouseover)="isAlmostReady = true"
-                *ngIf="!isSubmitting"
-                [disabled]="!currentTab.url"
-                [ngClass]="{ 'request-bar__send--opened': showSendOptions }"
-                class="c-btn c-btn--small c-btn--primary request-bar__send"
+      </div>
+      <div class="o-grid__col o-grid__col--fixed u-p-2 request-bar__send__wrapper">
+        @if (!isSubmitting) {
+          <button
+            (click)="performRequest(currentTab)"
+            (mouseout)="isAlmostReady = false"
+            (mouseover)="isAlmostReady = true"
+            [disabled]="!currentTab.url"
+            [ngClass]="{ 'request-bar__send--opened': showSendOptions }"
+            class="c-btn c-btn--small c-btn--primary request-bar__send"
             >
-                <i class="fa fa-play"></i>&nbsp;Send
-            </button>
-            <button
-                (click)="cancelRequest()"
-                *ngIf="isSubmitting"
-                [ngClass]="{ 'request-bar__send--opened': showSendOptions }"
-                class="c-btn c-btn--small c-btn--danger request-bar__cancel"
+            <i class="fa fa-play"></i>&nbsp;Send
+          </button>
+        }
+        @if (isSubmitting) {
+          <button
+            (click)="cancelRequest()"
+            [ngClass]="{ 'request-bar__send--opened': showSendOptions }"
+            class="c-btn c-btn--small c-btn--danger request-bar__cancel"
             >
-                <i class="fa fa-stop"></i>&nbsp;Cancel&nbsp;
-                <small [innerHTML]="runningTotal" class="request-bar__cancel__label"></small>
-            </button>
+            <i class="fa fa-stop"></i>&nbsp;Cancel&nbsp;
+            <small [innerHTML]="runningTotal" class="request-bar__cancel__label"></small>
+          </button>
+        }
+        <button
+          (click)="showSendOptions = !showSendOptions"
+          [disabled]="!currentTab.url"
+          [ngClass]="{ 'request-bar__chevron--opened': showSendOptions }"
+          class="c-btn c-btn--small c-btn--primary request-bar__chevron"
+          >
+          <i [ngClass]="{ 'fa-chevron-up': showSendOptions }" class="fa fa-chevron-down"></i>
+        </button>
+        @if (showSendOptions) {
+          <div (click)="showSendOptions = !showSendOptions" class="request-bar__send-settings">
             <button
-                (click)="showSendOptions = !showSendOptions"
-                [disabled]="!currentTab.url"
-                [ngClass]="{ 'request-bar__chevron--opened': showSendOptions }"
-                class="c-btn c-btn--small c-btn--primary request-bar__chevron"
-            >
-                <i [ngClass]="{ 'fa-chevron-up': showSendOptions }" class="fa fa-chevron-down"></i>
+              (click)="copyCurlToClipboard(currentTab)"
+              (mouseout)="isAlmostReady = false"
+              (mouseover)="isAlmostReady = true"
+              [disabled]="!currentTab.url"
+              class="c-btn c-btn--small c-btn--primary request-bar__send-settings__send"
+              >
+              <i class="fa fa-copy"></i> Copy curl to clipboard
             </button>
-            <div (click)="showSendOptions = !showSendOptions" *ngIf="showSendOptions" class="request-bar__send-settings">
-                <button
-                    (click)="copyCurlToClipboard(currentTab)"
-                    (mouseout)="isAlmostReady = false"
-                    (mouseover)="isAlmostReady = true"
-                    [disabled]="!currentTab.url"
-                    class="c-btn c-btn--small c-btn--primary request-bar__send-settings__send"
-                >
-                    <i class="fa fa-copy"></i> Copy curl to clipboard
-                </button>
-            </div>
-        </div>
-        <div class="o-grid__col o-grid__col--fixed u-p-2">
-            <status-code-indicator [statusCode]="currentTab.response.statusCode" [statusText]="currentTab.response.statusText"></status-code-indicator>
-            <payload-size-indicator [payloadSize]="currentTab.response.size"></payload-size-indicator>
-            <time-taken-indicator [timeTaken]="currentTab.response.timeTaken"></time-taken-indicator>
-        </div>
+          </div>
+        }
+      </div>
+      <div class="o-grid__col o-grid__col--fixed u-p-2">
+        <status-code-indicator [statusCode]="currentTab.response.statusCode" [statusText]="currentTab.response.statusText"></status-code-indicator>
+        <payload-size-indicator [payloadSize]="currentTab.response.size"></payload-size-indicator>
+        <time-taken-indicator [timeTaken]="currentTab.response.timeTaken"></time-taken-indicator>
+      </div>
     </div>
-</div>
+  </div>
+}

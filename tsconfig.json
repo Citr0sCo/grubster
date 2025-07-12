@@ -1,33 +1,33 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "baseUrl": ".",
-        "outDir": "dist",
-        "sourceMap": true,
-        "declaration": false,
-        "esModuleInterop": true,
-        "experimentalDecorators": true,
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "importHelpers": true,
-        "target": "ES2022",
-        "useDefineForClassFields": false,
-        "lib": [
-            "es2018",
-            "dom"
-        ],
-        "allowJs": true,
-        "noImplicitAny": true,
-        "resolveJsonModule": true,
-        "paths": {
-            "*": [
-                "node_modules/*"
-            ]
-        },
-        "typeRoots": [
-            "node_modules/@types",
-            "src/app/json-typings.d.ts"
+      "baseUrl": ".",
+      "outDir": "dist",
+      "sourceMap": true,
+      "declaration": false,
+      "esModuleInterop": true,
+      "experimentalDecorators": true,
+      "module": "commonjs",
+      "moduleResolution": "bundler",
+      "importHelpers": true,
+      "target": "ES2022",
+      "useDefineForClassFields": false,
+      "lib": [
+        "es2018",
+        "dom"
+      ],
+      "allowJs": true,
+      "noImplicitAny": true,
+      "resolveJsonModule": true,
+      "paths": {
+        "*": [
+          "node_modules/*"
         ]
+      },
+      "typeRoots": [
+        "node_modules/@types",
+        "src/app/json-typings.d.ts"
+      ]
     },
     "include": [
         "src/core/**/*"

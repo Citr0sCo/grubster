@@ -1,12 +1,16 @@
 <div class="window-controls o-grid">
-    <div (click)="minimize()" class="window-controls__control o-grid__col u-mr-1">
-        <i class="fa fa-window-minimize"></i>
-    </div>
-    <div (click)="isMaximized ? unMaximize() : maximize()" class="window-controls__control o-grid__col u-mr-1">
-        <i *ngIf="!isMaximized" class="fa fa-expand-alt"></i>
-        <i *ngIf="isMaximized" class="fa fa-compress-alt"></i>
-    </div>
-    <div (click)="quit()" class="window-controls__control window-controls__control--danger o-grid__col">
-        <i class="fa fa-times"></i>
-    </div>
+  <div (click)="minimize()" class="window-controls__control o-grid__col u-mr-1">
+    <i class="fa fa-window-minimize"></i>
+  </div>
+  <div (click)="isMaximized ? unMaximize() : maximize()" class="window-controls__control o-grid__col u-mr-1">
+    @if (!isMaximized) {
+      <i class="fa fa-expand-alt"></i>
+    }
+    @if (isMaximized) {
+      <i class="fa fa-compress-alt"></i>
+    }
+  </div>
+  <div (click)="quit()" class="window-controls__control window-controls__control--danger o-grid__col">
+    <i class="fa fa-times"></i>
+  </div>
 </div>

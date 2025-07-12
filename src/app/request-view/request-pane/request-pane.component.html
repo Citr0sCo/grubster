@@ -1,74 +1,110 @@
 <div class="request-pane">
-    <div class="o-grid__col request-pane__wrapper">
-        <div class="o-grid request-pane__tabs">
+  <div class="o-grid__col request-pane__wrapper">
+    <div class="o-grid request-pane__tabs">
+      @for (tab of tabs; track tab) {
+        <div
+          (click)="selectedTab = tab"
+          [ngClass]="{ 'request-pane__tabs__tab--active': selectedTab.id === tab.id }"
+          class="o-grid__col request-pane__tabs__tab"
+          >
+          @if (hasAuth(currentTab) && tab.id === 'basic-auth') {
+            <div class="request-pane__tabs__tab--indicate"></div>
+          }
+          @if (hasHeaders() && tab.id === 'headers') {
+            <div class="request-pane__tabs__tab--indicate"></div>
+          }
+          @if (hasBody() && tab.id === 'body') {
+            <div class="request-pane__tabs__tab--indicate"></div>
+          }
+          @if (hasMultipleCredentials() && tab.id === 'body' && !isReadOnly) {
             <div
-                (click)="selectedTab = tab"
-                *ngFor="let tab of tabs"
-                [ngClass]="{ 'request-pane__tabs__tab--active': selectedTab.id === tab.id }"
-                class="o-grid__col request-pane__tabs__tab"
-            >
-                <div *ngIf="hasAuth(currentTab) && tab.id === 'basic-auth'" class="request-pane__tabs__tab--indicate"></div>
-                <div *ngIf="hasHeaders() && tab.id === 'headers'" class="request-pane__tabs__tab--indicate"></div>
-                <div *ngIf="hasBody() && tab.id === 'body'" class="request-pane__tabs__tab--indicate"></div>
-                <div
-                    *ngIf="hasMultipleCredentials() && tab.id === 'body' && !isReadOnly"
-                    class="request-pane__tabs__tab--warn u-mr-1"
-                    title="Multiple credentials detected. Check {{ credentialLocations }}."
-                >
-                    <i class="fas fa-exclamation-triangle"></i>
-                </div>
-                {{ tab.name }}
+              class="request-pane__tabs__tab--warn u-mr-1"
+              title="Multiple credentials detected. Check {{ credentialLocations }}."
+              >
+              <i class="fas fa-exclamation-triangle"></i>
             </div>
+          }
+          {{ tab.name }}
         </div>
-        <editor-view
-            (bodyChanged)="updateBody($event)"
-            *ngIf="selectedTab.id === 'body'"
-            [isReadOnly]="isReadOnly"
-            [isVertical]="isVertical"
-            [requestBody]="filteredRequestBody ? filteredRequestBody : requestBody"
-        ></editor-view>
-        <headers-view
-            (headersChanged)="updateHeaders($event)"
-            *ngIf="selectedTab.id === 'headers'"
-            [isVertical]="isVertical"
-            [isEditable]="areHeadersEditable"
-            [requestHeaders]="requestHeaders"
-        ></headers-view>
-        <preview-view *ngIf="selectedTab.id === 'preview'" [isVertical]="isVertical" [requestBody]="requestBody" [requestUrl]="requestUrl"></preview-view>
-        <basic-auth-view *ngIf="selectedTab.id === 'basic-auth'" [isVertical]="isVertical" [auth]="currentTab.request.auth"></basic-auth-view>
-
-        <div class="request-pane__footer">
-            <div class="o-grid">
-                <div class="o-grid__col o-grid__col--fixed">
-                    <select (ngModelChange)="updateLanguage($event)" [(ngModel)]="requestLanguage" class="c-field c-field__select">
-                        <option *ngFor="let language of languages" [value]="language">{{ language }}</option>
-                    </select>
-                </div>
-                <div *ngIf="!isReadOnly" class="o-grid__col"></div>
-                <div *ngIf="!isReadOnly" class="o-grid__col o-grid__col--fixed">
-                    <button (click)="beautifyRequestBody()" class="c-btn c-btn--secondary c-btn--remove-border-radius request-pane__footer__beautify">Beautify</button>
-                </div>
-                <div *ngIf="!isReadOnly" class="o-grid__col o-grid__col--fixed" title="Toggle editor layout.">
-                    <button (click)="toggleDirection()" class="c-btn c-btn--secondary c-btn--remove-border-radius request-pane__footer__pane-direction">
-                        <i *ngIf="isVertical" class="fa fa-grip-lines"></i>
-                        <i *ngIf="!isVertical" class="fa fa-grip-lines-vertical"></i>
-                    </button>
-                </div>
-                <div *ngIf="isReadOnly" class="o-grid__col">
-                    <input [(ngModel)]="currentTab.jsonPathQuery" class="c-field" placeholder="$.Items[*].Thing" type="text" />
-                </div>
-                <div *ngIf="isReadOnly" class="o-grid__col o-grid__col--fixed" title="More on JsonPath syntax.">
-                    <a href="https://goessner.net/articles/JsonPath/" target="_blank">
-                        <button class="c-btn c-btn--secondary c-btn--remove-border-radius request-pane__footer__info">?</button>
-                    </a>
-                </div>
-                <div *ngIf="isReadOnly" class="o-grid__col o-grid__col--fixed" title="Toggle word wrap.">
-                    <button (click)="toggleWordWrap()" class="c-btn c-btn--secondary c-btn--remove-border-radius request-pane__footer__word-wrap">
-                        <i *ngIf="settings.editorWordWrap" class="fas fa-long-arrow-alt-right"></i>
-                        <i *ngIf="!settings.editorWordWrap" class="fas fa-level-down-alt u-r-90"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+      }
     </div>
+    @if (selectedTab.id === 'body') {
+      <editor-view
+        (bodyChanged)="updateBody($event)"
+        [isReadOnly]="isReadOnly"
+        [isVertical]="isVertical"
+        [requestBody]="filteredRequestBody ? filteredRequestBody : requestBody"
+      ></editor-view>
+    }
+    @if (selectedTab.id === 'headers') {
+      <headers-view
+        (headersChanged)="updateHeaders($event)"
+        [isVertical]="isVertical"
+        [isEditable]="areHeadersEditable"
+        [requestHeaders]="requestHeaders"
+      ></headers-view>
+    }
+    @if (selectedTab.id === 'preview') {
+      <preview-view [isVertical]="isVertical" [requestBody]="requestBody" [requestUrl]="requestUrl"></preview-view>
+    }
+    @if (selectedTab.id === 'basic-auth') {
+      <basic-auth-view [isVertical]="isVertical" [auth]="currentTab.request.auth"></basic-auth-view>
+    }
+
+    <div class="request-pane__footer">
+      <div class="o-grid">
+        <div class="o-grid__col o-grid__col--fixed">
+          <select (ngModelChange)="updateLanguage($event)" [(ngModel)]="requestLanguage" class="c-field c-field__select">
+            @for (language of languages; track language) {
+              <option [value]="language">{{ language }}</option>
+            }
+          </select>
+        </div>
+        @if (!isReadOnly) {
+          <div class="o-grid__col"></div>
+        }
+        @if (!isReadOnly) {
+          <div class="o-grid__col o-grid__col--fixed">
+            <button (click)="beautifyRequestBody()" class="c-btn c-btn--secondary c-btn--remove-border-radius request-pane__footer__beautify">Beautify</button>
+          </div>
+        }
+        @if (!isReadOnly) {
+          <div class="o-grid__col o-grid__col--fixed" title="Toggle editor layout.">
+            <button (click)="toggleDirection()" class="c-btn c-btn--secondary c-btn--remove-border-radius request-pane__footer__pane-direction">
+              @if (isVertical) {
+                <i class="fa fa-grip-lines"></i>
+              }
+              @if (!isVertical) {
+                <i class="fa fa-grip-lines-vertical"></i>
+              }
+            </button>
+          </div>
+        }
+        @if (isReadOnly) {
+          <div class="o-grid__col">
+            <input [(ngModel)]="currentTab.jsonPathQuery" class="c-field" placeholder="$.Items[*].Thing" type="text" />
+          </div>
+        }
+        @if (isReadOnly) {
+          <div class="o-grid__col o-grid__col--fixed" title="More on JsonPath syntax.">
+            <a href="https://goessner.net/articles/JsonPath/" target="_blank">
+              <button class="c-btn c-btn--secondary c-btn--remove-border-radius request-pane__footer__info">?</button>
+            </a>
+          </div>
+        }
+        @if (isReadOnly) {
+          <div class="o-grid__col o-grid__col--fixed" title="Toggle word wrap.">
+            <button (click)="toggleWordWrap()" class="c-btn c-btn--secondary c-btn--remove-border-radius request-pane__footer__word-wrap">
+              @if (settings.editorWordWrap) {
+                <i class="fas fa-long-arrow-alt-right"></i>
+              }
+              @if (!settings.editorWordWrap) {
+                <i class="fas fa-level-down-alt u-r-90"></i>
+              }
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
 </div>

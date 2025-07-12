@@ -1,79 +1,97 @@
-<div *ngIf="isSidebarOpen" [@slideIn] [ngClass]="{ 'sidebar--locked': isSidebarLocked }" class="sidebar o-grid">
+@if (isSidebarOpen) {
+  <div [@slideIn] [ngClass]="{ 'sidebar--locked': isSidebarLocked }" class="sidebar o-grid">
     <div class="o-grid__col o-grid__col--fixed">
-        <ul class="sidebar__quick-actions">
-            <li class="sidebar__quick-actions__item">
-                <a (click)="toggleSidebar()" [routerLinkActive]="'sidebar__quick-actions__item--active'" [routerLink]="['/dashboard']" href="#" title="Dashboard">
-                    <i class="fas fa-home u-mr-1"></i>
-                    <small>Dashboard</small>
-                </a>
-            </li>
-            <li class="sidebar__quick-actions__item">
-                <a (click)="toggleCollectionsDropdown($event)" [ngClass]="{ 'sidebar__quick-actions__item--active': isCollectionsOpen }" href="#" title="Collections">
-                    <i class="fas" [class]="[isCollectionsOpen ? 'fa-folder-open' : 'fa-folder']"></i>
-                    <small>Collections</small>
-                </a>
-            </li>
-            <li class="sidebar__quick-actions__item">
-                <a (click)="toggleTestsDropdown($event)" [ngClass]="{ 'sidebar__quick-actions__item--active': isTestsOpen }" href="#" title="Tests">
-                    <i class="fas fa-vials"></i>
-                    <small>Tests</small>
-                </a>
-            </li>
-            <li class="sidebar__quick-actions__item">
-                <a (click)="toggleHistoryDropdown($event)" [ngClass]="{ 'sidebar__quick-actions__item--active': isHistoryOpen }" href="#" title="History">
-                    <i class="fas fa-history"></i>
-                    <small>History</small>
-                </a>
-            </li>
-            <li class="sidebar__quick-actions__item">
-                <a (click)="toggleSidebar()" [routerLinkActive]="'sidebar__quick-actions__item--active'" [routerLink]="['/settings']" href="#" title="Settings">
-                    <i class="fas fa-cog"></i>
-                    <small>Settings</small>
-                </a>
-            </li>
-            <li class="sidebar__quick-actions__item">
-                <a href="https://discord.com/invite/h6yzaWx8An" target="_blank" title="Open Grubster Discord">
-                    <i class="fab fa-discord"></i>
-                    <small>Discord</small>
-                </a>
-            </li>
-            <li class="sidebar__quick-actions__item">
-                <a (click)="toggleSidebarLock($event)" href="#" [title]="(isSidebarLocked ? 'Unlock' : 'Lock') + ' Sidebar'">
-                    <i class="fas" [class]="[isSidebarLocked ? 'fa-lock' : 'fa-unlock']"></i>
-                    <small [innerHTML]="(isSidebarLocked ? 'Unlock' : 'Lock') + ' Sidebar'"></small>
-                </a>
-            </li>
-        </ul>
+      <ul class="sidebar__quick-actions">
+        <li class="sidebar__quick-actions__item">
+          <a (click)="toggleSidebar()" [routerLinkActive]="'sidebar__quick-actions__item--active'" [routerLink]="['/dashboard']" href="#" title="Dashboard">
+            <i class="fas fa-home u-mr-1"></i>
+            <small>Dashboard</small>
+          </a>
+        </li>
+        <li class="sidebar__quick-actions__item">
+          <a (click)="toggleCollectionsDropdown($event)" [ngClass]="{ 'sidebar__quick-actions__item--active': isCollectionsOpen }" href="#" title="Collections">
+            <i class="fas" [class]="[isCollectionsOpen ? 'fa-folder-open' : 'fa-folder']"></i>
+            <small>Collections</small>
+          </a>
+        </li>
+        <li class="sidebar__quick-actions__item">
+          <a (click)="toggleTestsDropdown($event)" [ngClass]="{ 'sidebar__quick-actions__item--active': isTestsOpen }" href="#" title="Tests">
+            <i class="fas fa-vials"></i>
+            <small>Tests</small>
+          </a>
+        </li>
+        <li class="sidebar__quick-actions__item">
+          <a (click)="toggleHistoryDropdown($event)" [ngClass]="{ 'sidebar__quick-actions__item--active': isHistoryOpen }" href="#" title="History">
+            <i class="fas fa-history"></i>
+            <small>History</small>
+          </a>
+        </li>
+        <li class="sidebar__quick-actions__item">
+          <a (click)="toggleSidebar()" [routerLinkActive]="'sidebar__quick-actions__item--active'" [routerLink]="['/settings']" href="#" title="Settings">
+            <i class="fas fa-cog"></i>
+            <small>Settings</small>
+          </a>
+        </li>
+        <li class="sidebar__quick-actions__item">
+          <a href="https://discord.com/invite/h6yzaWx8An" target="_blank" title="Open Grubster Discord">
+            <i class="fab fa-discord"></i>
+            <small>Discord</small>
+          </a>
+        </li>
+        <li class="sidebar__quick-actions__item">
+          <a (click)="toggleSidebarLock($event)" href="#" [title]="(isSidebarLocked ? 'Unlock' : 'Lock') + ' Sidebar'">
+            <i class="fas" [class]="[isSidebarLocked ? 'fa-lock' : 'fa-unlock']"></i>
+            <small [innerHTML]="(isSidebarLocked ? 'Unlock' : 'Lock') + ' Sidebar'"></small>
+          </a>
+        </li>
+      </ul>
     </div>
-    <div class="o-grid__col" *ngIf="hasContentToShow()">
+    @if (hasContentToShow()) {
+      <div class="o-grid__col">
         <ul class="sidebar__menu">
-            <li *ngIf="hasTabsInSidebar" class="sidebar__menu__item">
-                <a (click)="toggleTabsDropdown($event)" href="#">
-                    <div class="o-grid">
-                        <div class="o-grid__col">
-                            <i [class]="[isTabsOpen ? 'fa-folder-open' : 'fa-folder']" class="far u-mr-1"></i>
-                            Current Tabs
-                        </div>
-                        <div class="o-grid__col o-grid__col--fixed sidebar__menu__item__badge">
-                            <badge *ngIf="numberOfTabItems > 0" [isLarge]="true" [value]="numberOfTabItems.toString()"></badge>
-                        </div>
-                        <div class="o-grid__col o-grid__col--fixed">
-                            <i [class]="[isTabsOpen ? 'fa-chevron-up' : 'fa-chevron-down']" class="fa sidebar__menu__item--inactive"></i>
-                        </div>
-                    </div>
-                </a>
-                <tabs-view *ngIf="isTabsOpen"></tabs-view>
+          @if (hasTabsInSidebar) {
+            <li class="sidebar__menu__item">
+              <a (click)="toggleTabsDropdown($event)" href="#">
+                <div class="o-grid">
+                  <div class="o-grid__col">
+                    <i [class]="[isTabsOpen ? 'fa-folder-open' : 'fa-folder']" class="far u-mr-1"></i>
+                    Current Tabs
+                  </div>
+                  <div class="o-grid__col o-grid__col--fixed sidebar__menu__item__badge">
+                    @if (numberOfTabItems > 0) {
+                      <badge [isLarge]="true" [value]="numberOfTabItems.toString()"></badge>
+                    }
+                  </div>
+                  <div class="o-grid__col o-grid__col--fixed">
+                    <i [class]="[isTabsOpen ? 'fa-chevron-up' : 'fa-chevron-down']" class="fa sidebar__menu__item--inactive"></i>
+                  </div>
+                </div>
+              </a>
+              @if (isTabsOpen) {
+                <tabs-view></tabs-view>
+              }
             </li>
-            <li class="sidebar__menu__item" *ngIf="isCollectionsOpen">
-                <collections-view></collections-view>
+          }
+          @if (isCollectionsOpen) {
+            <li class="sidebar__menu__item">
+              <collections-view></collections-view>
             </li>
-            <li class="sidebar__menu__item" *ngIf="isTestsOpen">
-                <tests-view></tests-view>
+          }
+          @if (isTestsOpen) {
+            <li class="sidebar__menu__item">
+              <tests-view></tests-view>
             </li>
-            <li class="sidebar__menu__item" *ngIf="isHistoryOpen">
-                <history-view></history-view>
+          }
+          @if (isHistoryOpen) {
+            <li class="sidebar__menu__item">
+              <history-view></history-view>
             </li>
+          }
         </ul>
-    </div>
-</div>
-<div (click)="toggleSidebar()" *ngIf="isSidebarOpen && !isSidebarLocked" [@fadeIn] class="blackout"></div>
+      </div>
+    }
+  </div>
+}
+@if (isSidebarOpen && !isSidebarLocked) {
+  <div (click)="toggleSidebar()" [@fadeIn] class="blackout"></div>
+}

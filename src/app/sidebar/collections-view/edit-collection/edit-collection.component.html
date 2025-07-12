@@ -1,20 +1,20 @@
-<div *ngIf="collection" class="o-container">
+@if (collection) {
+  <div class="o-container">
     <div class="o-container--contain">
-        <h1>Edit Collection</h1>
-        <div class="c-field-group u-mt-1">
-            <label class="c-label">Name</label>
-            <input [(ngModel)]="collection.name" class="c-field" type="text" />
+      <h1>Edit Collection</h1>
+      <div class="c-field-group u-mt-1">
+        <label class="c-label">Name</label>
+        <input [(ngModel)]="collection.name" class="c-field" type="text" />
+      </div>
+      <hr />
+      <div class="o-grid">
+        <div class="o-grid__col">
+          <button (click)="updateCollection()" [disabled]="!isValid()" class="c-btn c-btn--primary"><i class="fa fa-save"></i> Save</button>
         </div>
-
-        <hr />
-
-        <div class="o-grid">
-            <div class="o-grid__col">
-                <button (click)="updateCollection()" [disabled]="!isValid()" class="c-btn c-btn--primary"><i class="fa fa-save"></i> Save</button>
-            </div>
-            <div class="o-grid__col o-grid__col--fixed">
-                <button (click)="deleteCollection()" class="c-btn c-btn--danger"><i class="fa fa-trash"></i> Delete</button>
-            </div>
+        <div class="o-grid__col o-grid__col--fixed">
+          <button (click)="deleteCollection()" class="c-btn c-btn--danger"><i class="fa fa-trash"></i> Delete</button>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+}

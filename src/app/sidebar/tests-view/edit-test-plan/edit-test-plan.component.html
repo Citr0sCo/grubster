@@ -1,59 +1,74 @@
-<div *ngIf="test" class="o-container">
+@if (test) {
+  <div class="o-container">
     <div class="o-container--contain">
-        <h1>Edit Test Plan</h1>
-        <div class="c-field-group u-mt-1">
-            <label class="c-label">Name</label>
-            <input [(ngModel)]="test.name" class="c-field" type="text" />
+      <h1>Edit Test Plan</h1>
+      <div class="c-field-group u-mt-1">
+        <label class="c-label">Name</label>
+        <input [(ngModel)]="test.name" class="c-field" type="text" />
+      </div>
+      @for (test of localTests; track test) {
+        <div class="test-items u-mt-3">
+          <div class="test-item-entry">
+            <div class="o-grid">
+              <div class="o-grid__col o-grid__col--fixed">
+                @if (getStatusOfTest(test) === 'FAILED') {
+                  <i class="fa fa-times-circle text--danger u-pr-2" [title]="getStatusOfTest(test)"></i>
+                }
+                @if (getStatusOfTest(test) === 'PASSED') {
+                  <i class="fa fa-check-circle text--success u-pr-2" [title]="getStatusOfTest(test)"></i>
+                }
+              </div>
+              <div (click)="!test.isRunning ? runTest(test) : null" class="o-grid__col o-grid__col--fixed u-pr-2">
+                @if (!test.isRunning) {
+                  <i class="fa fa-play test-item-entry--edit"></i>
+                }
+                @if (test.isRunning) {
+                  <i class="fa fa-spinner fa-spin"></i>
+                }
+              </div>
+              <div class="o-grid__col test-item-entry__item__resource">
+                {{ test.test.name }}
+                @if (getStatusOfTest(test) !== 'UNKNOWN') {
+                  <small
+                    class="text--italic"
+                    [ngClass]="{ 'text--success': getStatusOfTest(test) === 'PASSED', 'text--danger': getStatusOfTest(test) === 'FAILED' }"
+                    >
+                    {{ getNumberOfSuccessfulAsserts(test).length }} out of {{ test.test.asserts.length }} asserts passed.
+                  </small>
+                }
+                @if (getStatusOfTest(test) !== 'UNKNOWN' && test.test.asserts.length > 0) {
+                  <small class="text--italic text--grey">
+                    Last ran {{ test.test.asserts[0].result.timestamp | timeago }}.
+                  </small>
+                }
+              </div>
+              <div (click)="editTab(test.test)" class="o-grid__col o-grid__col--fixed">
+                <i class="fa fa-pen test-item-entry--edit"></i>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="test-items u-mt-3" *ngFor="let test of localTests">
-            <div class="test-item-entry">
-                <div class="o-grid">
-                    <div class="o-grid__col o-grid__col--fixed">
-                        <i class="fa fa-times-circle text--danger u-pr-2" *ngIf="getStatusOfTest(test) === 'FAILED'" [title]="getStatusOfTest(test)"></i>
-                        <i class="fa fa-check-circle text--success u-pr-2" *ngIf="getStatusOfTest(test) === 'PASSED'" [title]="getStatusOfTest(test)"></i>
-                    </div>
-
-                    <div (click)="!test.isRunning ? runTest(test) : null" class="o-grid__col o-grid__col--fixed u-pr-2">
-                        <i *ngIf="!test.isRunning" class="fa fa-play test-item-entry--edit"></i>
-                        <i *ngIf="test.isRunning" class="fa fa-spinner fa-spin"></i>
-                    </div>
-                    <div class="o-grid__col test-item-entry__item__resource">
-                        {{ test.test.name }}
-                        <small
-                            class="text--italic"
-                            *ngIf="getStatusOfTest(test) !== 'UNKNOWN'"
-                            [ngClass]="{ 'text--success': getStatusOfTest(test) === 'PASSED', 'text--danger': getStatusOfTest(test) === 'FAILED' }"
-                        >
-                            {{ getNumberOfSuccessfulAsserts(test).length }} out of {{ test.test.asserts.length }} asserts passed.
-                        </small>
-                        <small class="text--italic text--grey" *ngIf="getStatusOfTest(test) !== 'UNKNOWN' && test.test.asserts.length > 0">
-                            Last ran {{ test.test.asserts[0].result.timestamp | timeago }}.
-                        </small>
-                    </div>
-                    <div (click)="editTab(test.test)" class="o-grid__col o-grid__col--fixed">
-                        <i class="fa fa-pen test-item-entry--edit"></i>
-                    </div>
-                </div>
-            </div>
+      }
+      <hr />
+      <div class="o-grid u-mb-3">
+        <div class="o-grid__col o-grid__col--fixed">
+          <button (click)="updateTest()" [disabled]="!isValid()" class="c-btn c-btn--primary u-mr-2"><i class="fa fa-save"></i> Save</button>
         </div>
-
-        <hr />
-
-        <div class="o-grid u-mb-3">
-            <div class="o-grid__col o-grid__col--fixed">
-                <button (click)="updateTest()" [disabled]="!isValid()" class="c-btn c-btn--primary u-mr-2"><i class="fa fa-save"></i> Save</button>
-            </div>
-            <div class="o-grid__col">
-                <button (click)="runAllTests()" [disabled]="!isValid()" class="c-btn c-btn--success">
-                    <i class="fa fa-play" *ngIf="!isRunning"></i>
-                    <i class="fa fa-spinner fa-spin" *ngIf="isRunning"></i>
-                    Run All
-                </button>
-            </div>
-            <div class="o-grid__col o-grid__col--fixed">
-                <button (click)="deleteTest()" class="c-btn c-btn--danger"><i class="fa fa-trash"></i> Delete</button>
-            </div>
+        <div class="o-grid__col">
+          <button (click)="runAllTests()" [disabled]="!isValid()" class="c-btn c-btn--success">
+            @if (!isRunning) {
+              <i class="fa fa-play"></i>
+            }
+            @if (isRunning) {
+              <i class="fa fa-spinner fa-spin"></i>
+            }
+            Run All
+          </button>
         </div>
+        <div class="o-grid__col o-grid__col--fixed">
+          <button (click)="deleteTest()" class="c-btn c-btn--danger"><i class="fa fa-trash"></i> Delete</button>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+}
