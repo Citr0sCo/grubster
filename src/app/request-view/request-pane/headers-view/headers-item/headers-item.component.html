@@ -1,18 +1,20 @@
 <div class="o-grid headers-view__header u-mt-2">
     <div class="o-grid__col u-mr-2 headers-view__header__field">
         <input (ngModelChange)="headerKeyChanged(header)" [(ngModel)]="header.key" [disabled]="!isEditable" class="c-field" placeholder="attribute" type="text" />
-        <suggestions
-            (suggestionClicked)="header.key = $event.value; suggest = false"
-            *ngIf="suggest && suggestions.length > 0 && header.key.length > 0"
-            [suggestions]="suggestions"
-        ></suggestions>
+        @if (suggest && suggestions.length > 0 && header.key.length > 0) {
+            <suggestions (suggestionClicked)="header.key = $event.value; suggest = false" [suggestions]="suggestions"></suggestions>
+        }
     </div>
     <div class="o-grid__col headers-view__header__field u-mr-2">
         <input (ngModelChange)="headerValueChanged(header)" [(ngModel)]="header.value" [disabled]="!isEditable" class="c-field" placeholder="value" type="text" />
     </div>
-    <div *ngIf="isEditable" class="o-grid__col o-grid__col--fixed" style="width: calc(40px - 0.5rem)">
-        <div (click)="removeHeader(header)" class="headers-view__action headers-view__action--remove u-mt-2" *ngIf="!isLastHeader">
-            <i class="fa fa-minus"></i>
+    @if (isEditable) {
+        <div class="o-grid__col o-grid__col--fixed" style="width: calc(40px - 0.5rem)">
+            @if (!isLastHeader) {
+                <div (click)="removeHeader(header)" class="headers-view__action headers-view__action--remove u-mt-2">
+                    <i class="fa fa-minus"></i>
+                </div>
+            }
         </div>
-    </div>
+    }
 </div>
