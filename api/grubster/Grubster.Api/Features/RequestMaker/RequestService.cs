@@ -26,6 +26,9 @@ public class RequestService
 
             foreach (var header in request.Headers)
             {
+                if (header.Key.Length == 0)
+                    continue;
+                
                 if (header.Key.ToLower() == "Content-Type".ToLower())
                     continue;
                 
