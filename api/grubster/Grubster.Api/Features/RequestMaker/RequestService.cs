@@ -24,6 +24,14 @@ public class RequestService
             _httpClient.DefaultRequestHeaders.Add("Accept-Language","en-GB,en-US;q=0.9,en;q=0.8");
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
 
+            foreach (var header in request.Headers)
+            {
+                if (header.Key.ToLower() == "Content-Type".ToLower())
+                    continue;
+                
+                _httpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
+            }
+            
             HttpResponseMessage result = null;
             
             switch (request.Method.ToUpper())
