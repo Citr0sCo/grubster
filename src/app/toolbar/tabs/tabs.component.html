@@ -1,24 +1,27 @@
-<div *ngIf="!isTabsInSidebar" class="tabs o-grid">
-    <div
-        (click)="setCurrentTab($event, tab)"
-        (middleClick)="closeTab(tab)"
-        (rightClick)="openContextMenu($event, tab)"
-        *ngFor="let tab of tabs"
-        class="tabs__tab o-grid__col o-grid__col--fixed u-pl-2 u-pr-2"
-        [ngClass]="{ 'tabs__tab--active': currentTab.id === tab.id }"
-        middle-click
-        right-click
-    >
-        <div class="o-grid">
-            <div class="o-grid__col tabs__tab__label">
-                {{ hasProperName(tab.name, tab.url) ? tab.name : getResource(tab.url) }}
+@if (!isTabsInSidebar) {
+    <div class="tabs o-grid">
+        @for (tab of tabs; track tab) {
+            <div
+                (click)="setCurrentTab($event, tab)"
+                (middleClick)="closeTab(tab)"
+                (rightClick)="openContextMenu($event, tab)"
+                class="tabs__tab o-grid__col o-grid__col--fixed u-pl-2 u-pr-2"
+                [ngClass]="{ 'tabs__tab--active': currentTab.id === tab.id }"
+                middle-click
+                right-click
+            >
+                <div class="o-grid">
+                    <div class="o-grid__col tabs__tab__label">
+                        {{ hasProperName(tab.name, tab.url) ? tab.name : getResource(tab.url) }}
+                    </div>
+                    <div class="o-grid__col o-grid__col--fixed">
+                        <i (click)="closeTab(tab)" class="tabs__tab__close fa fa-times"></i>
+                    </div>
+                </div>
             </div>
-            <div class="o-grid__col o-grid__col--fixed">
-                <i (click)="closeTab(tab)" class="tabs__tab__close fa fa-times"></i>
-            </div>
+        }
+        <div (click)="createNewTab()" class="tabs__tab tabs__tab--add o-grid__col o-grid__col--fixed u-pl-1 u-pr-1 u-mt-1 u-mb-1 u-ml-1">
+            <i class="fa fa-plus"></i>
         </div>
     </div>
-    <div (click)="createNewTab()" class="tabs__tab tabs__tab--add o-grid__col o-grid__col--fixed u-pl-1 u-pr-1 u-mt-1 u-mb-1 u-ml-1">
-        <i class="fa fa-plus"></i>
-    </div>
-</div>
+}

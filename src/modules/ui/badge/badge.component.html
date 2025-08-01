@@ -1,1 +1,3 @@
-<div (click)="handleClick()" *ngIf="value" [class.large]="isLarge" [class.removable]="isRemovable" [style.background]="color" class="badge">{{ value }}</div>
+@if (value) {
+    <div (click)="handleClick()" [class.large]="isLarge" [class.removable]="isRemovable" [style.background]="color" class="badge">{{ value }}</div>
+}

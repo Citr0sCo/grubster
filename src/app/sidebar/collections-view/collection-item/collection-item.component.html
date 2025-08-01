@@ -2,17 +2,23 @@
     <div (click)="isCollectionsOpen = !isCollectionsOpen" class="o-grid collections-item__item">
         <div class="o-grid__col">
             <i [class]="[isCollectionsOpen ? 'fa-folder-open' : 'fa-folder']" class="fa u-mr-1"></i>
-            <span *ngIf="filterMatches">
-                {{ collection.name | slice: 0 : filterIndex
-                }}<span class="collections-item__item--highlight">{{ collection.name | slice: filterIndex : filterIndex + filter.length }}</span
-                >{{ collection.name | slice: filterIndex + filter.length : collection.name.length }}
-            </span>
-            <span *ngIf="!filterMatches">
-                {{ collection.name }}
-            </span>
+            @if (filterMatches) {
+                <span>
+                    {{ collection.name | slice: 0 : filterIndex
+                    }}<span class="collections-item__item--highlight">{{ collection.name | slice: filterIndex : filterIndex + filter.length }}</span
+                    >{{ collection.name | slice: filterIndex + filter.length : collection.name.length }}
+                </span>
+            }
+            @if (!filterMatches) {
+                <span>
+                    {{ collection.name }}
+                </span>
+            }
         </div>
         <div class="o-grid__col o-grid__col--fixed u-mr-2">
-            <badge *ngIf="numberOfCollectionItems > 0" [isLarge]="true" [value]="numberOfCollectionItems.toString()"></badge>
+            @if (numberOfCollectionItems > 0) {
+                <badge [isLarge]="true" [value]="numberOfCollectionItems.toString()"></badge>
+            }
         </div>
         <div class="o-grid__col o-grid__col--fixed u-mr-2">
             <i (click)="editCollection($event, collection)" class="fa fa-pen collections-item__item--edit"></i>
@@ -21,10 +27,14 @@
             <i [class]="[isCollectionsOpen ? 'fa-chevron-up' : 'fa-chevron-down']" class="fa collections-item__item--inactive"></i>
         </div>
     </div>
-    <div *ngIf="isCollectionsOpen" class="collections-item__inner-item">
-        <tab-item *ngFor="let tab of collection.tabs" [entry]="tab" [isEditable]="true" [filter]="filter"></tab-item>
-        <div (click)="addTabToCollection(collection)" class="o-grid collections-item__item">
-            <div class="o-grid__col"><i class="fa fa-plus u-mr-1"></i> Add Current Tab</div>
+    @if (isCollectionsOpen) {
+        <div class="collections-item__inner-item">
+            @for (tab of collection.tabs; track tab) {
+                <tab-item [entry]="tab" [isEditable]="true" [filter]="filter"></tab-item>
+            }
+            <div (click)="addTabToCollection(collection)" class="o-grid collections-item__item">
+                <div class="o-grid__col"><i class="fa fa-plus u-mr-1"></i> Add Current Tab</div>
+            </div>
         </div>
-    </div>
+    }
 </div>
