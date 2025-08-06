@@ -46,13 +46,13 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~20.1.4",
+    "@angular-devkit/build-angular": "~20.1.5",
     "@angular-eslint/builder": "20.1.1",
     "@angular-eslint/eslint-plugin": "20.1.1",
     "@angular-eslint/eslint-plugin-template": "20.1.1",
     "@angular-eslint/schematics": "20.1.1",
     "@angular-eslint/template-parser": "20.1.1",
-    "@angular/cli": "~20.1.4",
+    "@angular/cli": "~20.1.5",
     "@angular/compiler-cli": "~20.1.5",
     "@angular/language-service": "~20.1.5",
     "@types/gapi": "^0.0.47",
