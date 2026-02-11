@@ -87,7 +87,7 @@ jobs:
         run: dotnet restore api/grubster/Grubster.sln
 
       - name: Test
-        run: dotnet test api/grubster/Grubster.sln --no-build
+        run: dotnet test api/grubster/Grubster.sln
 
 
   docker-test:
