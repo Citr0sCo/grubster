@@ -6,7 +6,6 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { UiModule } from '../modules/ui/ui.module';
 import { TimeagoModule } from 'ngx-timeago';
 import { AppInterceptor } from './app.interceptor';
@@ -14,6 +13,7 @@ import { UtilityModule } from '../modules/utility/utility.module';
 import { GlobalErrorHandler } from '../modules/utility/error-handling/global-error.handler';
 import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import { environment } from '../environments/environment';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
     declarations: [AppComponent],
@@ -30,6 +30,11 @@ import { environment } from '../environments/environment';
         ToolbarModule,
         SidebarModule
     ],
-    providers: [AppInterceptor.forRoot(), { provide: ErrorHandler, useClass: GlobalErrorHandler }, provideHttpClient(withInterceptorsFromDi())]
+    providers: [
+        AppInterceptor.forRoot(),
+        { provide: ErrorHandler, useClass: GlobalErrorHandler },
+        { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+        { provide: ErrorHandler, useClass: GlobalErrorHandler }
+    ]
 })
 export class AppModule {}
