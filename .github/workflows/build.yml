@@ -1,102 +1,106 @@
 name: Build
 on:
-    pull_request:
+  pull_request:
 
 concurrency:
-    group: build-${{ github.head_ref }}
-    cancel-in-progress: true
+  group: build-${{ github.head_ref }}
+  cancel-in-progress: true
 
 defaults:
-    run:
-        shell: bash
+  run:
+    shell: bash
 
 jobs:
-    build-fe:
-        runs-on: self-hosted
-        steps:
-            -   uses: actions/checkout@v4
-            -   uses: actions/setup-node@v4
-                with:
-                    node-version-file: 'package.json'
 
-            -   name: Install dependencies
-                run: yarn install
+  build-fe:
+    runs-on: self-hosted
+    container:
+      image: node:22
+    steps:
+      - uses: actions/checkout@v4
 
-            -   name: Build
-                run: yarn run build
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
 
-    build-be:
-        runs-on: self-hosted
-        steps:
-            -   uses: actions/checkout@v4
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
-            -   uses: actions/setup-dotnet@v4
-                with:
-                    dotnet-version: '10.0.x'
+      - name: Build
+        run: yarn run build
 
-            -   name: Building BE
-                run: dotnet build api/grubster/Grubster.sln
 
-    test-fe:
-        runs-on: self-hosted
-        steps:
-            -   uses: actions/checkout@v4
-            -   uses: actions/setup-node@v4
-                with:
-                    node-version-file: 'package.json'
+  test-fe:
+    runs-on: self-hosted
+    container:
+      image: node:22
+    steps:
+      - uses: actions/checkout@v4
 
-            -   name: Install dependencies
-                run: yarn install
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
-            -   name: Test
-                run: yarn test
+      - name: Test
+        run: yarn test
 
-    test-be:
-        runs-on: self-hosted
 
-        steps:
-            -   uses: actions/checkout@v4
+  lint-fe:
+    runs-on: self-hosted
+    container:
+      image: node:22
+    steps:
+      - uses: actions/checkout@v4
 
-            -   uses: actions/setup-dotnet@v4
-                with:
-                    dotnet-version: '10.0.x'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
-            -   name: Testing BE
-                run: dotnet test api/grubster/Grubster.sln
+      - name: Lint
+        run: yarn lint
 
-    lint-fe:
-        runs-on: self-hosted
-        steps:
-            -   uses: actions/checkout@v4
-            -   uses: actions/setup-node@v4
-                with:
-                    node-version-file: 'package.json'
 
-            -   name: Install dependencies
-                run: yarn install
+  build-be:
+    runs-on: self-hosted
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:10.0.103
+    steps:
+      - uses: actions/checkout@v4
 
-            -   name: Lint
-                run: yarn lint
+      - name: Restore
+        run: dotnet restore api/grubster/Grubster.sln
 
-    docker-test:
-        runs-on: ubuntu-latest
-        steps:
-            -   name: Checkout code
-                uses: actions/checkout@v3
+      - name: Build
+        run: dotnet build api/grubster/Grubster.sln --no-restore
 
-            -   name: Log in to Docker Hub
-                uses: docker/login-action@v2
-                with:
-                    username: ${{ secrets.DOCKER_USERNAME }}
-                    password: ${{ secrets.DOCKER_PASSWORD }}
 
-            -   name: Build Docker image
-                run: |
-                    docker build -t grubster . --platform linux/amd64
+  test-be:
+    runs-on: self-hosted
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:10.0.103
+    steps:
+      - uses: actions/checkout@v4
 
-            -   name: Cleaning Up
-                run: |
-                    echo ${{ secrets.USERPWD }} | sudo -S docker system prune -a -f
-                    echo ${{ secrets.USERPWD }} | sudo -S rm -rf /tmp/*
-                    echo ${{ secrets.USERPWD }} | sudo -S rm -rf /usr/share/dotnet/sdk/*
-                    echo ${{ secrets.USERPWD }} | sudo -S apt-get clean
+      - name: Restore
+        run: dotnet restore api/grubster/Grubster.sln
+
+      - name: Test
+        run: dotnet test api/grubster/Grubster.sln
+
+
+  docker-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker image
+        run: docker build -t grubster . --platform linux/amd64
