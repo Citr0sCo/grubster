@@ -8910,10 +8910,10 @@ ngx-clipboard@^16.0.0:
     ngx-window-token ">=7.0.0"
     tslib "^2.0.0"
 
-ngx-monaco-editor-v2@^19.0.2:
-  version "19.0.2"
-  resolved "https://registry.yarnpkg.com/ngx-monaco-editor-v2/-/ngx-monaco-editor-v2-19.0.2.tgz#02fba22ea4d8a05053d2ee1eaf6a0c391b6d2a85"
-  integrity sha512-hkPiCnLU0vdIF2DW7Ko/EHoGCtLxuN85eygKuk3fXL2GRbEIl5VcbUXmRX9ItfLOI1F5QcH80HhavY5r0gNfEw==
+ngx-monaco-editor-v2@^20.3.0:
+  version "20.3.0"
+  resolved "https://registry.yarnpkg.com/ngx-monaco-editor-v2/-/ngx-monaco-editor-v2-20.3.0.tgz#706899505d1111ec6602e4d8668b0bdce14f89cb"
+  integrity sha512-j6zZIOYdSSUnbo58RWox2ZMEzIlA3lN/QchJREb1j734kUeJM1aW9RMz6FpkKt/UW1okdCTGZCnAavtKGou/2Q==
   dependencies:
     tslib "^2.1.0"
 
