@@ -5,9 +5,7 @@ import { Observable, of, Subscription } from 'rxjs';
 import { timeoutWhen } from '../utility/operators/timeout-when';
 import { HttpResponseMapper } from './mappers/http-response.mapper';
 import { catchError, map } from 'rxjs/operators';
-import { Guid } from '../../core/guid';
 import { HistoryService } from '../../app/sidebar/history-view/services/history.service';
-import { HttpRequestMapper } from './mappers/http-request.mapper';
 import { ISettings, SettingsService } from '../../app/settings.service';
 import { environment } from '../../environments/environment';
 
@@ -16,20 +14,12 @@ export class RequestPerformerService implements OnDestroy {
     private _httpClient: HttpClient;
     private _historyService: HistoryService;
     private _settings: ISettings;
-    private _httpRequestMapper: HttpRequestMapper;
     private _httpResponseMapper: HttpResponseMapper;
     private _subscriptions: Subscription = new Subscription();
 
-    constructor(
-        httpClient: HttpClient,
-        historyService: HistoryService,
-        settingsService: SettingsService,
-        httpRequestMapper: HttpRequestMapper,
-        httpResponseMapper: HttpResponseMapper
-    ) {
+    constructor(httpClient: HttpClient, historyService: HistoryService, settingsService: SettingsService, httpResponseMapper: HttpResponseMapper) {
         this._httpClient = httpClient;
         this._historyService = historyService;
-        this._httpRequestMapper = httpRequestMapper;
         this._httpResponseMapper = httpResponseMapper;
 
         this._subscriptions.add(
