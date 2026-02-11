@@ -17,12 +17,7 @@ export class RequestPerformerService implements OnDestroy {
     private _httpResponseMapper: HttpResponseMapper;
     private _subscriptions: Subscription = new Subscription();
 
-    constructor(
-        httpClient: HttpClient,
-        historyService: HistoryService,
-        settingsService: SettingsService,
-        httpResponseMapper: HttpResponseMapper
-    ) {
+    constructor(httpClient: HttpClient, historyService: HistoryService, settingsService: SettingsService, httpResponseMapper: HttpResponseMapper) {
         this._httpClient = httpClient;
         this._historyService = historyService;
         this._httpResponseMapper = httpResponseMapper;
