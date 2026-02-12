@@ -60,7 +60,7 @@
     "@types/jasminewd2": "~2.0.13",
     "@types/jest": "30.0.0",
     "@types/jsonpath": "^0.2.4",
-    "@types/node": "^22.19.11",
+    "@types/node": "^24.10.13",
     "@typescript-eslint/eslint-plugin": "^8.55.0",
     "@typescript-eslint/eslint-plugin-tslint": "^7.0.2",
     "@typescript-eslint/parser": "^8.55.0",
