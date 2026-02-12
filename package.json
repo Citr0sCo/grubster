@@ -79,7 +79,7 @@
     "prettier": "^3.8.1",
     "remove-html-comments": "^1.0.2",
     "rimraf": "^6.1.2",
-    "stylelint": "^16.26.1",
+    "stylelint": "^17.2.0",
     "typescript": "5.9.3"
   }
 }
