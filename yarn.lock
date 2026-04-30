@@ -8508,12 +8508,12 @@ ngx-clipboard@^16.0.0:
     ngx-window-token ">=7.0.0"
     tslib "^2.0.0"
 
-ngx-monaco-editor-v2@^20.3.0:
-  version "20.3.0"
-  resolved "https://registry.yarnpkg.com/ngx-monaco-editor-v2/-/ngx-monaco-editor-v2-20.3.0.tgz#706899505d1111ec6602e4d8668b0bdce14f89cb"
-  integrity sha512-j6zZIOYdSSUnbo58RWox2ZMEzIlA3lN/QchJREb1j734kUeJM1aW9RMz6FpkKt/UW1okdCTGZCnAavtKGou/2Q==
+ngx-monaco-editor-v2@^21.1.4:
+  version "21.1.4"
+  resolved "https://registry.yarnpkg.com/ngx-monaco-editor-v2/-/ngx-monaco-editor-v2-21.1.4.tgz#88889012f4eda7e6fdde1cca87b2fb8261afff26"
+  integrity sha512-dZu3dY3D1YXPTIDRn9zOERdtDtGy1SOztpWG6gJlaj6NMSV59kNR/hfzaP+L3BukP6Ve07f3bIyvsx6Pz7uOaA==
   dependencies:
-    tslib "^2.1.0"
+    tslib "^2.8.1"
 
 ngx-timeago@^4.1.0:
   version "4.1.0"
