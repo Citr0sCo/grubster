@@ -39,7 +39,7 @@
     "jsonpath": "^1.2.1",
     "monaco-editor": "^0.55.1",
     "ngx-clipboard": "^16.0.0",
-    "ngx-monaco-editor-v2": "^20.3.0",
+    "ngx-monaco-editor-v2": "^21.1.4",
     "ngx-timeago": "^4.1.0",
     "path": "^0.12.7",
     "rxjs": "~7.8.2",
