@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TabsService } from '../toolbar/tabs/services/tabs.service';
 import { Router } from '@angular/router';
 import { CollectionManagementService } from '../../modules/utility/collection-management/collection-management.service';
@@ -8,6 +8,7 @@ import { version } from './../../../package.json';
     selector: 'dashboard-view',
     templateUrl: './dashboard-view.component.html',
     styleUrls: ['./dashboard-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DashboardViewComponent {

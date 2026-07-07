@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IHeader } from '../../toolbar/tabs/types/header.model';
@@ -19,6 +19,7 @@ import { CurlParserService } from '../../../modules/utility/curl-parser/curl-par
     selector: 'request-bar',
     templateUrl: './request-bar.component.html',
     styleUrls: ['./request-bar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RequestBarComponent implements OnInit, OnDestroy {

@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { IHeader } from '../../../toolbar/tabs/types/header.model';
 
 @Component({
     selector: 'headers-view',
     templateUrl: './headers-view.component.html',
     styleUrls: ['./headers-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HeadersViewComponent implements OnInit {

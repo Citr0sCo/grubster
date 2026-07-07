@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, Subscription } from 'rxjs';
 import { TabsService } from '../toolbar/tabs/services/tabs.service';
@@ -13,6 +13,7 @@ import { EditorResizeService } from './request-pane/services/editor-resize-servi
     selector: 'request-view',
     templateUrl: './request-view.component.html',
     styleUrls: ['./request-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RequestViewComponent implements OnInit, OnDestroy {

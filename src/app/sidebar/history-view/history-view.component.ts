@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HistoryService } from './services/history.service';
 import { ITab } from '../../toolbar/tabs/types/tab.model';
 import { Subscription } from 'rxjs';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
     selector: 'history-view',
     templateUrl: './history-view.component.html',
     styleUrls: ['./history-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HistoryViewComponent implements OnInit, OnDestroy {

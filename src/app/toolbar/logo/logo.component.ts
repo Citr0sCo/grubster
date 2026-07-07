@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { SidebarService } from '../../sidebar/services/sidebar.service';
 import { Subscription } from 'rxjs';
 import { ISettings, SettingsService } from '../../settings.service';
@@ -8,6 +8,7 @@ import { DEPLOY_URL } from '../../deploy-url';
     selector: 'logo',
     templateUrl: './logo.component.html',
     styleUrls: ['./logo.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LogoComponent implements OnInit, OnDestroy {

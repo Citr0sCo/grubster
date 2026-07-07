@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ITab } from '../../toolbar/tabs/types/tab.model';
 import { UrlParser } from '../../../modules/utility/url-parser/url-parser.service';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
     selector: 'tab-item',
     templateUrl: './tab-item.component.html',
     styleUrls: ['./tab-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TabItemComponent implements OnInit, OnDestroy {

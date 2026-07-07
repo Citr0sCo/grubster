@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ITab } from '../../../toolbar/tabs/types/tab.model';
 import { TabsService } from '../../../toolbar/tabs/services/tabs.service';
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ import { HttpVerbs } from '../../../../core/http-verbs';
     selector: 'test-plan',
     templateUrl: './test-plan.component.html',
     styleUrls: ['./test-plan.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TestPlanComponent implements OnInit, OnDestroy {

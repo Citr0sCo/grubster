@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ITab } from '../../toolbar/tabs/types/tab.model';
 import { IRequestTypeModel } from './types/request-type.model';
 import { IHeader } from '../../toolbar/tabs/types/header.model';
@@ -12,6 +12,7 @@ import { BeautifyHelper } from '../../../core/beautify.helper';
     selector: 'request-pane',
     templateUrl: './request-pane.component.html',
     styleUrls: ['./request-pane.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RequestPaneComponent implements OnInit, OnDestroy {

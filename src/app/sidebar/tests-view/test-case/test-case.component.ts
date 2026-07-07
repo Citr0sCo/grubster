@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ITestCase } from '../types/test-item.model';
 import { UrlParser } from '../../../../modules/utility/url-parser/url-parser.service';
@@ -9,6 +9,7 @@ import { TestRunnerService } from '../services/test-runner.service';
     selector: 'test-case',
     templateUrl: './test-case.component.html',
     styleUrls: ['./test-case.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TestCaseComponent {

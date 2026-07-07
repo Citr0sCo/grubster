@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'toggle-switch',
     templateUrl: './toggle-switch.component.html',
     styleUrls: ['./toggle-switch.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ToggleSwitchComponent {

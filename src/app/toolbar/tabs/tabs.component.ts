@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ITab } from './types/tab.model';
 import { TabsService } from './services/tabs.service';
 import { Subscription } from 'rxjs';
@@ -11,6 +11,7 @@ import { ContextMenuService } from '../../../modules/ui/context-menu/services/co
     selector: 'tabs',
     templateUrl: './tabs.component.html',
     styleUrls: ['./tabs.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TabsComponent implements OnInit, OnDestroy {

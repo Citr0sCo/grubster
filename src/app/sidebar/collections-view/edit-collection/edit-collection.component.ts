@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CollectionsService } from '../services/collections.service';
 import { Subscription } from 'rxjs';
@@ -8,6 +8,7 @@ import { ICollection } from '../types/collection.model';
     selector: 'edit-collection',
     templateUrl: './edit-collection.component.html',
     styleUrls: ['./edit-collection.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class EditCollectionComponent implements OnInit, OnDestroy {

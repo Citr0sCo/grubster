@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CollectionsService } from './services/collections.service';
 import { Subject, Subscription } from 'rxjs';
 import { TabsService } from '../../toolbar/tabs/services/tabs.service';
@@ -11,6 +11,7 @@ import { debounceTime } from 'rxjs/operators';
     selector: 'collections-view',
     templateUrl: './collections-view.component.html',
     styleUrls: ['./collections-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CollectionsViewComponent implements OnInit, OnDestroy {

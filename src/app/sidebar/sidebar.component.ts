@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { SidebarService } from './services/sidebar.service';
 import { Subscription } from 'rxjs';
 import { Animations } from '../../core/animations';
@@ -17,6 +17,7 @@ import { ITestPlan } from './tests-view/types/test.model';
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
     animations: [Animations.slideInRight(), Animations.fadeIn()],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SidebarComponent implements OnInit, OnDestroy {
