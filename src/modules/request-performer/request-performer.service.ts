@@ -13,7 +13,7 @@ import { environment } from '../../environments/environment';
 export class RequestPerformerService implements OnDestroy {
     private _httpClient: HttpClient;
     private _historyService: HistoryService;
-    private _settings: ISettings | null = null
+    private _settings: ISettings | null = null;
     private _httpResponseMapper: HttpResponseMapper;
     private _subscriptions: Subscription = new Subscription();
 

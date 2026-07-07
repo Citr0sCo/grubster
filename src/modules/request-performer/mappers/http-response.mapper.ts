@@ -56,7 +56,15 @@ export class HttpResponseMapper implements OnDestroy {
         }
 
         if (headers.find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())) {
-            return HttpResponseMapper.languages.find((x) => headers.find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())?.value.toUpperCase().indexOf(x.toUpperCase())! > -1) ?? 'JSON';
+            return (
+                HttpResponseMapper.languages.find(
+                    (x) =>
+                        headers
+                            .find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())
+                            ?.value.toUpperCase()
+                            .indexOf(x.toUpperCase())! > -1
+                ) ?? 'JSON'
+            );
         }
 
         return 'JSON';

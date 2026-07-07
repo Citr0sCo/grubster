@@ -39,23 +39,23 @@ export class SettingsService {
         this._settings = this._database.hasItem(this._storageKey)
             ? this._database.getItem(this._storageKey)
             : {
-                isDarkModeEnabled: true,
-                isThemeManuallyOverridden: false,
-                isSidebarLocked: true,
-                isHistoryOpen: false,
-                isCollectionsOpen: true,
-                isTestsOpen: false,
-                isTabsOpen: false,
-                isEditorVertical: true,
-                isTabsInSidebar: false,
-                editorWordWrap: false,
-                autoBeautifyRequestBodyOnSend: true,
-                autoBeautifyResponseBodyOnSend: true,
-                maxResponseSizeBeforePromptInBytes: 10000000,
-                maxHistorySize: 100,
-                defaultToHttps: false,
-                requestTimeoutInMs: 10000
-            };
+                  isDarkModeEnabled: true,
+                  isThemeManuallyOverridden: false,
+                  isSidebarLocked: true,
+                  isHistoryOpen: false,
+                  isCollectionsOpen: true,
+                  isTestsOpen: false,
+                  isTabsOpen: false,
+                  isEditorVertical: true,
+                  isTabsInSidebar: false,
+                  editorWordWrap: false,
+                  autoBeautifyRequestBodyOnSend: true,
+                  autoBeautifyResponseBodyOnSend: true,
+                  maxResponseSizeBeforePromptInBytes: 10000000,
+                  maxHistorySize: 100,
+                  defaultToHttps: false,
+                  requestTimeoutInMs: 10000
+              };
 
         this.settingsEvents.next(this._settings!);
 

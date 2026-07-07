@@ -4,10 +4,9 @@
             <i [class]="[isCollectionsOpen ? 'fa-folder-open' : 'fa-folder']" class="fa u-mr-1"></i>
             @if (filterMatches) {
                 <span>
-                    {{
-                        collection!.name | slice: 0 : filterIndex
+                    {{ collection!.name | slice: 0 : filterIndex
                     }}<span class="collections-item__item--highlight">{{ collection!.name | slice: filterIndex : filterIndex + filter.length }}</span
-                >{{ collection!.name | slice: filterIndex + filter.length : collection!.name.length }}
+                    >{{ collection!.name | slice: filterIndex + filter.length : collection!.name.length }}
                 </span>
             }
             @if (!filterMatches) {

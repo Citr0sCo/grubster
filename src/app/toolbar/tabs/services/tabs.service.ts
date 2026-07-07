@@ -48,7 +48,6 @@ export class TabsService {
             },
             jsonPathQuery: '',
             shareUrl: ''
-
         } as ITab;
 
         const tabs = this.tabs.getValue();
