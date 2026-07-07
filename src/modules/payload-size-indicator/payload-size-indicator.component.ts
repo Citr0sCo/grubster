@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'payload-size-indicator',
     templateUrl: './payload-size-indicator.component.html',
     styleUrls: ['./payload-size-indicator.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PayloadSizeIndicatorComponent {

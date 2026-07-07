@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { IHeader } from '../../../../toolbar/tabs/types/header.model';
 import { ISuggestion } from '../../../request-bar/types/suggestion.model';
 import * as headers from '../../../../../assets/data/headers.json';
@@ -7,6 +7,7 @@ import * as headers from '../../../../../assets/data/headers.json';
     selector: 'headers-item',
     templateUrl: './headers-item.component.html',
     styleUrls: ['./headers-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HeadersItemComponent implements OnInit {

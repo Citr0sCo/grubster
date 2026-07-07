@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'window-controls',
     templateUrl: './window-controls.component.html',
     styleUrls: ['./window-controls.component.scss'],
     providers: [],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WindowControlsComponent implements OnInit {

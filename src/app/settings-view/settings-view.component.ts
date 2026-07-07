@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { version } from './../../../package.json';
 import { ISettings, SettingsService } from '../settings.service';
 import { Subscription } from 'rxjs';
@@ -10,6 +10,7 @@ import { Store } from '../../core/database/store';
     selector: 'settings-view',
     templateUrl: './settings-view.component.html',
     styleUrls: ['./settings-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SettingsViewComponent implements OnInit, OnDestroy {

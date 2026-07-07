@@ -1,9 +1,10 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'status-code-indicator',
     templateUrl: './status-code-indicator.component.html',
     styleUrls: ['./status-code-indicator.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class StatusCodeIndicatorComponent implements OnChanges {

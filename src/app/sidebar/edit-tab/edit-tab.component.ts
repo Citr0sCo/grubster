@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ITab } from '../../toolbar/tabs/types/tab.model';
@@ -9,6 +9,7 @@ import { ICollection } from '../collections-view/types/collection.model';
     selector: 'edit-tab',
     templateUrl: './edit-tab.component.html',
     styleUrls: ['./edit-tab.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class EditTabComponent implements OnInit, OnDestroy {

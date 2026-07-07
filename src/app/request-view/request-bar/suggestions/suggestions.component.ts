@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ISuggestion } from '../types/suggestion.model';
 
 @Component({
     selector: 'suggestions',
     templateUrl: './suggestions.component.html',
     styleUrls: ['./suggestions.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SuggestionsComponent {

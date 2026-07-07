@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ContextMenuService } from './services/context-menu.service';
 import { Subscription } from 'rxjs';
 import { IContextMenu } from './types/context-menu.model';
@@ -8,6 +8,7 @@ import { IContextMenuAction } from './types/context-menu-action.model';
     selector: 'context-menu',
     templateUrl: './context-menu.component.html',
     styleUrls: ['./context-menu.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ContextMenuComponent implements OnInit, OnDestroy {

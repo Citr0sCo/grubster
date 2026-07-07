@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, from, of, Subscription, throwError } from 'rxjs';
 import { ITestPlan } from '../types/test.model';
@@ -19,6 +19,7 @@ export interface ILocalTest {
     selector: 'edit-test-plan',
     templateUrl: './edit-test-plan.component.html',
     styleUrls: ['./edit-test-plan.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class EditTestPlanComponent implements OnInit, OnDestroy {

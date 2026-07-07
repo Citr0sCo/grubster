@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'preview-view',
     templateUrl: './preview-view.component.html',
     styleUrls: ['./preview-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PreviewViewComponent implements AfterViewInit {

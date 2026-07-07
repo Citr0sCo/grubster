@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TabsService } from '../../toolbar/tabs/services/tabs.service';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { ITab } from '../../toolbar/tabs/types/tab.model';
     selector: 'tabs-view',
     templateUrl: './tabs-view.component.html',
     styleUrls: ['./tabs-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TabsViewComponent implements OnInit, OnDestroy {

@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { SettingsService } from './settings.service';
 import { CollectionManagementService } from '../modules/utility/collection-management/collection-management.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AppComponent implements OnInit, OnDestroy {

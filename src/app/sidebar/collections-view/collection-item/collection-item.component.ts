@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ICollection } from '../types/collection.model';
 import { ITab } from '../../../toolbar/tabs/types/tab.model';
 import { TabsService } from '../../../toolbar/tabs/services/tabs.service';
@@ -11,6 +11,7 @@ import { NotificationService } from '../../../../modules/ui/notification/notific
     selector: 'collection-item',
     templateUrl: './collection-item.component.html',
     styleUrls: ['./collection-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CollectionItemComponent implements OnInit, OnDestroy, OnChanges {

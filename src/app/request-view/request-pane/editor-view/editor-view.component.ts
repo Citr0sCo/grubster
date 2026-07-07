@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { editorOptions } from '../../../editor.options';
 import { ISettings, SettingsService } from '../../../settings.service';
 import { Subscription } from 'rxjs';
@@ -8,6 +8,7 @@ import { EditorResizeService } from '../services/editor-resize-service';
     selector: 'editor-view',
     templateUrl: './editor-view.component.html',
     styleUrls: ['./editor-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class EditorViewComponent implements OnInit, OnDestroy {
