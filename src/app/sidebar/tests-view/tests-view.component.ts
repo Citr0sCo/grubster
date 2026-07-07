@@ -14,7 +14,7 @@ import { ITestCase } from './types/test-item.model';
     standalone: false
 })
 export class TestsViewComponent implements OnInit, OnDestroy {
-    public tests: ITestPlan[];
+    public tests: ITestPlan[] = [];
 
     private _queryString: Subject<string> = new Subject();
     private _subscriptions: Subscription = new Subscription();

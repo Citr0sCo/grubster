@@ -14,8 +14,8 @@ import { ContextMenuService } from '../../../modules/ui/context-menu/services/co
     standalone: false
 })
 export class TabsComponent implements OnInit, OnDestroy {
-    public tabs: ITab[];
-    public currentTab: ITab;
+    public tabs: ITab[] = [];
+    public currentTab: ITab | null = null;
     public isTabsInSidebar: boolean = false;
 
     private _subscriptions: Subscription = new Subscription();
@@ -46,7 +46,7 @@ export class TabsComponent implements OnInit, OnDestroy {
 
         this._subscriptions.add(
             this._tabsService.activeTab.subscribe((activeTab) => {
-                this.currentTab = activeTab;
+                this.currentTab = activeTab!;
             })
         );
     }

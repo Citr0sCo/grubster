@@ -9,7 +9,7 @@ import { TabsRepository } from './tabs.repository';
 @Injectable()
 export class TabsService {
     public tabs: BehaviorSubject<ITab[]> = new BehaviorSubject<ITab[]>([]);
-    public activeTab: BehaviorSubject<ITab | null> = new BehaviorSubject<ITab>(null);
+    public activeTab: BehaviorSubject<ITab | null> = new BehaviorSubject<ITab | null>(null);
 
     private _router: Router;
     private _tabsRepository: TabsRepository;
@@ -28,6 +28,7 @@ export class TabsService {
         const newTab = {
             id: Guid.new(),
             name: 'New Tab',
+            url: '',
             method: 'get',
             request: {
                 headers: [{ key: 'Content-Type', value: 'application/json' }],
@@ -38,8 +39,16 @@ export class TabsService {
             response: {
                 headers: [],
                 body: '',
-                language: 'JSON'
-            }
+                language: 'JSON',
+                statusCode: 0,
+                statusText: '',
+                timeTaken: new Date(),
+                occurredAt: new Date(),
+                size: '0 Bytes'
+            },
+            jsonPathQuery: '',
+            shareUrl: ''
+
         } as ITab;
 
         const tabs = this.tabs.getValue();
@@ -65,7 +74,7 @@ export class TabsService {
 
         this.tabs.next(tabs);
 
-        if (this.activeTab.getValue().id === tab.id) {
+        if (this.activeTab.getValue()!.id === tab.id) {
             if (tabs.length > 0) {
                 this.activeTab.next(tabs[0]);
             } else {

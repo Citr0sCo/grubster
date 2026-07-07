@@ -16,7 +16,7 @@ export class LogoComponent implements OnInit, OnDestroy {
     private _subscriptions: Subscription = new Subscription();
     private _sidebarService: SidebarService;
     private _settingsService: SettingsService;
-    private _settings: ISettings;
+    private _settings: ISettings | null = null;
 
     constructor(sidebarService: SidebarService, settingsService: SettingsService, @Inject(DEPLOY_URL) deployUrl: string) {
         this._sidebarService = sidebarService;
@@ -33,7 +33,7 @@ export class LogoComponent implements OnInit, OnDestroy {
     }
 
     public toggleSidebar(): void {
-        if (!this._settings.isSidebarLocked) {
+        if (!this._settings!.isSidebarLocked) {
             this._sidebarService.toggleSidebar();
         }
     }

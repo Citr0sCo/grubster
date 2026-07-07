@@ -9,7 +9,7 @@ import { ISuggestion } from '../types/suggestion.model';
 })
 export class SuggestionsComponent {
     @Input()
-    public suggestions: ISuggestion[];
+    public suggestions: ISuggestion[] = [];
 
     @Output()
     public suggestionClicked: EventEmitter<ISuggestion> = new EventEmitter<ISuggestion>();

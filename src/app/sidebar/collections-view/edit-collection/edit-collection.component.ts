@@ -11,7 +11,7 @@ import { ICollection } from '../types/collection.model';
     standalone: false
 })
 export class EditCollectionComponent implements OnInit, OnDestroy {
-    public collection: ICollection;
+    public collection: ICollection | null = null;
 
     private _subscriptions: Subscription = new Subscription();
     private _activatedRoute: ActivatedRoute;
@@ -28,22 +28,22 @@ export class EditCollectionComponent implements OnInit, OnDestroy {
         this._subscriptions.add(
             this._activatedRoute.params.subscribe((params: any) => {
                 this._collectionsService.collections.subscribe((collections: ICollection[]) => {
-                    this.collection = collections.find((x) => x.id === params.id);
+                    this.collection = collections.find((x) => x.id === params.id)!;
                 });
             })
         );
     }
 
     public isValid(): boolean {
-        return this.collection.name.length > 0;
+        return this.collection!.name.length > 0;
     }
 
     public updateCollection(): void {
-        this._collectionsService.updateCollection(this.collection).subscribe();
+        this._collectionsService.updateCollection(this.collection!).subscribe();
     }
 
     public deleteCollection(): void {
-        this._collectionsService.removeCollection(this.collection).subscribe();
+        this._collectionsService.removeCollection(this.collection!).subscribe();
         this._router.navigate(['dashboard']);
     }
 

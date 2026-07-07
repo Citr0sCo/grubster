@@ -20,7 +20,7 @@ export class Database {
     }
 
     public getItem(storageKey: string): any {
-        return JSON.parse(localStorage.getItem(storageKey));
+        return JSON.parse(localStorage.getItem(storageKey)!);
     }
 
     public setItem(storageKey: string, payload: any): void {

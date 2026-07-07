@@ -9,7 +9,7 @@ import { IBasicAuth } from '../../../toolbar/tabs/types/basic-auth.model';
 })
 export class BasicAuthViewComponent {
     @Input()
-    public auth: IBasicAuth;
+    public auth: IBasicAuth | null = null;
 
     @Input()
     public isVertical: boolean = true;

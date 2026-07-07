@@ -1,11 +1,9 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "baseUrl": ".",
         "outDir": "dist",
         "sourceMap": true,
         "declaration": false,
-        "downlevelIteration": true,
         "experimentalDecorators": true,
         "module": "commonjs",
         "moduleResolution": "bundler",
@@ -16,11 +14,11 @@
         "noImplicitAny": true,
         "resolveJsonModule": true,
         "paths": {
-            "*": ["node_modules/*"]
+            "*": ["./node_modules/*"]
         },
-        "typeRoots": ["node_modules/@types", "src/app/json-typings.d.ts"]
+        "typeRoots": ["./node_modules/@types", "./src/app/json-typings.d.ts"]
     },
-    "include": ["src/core/**/*"],
+    "include": ["./src/core/**/*"],
     "angularCompilerOptions": {
         "fullTemplateTypeCheck": true,
         "strictInjectionParameters": true

@@ -23,12 +23,12 @@ import { CurlParserService } from '../../../modules/utility/curl-parser/curl-par
 })
 export class RequestBarComponent implements OnInit, OnDestroy {
     @Input()
-    public currentTab: ITab;
+    public currentTab: ITab | null = null;
 
     public urlbarFocused: boolean = true;
     public suggestionsHovered: boolean = true;
     public suggestions: ISuggestion[] = [];
-    public runningTotal: string;
+    public runningTotal: string = '';
     public showSendOptions: boolean = false;
     public isSubmitting: boolean = false;
     public isAlmostReady: boolean = false;
@@ -37,15 +37,15 @@ export class RequestBarComponent implements OnInit, OnDestroy {
     private _subscriptions: Subscription = new Subscription();
     private _activatedRoute: ActivatedRoute;
     private _tabsService: TabsService;
-    private _tabs: ITab[];
+    private _tabs: ITab[] = [];
     private _router: Router;
     private _requestPerformerService: RequestPerformerService;
-    private _ongoingRequest: Subscription;
-    private _requestStartedAt: Date;
+    private _ongoingRequest: Subscription | null = null;
+    private _requestStartedAt: Date = new Date();
     private _suggestionsService: SuggestionsService;
-    private _allSuggestions: ISuggestion[];
+    private _allSuggestions: ISuggestion[] = [];
     private _settingsService: SettingsService;
-    private _settings: ISettings;
+    private _settings: ISettings | null = null;
     private _notificationService: NotificationService;
     private _clipboardService: ClipboardService;
     private _curlParserService: CurlParserService;
@@ -86,7 +86,7 @@ export class RequestBarComponent implements OnInit, OnDestroy {
         );
 
         this._subscriptions.add(
-            this._tabsService.activeTab.subscribe((activeTab: ITab) => {
+            this._tabsService.activeTab.subscribe((activeTab: ITab | null) => {
                 this.currentTab = activeTab;
             })
         );
@@ -111,8 +111,8 @@ export class RequestBarComponent implements OnInit, OnDestroy {
     }
 
     public onUrlChange(tab: ITab): void {
-        if (this.currentTab.url.indexOf('curl') === 0) {
-            this.parseCurlString(this.currentTab.url);
+        if (this.currentTab!.url.indexOf('curl') === 0) {
+            this.parseCurlString(this.currentTab!.url);
             this._notificationService.logSuccess('Success!', 'Imported CURL request successfully!');
             return;
         }
@@ -122,10 +122,10 @@ export class RequestBarComponent implements OnInit, OnDestroy {
 
     public parseCurlString(curlRequest: string): void {
         const parsedCurlRequest = this._curlParserService.parseCurl(curlRequest);
-        this.currentTab.method = parsedCurlRequest.method;
-        this.currentTab.url = parsedCurlRequest.url;
-        this.currentTab.request.headers = parsedCurlRequest.headers;
-        this.currentTab.request.body = parsedCurlRequest.body;
+        this.currentTab!.method = parsedCurlRequest.method;
+        this.currentTab!.url = parsedCurlRequest.url;
+        this.currentTab!.request.headers = parsedCurlRequest.headers;
+        this.currentTab!.request.body = parsedCurlRequest.body;
     }
 
     public replaceAll(needle: string, needleNew: string, haystack: string): string {
@@ -158,7 +158,7 @@ export class RequestBarComponent implements OnInit, OnDestroy {
         this.getRunningTotal();
         this._suggestionsService.addSuggestion(currentTab.url);
 
-        if (this._settings.autoBeautifyRequestBodyOnSend) {
+        if (this._settings!.autoBeautifyRequestBodyOnSend) {
             currentTab.request.body = BeautifyHelper.beautify(currentTab.request.body);
         }
 

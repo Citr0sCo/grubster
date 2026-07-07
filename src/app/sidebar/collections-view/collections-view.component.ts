@@ -18,16 +18,12 @@ export class CollectionsViewComponent implements OnInit, OnDestroy {
     public filteredCollections: ICollection[] = [];
 
     private _queryString: Subject<string> = new Subject();
-    private _collections: ICollection[];
+    private _collections: ICollection[] = [];
     private _subscriptions: Subscription = new Subscription();
     private _collectionsService: CollectionsService;
-    private _tabsService: TabsService;
-    private _router: Router;
 
-    constructor(collectionsService: CollectionsService, tabsService: TabsService, router: Router) {
+    constructor(collectionsService: CollectionsService) {
         this._collectionsService = collectionsService;
-        this._tabsService = tabsService;
-        this._router = router;
     }
 
     public ngOnInit(): void {

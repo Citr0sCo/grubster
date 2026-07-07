@@ -11,7 +11,7 @@ export class HistoryService {
     public entries: BehaviorSubject<ITab[]> = new BehaviorSubject<ITab[]>([]);
 
     private _settingsService: SettingsService;
-    private _settings: ISettings;
+    private _settings: ISettings | null = null;
     private _historyRepository: HistoryRepository;
 
     constructor(settingsService: SettingsService, historyRepository: HistoryRepository) {
@@ -31,7 +31,7 @@ export class HistoryService {
         const clonedTab = { ...Copy.deep(tab), ...{ id: Guid.new() } };
         const entries = this.entries.getValue();
 
-        while (entries.length >= this._settings.maxHistorySize) {
+        while (entries.length >= this._settings!.maxHistorySize) {
             entries.pop();
         }
 

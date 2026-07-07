@@ -10,7 +10,7 @@ import { LargeResponseHandlerService } from '../../large-response/large-response
 export class HttpResponseMapper implements OnDestroy {
     public static languages: string[] = ['JSON', 'XML', 'HTML', 'Text', 'JavaScript', 'FormData'];
 
-    private _settings: ISettings;
+    private _settings: ISettings | null = null;
     private _subscriptions: Subscription = new Subscription();
     private _largeResponseHandlerService: LargeResponseHandlerService;
 
@@ -37,24 +37,29 @@ export class HttpResponseMapper implements OnDestroy {
             statusText: payload.StatusDescription,
             timeTaken: new Date(0),
             occurredAt: new Date(),
-            size: headers.find((x) => x.key.toUpperCase() === 'Content-Length'.toUpperCase())?.value ?? FileSizeService.memorySizeOf(JSON.stringify(payload.Body)),
-            language:
-                payload.Body.indexOf('<!DOCTYPE') === 0
-                    ? 'HTML'
-                    : headers.find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())
-                      ? HttpResponseMapper.languages.find(
-                            (x) =>
-                                headers
-                                    .find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())
-                                    ?.value.toUpperCase()
-                                    .indexOf(x.toUpperCase()) > -1
-                        )
-                      : 'JSON'
+            size: this.mapSize(payload, headers),
+            language: this.mapLanguage(payload, headers)
         };
     }
 
     public ngOnDestroy(): void {
         this._subscriptions.unsubscribe();
+    }
+
+    private mapSize(payload: any, headers: IHeader[]): string {
+        return headers.find((x) => x.key.toUpperCase() === 'Content-Length'.toUpperCase())?.value ?? FileSizeService.memorySizeOf(JSON.stringify(payload.Body));
+    }
+
+    private mapLanguage(payload: any, headers: IHeader[]): string {
+        if (payload.Body.indexOf('<!DOCTYPE') === 0) {
+            return 'HTML';
+        }
+
+        if (headers.find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())) {
+            return HttpResponseMapper.languages.find((x) => headers.find((x) => x.key.toUpperCase() === 'Content-Type'.toUpperCase())?.value.toUpperCase().indexOf(x.toUpperCase())! > -1) ?? 'JSON';
+        }
+
+        return 'JSON';
     }
 
     private mapBody(payload: any): string {
@@ -66,7 +71,7 @@ export class HttpResponseMapper implements OnDestroy {
             return JSON.parse(payload.Body);
         }
 
-        const maxResponseSizeBeforePrompt = this._settings.maxResponseSizeBeforePromptInBytes;
+        const maxResponseSizeBeforePrompt = this._settings!.maxResponseSizeBeforePromptInBytes;
         if (FileSizeService.sizeOf(payload.Body) > maxResponseSizeBeforePrompt) {
             const handledResponse = this._largeResponseHandlerService.handleResponse(payload, maxResponseSizeBeforePrompt);
 
@@ -76,7 +81,7 @@ export class HttpResponseMapper implements OnDestroy {
         }
 
         if (payload.Body) {
-            if (this._settings.autoBeautifyResponseBodyOnSend) {
+            if (this._settings!.autoBeautifyResponseBodyOnSend) {
                 return JSON.stringify(JSON.parse(payload.Body), null, 4);
             }
             return JSON.stringify(JSON.parse(payload.Body));

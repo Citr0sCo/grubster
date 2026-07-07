@@ -2,8 +2,8 @@
     <div class="o-grid__col request-pane__wrapper">
         <div class="o-grid request-pane__tabs">
             @for (tab of tabs; track tab) {
-                <div (click)="selectedTab = tab" [ngClass]="{ 'request-pane__tabs__tab--active': selectedTab.id === tab.id }" class="o-grid__col request-pane__tabs__tab">
-                    @if (hasAuth(currentTab) && tab.id === 'basic-auth') {
+                <div (click)="selectedTab = tab" [ngClass]="{ 'request-pane__tabs__tab--active': selectedTab!.id === tab.id }" class="o-grid__col request-pane__tabs__tab">
+                    @if (hasAuth(currentTab!) && tab.id === 'basic-auth') {
                         <div class="request-pane__tabs__tab--indicate"></div>
                     }
                     @if (hasHeaders() && tab.id === 'headers') {
@@ -21,7 +21,7 @@
                 </div>
             }
         </div>
-        @if (selectedTab.id === 'body') {
+        @if (selectedTab!.id === 'body') {
             <editor-view
                 (bodyChanged)="updateBody($event)"
                 [isReadOnly]="isReadOnly"
@@ -29,14 +29,14 @@
                 [requestBody]="filteredRequestBody ? filteredRequestBody : requestBody"
             ></editor-view>
         }
-        @if (selectedTab.id === 'headers') {
+        @if (selectedTab!.id === 'headers') {
             <headers-view (headersChanged)="updateHeaders($event)" [isVertical]="isVertical" [isEditable]="areHeadersEditable" [requestHeaders]="requestHeaders"></headers-view>
         }
-        @if (selectedTab.id === 'preview') {
+        @if (selectedTab!.id === 'preview') {
             <preview-view [isVertical]="isVertical" [requestBody]="requestBody" [requestUrl]="requestUrl"></preview-view>
         }
-        @if (selectedTab.id === 'basic-auth') {
-            <basic-auth-view [isVertical]="isVertical" [auth]="currentTab.request.auth"></basic-auth-view>
+        @if (selectedTab!.id === 'basic-auth') {
+            <basic-auth-view [isVertical]="isVertical" [auth]="currentTab!.request.auth"></basic-auth-view>
         }
 
         <div class="request-pane__footer">
@@ -70,7 +70,7 @@
                 }
                 @if (isReadOnly) {
                     <div class="o-grid__col">
-                        <input [(ngModel)]="currentTab.jsonPathQuery" class="c-field" placeholder="$.Items[*].Thing" type="text" />
+                        <input [(ngModel)]="currentTab!.jsonPathQuery" class="c-field" placeholder="$.Items[*].Thing" type="text" />
                     </div>
                 }
                 @if (isReadOnly) {
@@ -83,10 +83,10 @@
                 @if (isReadOnly) {
                     <div class="o-grid__col o-grid__col--fixed" title="Toggle word wrap.">
                         <button (click)="toggleWordWrap()" class="c-btn c-btn--secondary c-btn--remove-border-radius request-pane__footer__word-wrap">
-                            @if (settings.editorWordWrap) {
+                            @if (settings!.editorWordWrap) {
                                 <i class="fas fa-long-arrow-alt-right"></i>
                             }
-                            @if (!settings.editorWordWrap) {
+                            @if (!settings!.editorWordWrap) {
                                 <i class="fas fa-level-down-alt u-r-90"></i>
                             }
                         </button>

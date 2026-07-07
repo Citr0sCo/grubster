@@ -16,20 +16,20 @@ import { EditorResizeService } from './request-pane/services/editor-resize-servi
     standalone: false
 })
 export class RequestViewComponent implements OnInit, OnDestroy {
-    public currentTab: ITab;
-    public settings: ISettings;
+    public currentTab: ITab | null = null;
+    public settings: ISettings | null = null;
 
     private _subscriptions: Subscription = new Subscription();
     private _activatedRoute: ActivatedRoute;
     private _tabsService: TabsService;
-    private _tabs: ITab[];
+    private _tabs: ITab[] = [];
     private _router: Router;
     private _settingsService: SettingsService;
     private _collectionsService: CollectionsService;
     private _historyService: HistoryService;
-    private _historyEntries: ITab[];
-    private _splitterActive: boolean;
-    private _splitterHasMoved: boolean;
+    private _historyEntries: ITab[] = [];
+    private _splitterActive: boolean = false;
+    private _splitterHasMoved: boolean = false;
     private _percent: number = 50;
     private _margin: number = 10;
     private _editorResizeService: EditorResizeService;
@@ -154,7 +154,7 @@ export class RequestViewComponent implements OnInit, OnDestroy {
         let target = e.currentTarget;
         let percent = 0;
         if (this._splitterActive) {
-            if (!this.settings.isEditorVertical) {
+            if (!this.settings!.isEditorVertical) {
                 while (target) {
                     offset += target.offsetTop;
                     target = target.offsetParent;

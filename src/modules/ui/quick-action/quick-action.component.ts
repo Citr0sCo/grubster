@@ -14,16 +14,16 @@ export class QuickActionComponent {
     public isDangerous: boolean = false;
 
     @Input()
-    public icon: string;
+    public icon: string = '';
 
     @Input()
-    public prefix: string;
+    public prefix: string = '';
 
     @Input()
-    public label: string;
+    public label: string = '';
 
     @Input()
-    public isSyncing: boolean;
+    public isSyncing: boolean = false;
 
     @Output()
     public clicked: EventEmitter<boolean> = new EventEmitter<boolean>();

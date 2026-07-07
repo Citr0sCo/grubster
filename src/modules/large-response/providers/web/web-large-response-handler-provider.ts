@@ -15,5 +15,7 @@ export class WebLargeResponseHandlerProvider implements ILargeResponseHandlerPro
             WebFrameworkTools.downloadFile(`${payload.url}-${FileNameService.fileSafeDate(new Date(Date.now()))}.json`, payload, true);
             return `Response saved to file due to file size being greater than specified limit of ${FileSizeService.formatByteSize(maxResponseSizeBeforePrompt)}`;
         }
+
+        return 'Response not saved due.';
     }
 }

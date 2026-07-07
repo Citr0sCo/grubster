@@ -11,13 +11,13 @@ export class PreviewViewComponent implements AfterViewInit {
     public iframe!: ElementRef;
 
     @Input()
-    public requestBody: string;
+    public requestBody: string = '';
 
     @Input()
     public isVertical: boolean = true;
 
     @Input()
-    public requestUrl: string;
+    public requestUrl: string = '';
 
     public ngAfterViewInit() {
         if (this.requestBody.indexOf('<!DOCTYPE') === 0) {

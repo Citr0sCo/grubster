@@ -12,12 +12,12 @@ import { ICollection } from '../collections-view/types/collection.model';
     standalone: false
 })
 export class EditTabComponent implements OnInit, OnDestroy {
-    public tab: ITab;
+    public tab: ITab | null = null;
 
     private _subscriptions: Subscription = new Subscription();
     private _activatedRoute: ActivatedRoute;
     private _collectionsService: CollectionsService;
-    private _collection: ICollection;
+    private _collection: ICollection | null = null;
     private _router: Router;
 
     constructor(activatedRoute: ActivatedRoute, collectionsService: CollectionsService, router: Router) {
@@ -30,9 +30,9 @@ export class EditTabComponent implements OnInit, OnDestroy {
         this._subscriptions.add(
             this._activatedRoute.params.subscribe((params) => {
                 this._collectionsService.collections.subscribe((collections) => {
-                    this._collection = collections.find((x) => x.tabs.find((y) => y.id === params.id));
+                    this._collection = collections.find((x) => x.tabs.find((y) => y.id === params.id))!;
                     if (this._collection) {
-                        this.tab = this._collection.tabs.find((x) => x.id === params.id);
+                        this.tab = this._collection.tabs.find((x) => x.id === params.id)!;
                     }
                 });
             })
@@ -40,15 +40,15 @@ export class EditTabComponent implements OnInit, OnDestroy {
     }
 
     public isValid(): boolean {
-        return this.tab.name.length > 0;
+        return this.tab!.name.length > 0;
     }
 
     public updateTab(): void {
-        this._collectionsService.updateTabInCollection(this._collection, this.tab).subscribe();
+        this._collectionsService.updateTabInCollection(this._collection!, this.tab!).subscribe();
     }
 
     public deleteTab(): void {
-        this._collectionsService.removeTabFromCollection(this._collection, this.tab).subscribe();
+        this._collectionsService.removeTabFromCollection(this._collection!, this.tab!).subscribe();
         this._router.navigate(['dashboard']);
     }
 

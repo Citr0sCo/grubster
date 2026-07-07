@@ -8,16 +8,16 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class BadgeComponent {
     @Input()
-    public value: string;
+    public value: string = '';
 
     @Input()
-    public isRemovable: boolean;
+    public isRemovable: boolean = false;
 
     @Input()
-    public isLarge: boolean;
+    public isLarge: boolean = false;
 
     @Input()
-    public color: string;
+    public color: string = '';
 
     @Output()
     public hasBeenRemoved: EventEmitter<boolean> = new EventEmitter();
