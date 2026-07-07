@@ -32,7 +32,7 @@ export class CurlParserService {
                     headerValue += headerValuePiece;
                 }
 
-                response.headers.push({ key: headerKey.trim(), value: headerValue.trim() });
+                response.headers.push({ key: headerKey?.trim() ?? '', value: headerValue.trim() });
             }
 
             if (key.indexOf('--data-raw') > -1) {

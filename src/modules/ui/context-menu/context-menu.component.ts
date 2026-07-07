@@ -11,8 +11,8 @@ import { IContextMenuAction } from './types/context-menu-action.model';
     standalone: false
 })
 export class ContextMenuComponent implements OnInit, OnDestroy {
-    public isShowing: boolean;
-    public contextMenu: IContextMenu;
+    public isShowing: boolean = false;
+    public contextMenu: IContextMenu | null = null;
 
     private _contextMenuService: ContextMenuService;
     private _subscriptions: Subscription = new Subscription();

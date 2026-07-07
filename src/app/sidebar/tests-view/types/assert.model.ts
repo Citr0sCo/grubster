@@ -6,5 +6,5 @@ export interface IAssert {
     jsonPathQuery: string;
     value: string;
     comparisonStrategy: ComparisonStrategy;
-    result: IAssertResult;
+    result: IAssertResult | null;
 }

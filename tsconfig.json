@@ -1,7 +1,6 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-      "baseUrl": ".",
       "outDir": "dist",
       "sourceMap": true,
       "declaration": false,
@@ -17,7 +16,7 @@
       "resolveJsonModule": true,
       "paths": {
         "*": [
-          "node_modules/*"
+          "./node_modules/*"
         ]
       },
       "typeRoots": [

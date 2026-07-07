@@ -114,8 +114,14 @@ export class CollectionsService {
                                 response: {
                                     headers: [],
                                     body: '',
-                                    language: 'JSON'
-                                }
+                                    language: 'JSON',
+                                    statusCode: 0,
+                                    statusText: '',
+                                    timeTaken: new Date(),
+                                    occurredAt: new Date(),
+                                    size: '0 Bytes'
+                                },
+                                jsonPathQuery: ''
                             } as ITab;
                         })
                     };

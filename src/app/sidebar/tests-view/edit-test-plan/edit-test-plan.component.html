@@ -37,7 +37,7 @@
                                     </small>
                                 }
                                 @if (getStatusOfTest(test) !== 'UNKNOWN' && test.test.asserts.length > 0) {
-                                    <small class="text--italic text--grey"> Last ran {{ test.test.asserts[0].result.timestamp | timeago }}. </small>
+                                    <small class="text--italic text--grey"> Last ran {{ test.test.asserts[0].result!.timestamp | timeago }}. </small>
                                 }
                             </div>
                             <div (click)="editTab(test.test)" class="o-grid__col o-grid__col--fixed">

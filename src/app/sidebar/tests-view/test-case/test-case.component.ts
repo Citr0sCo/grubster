@@ -13,7 +13,7 @@ import { TestRunnerService } from '../services/test-runner.service';
 })
 export class TestCaseComponent {
     @Input()
-    public testCase: ITestCase;
+    public testCase: ITestCase | null = null;
 
     public isRunning: boolean = false;
 
@@ -41,7 +41,7 @@ export class TestCaseComponent {
     public runTest(): void {
         this.isRunning = true;
 
-        this._testRunner.runTest(this.testCase).subscribe(() => {
+        this._testRunner.runTest(this.testCase!).subscribe(() => {
             this.isRunning = false;
         });
     }

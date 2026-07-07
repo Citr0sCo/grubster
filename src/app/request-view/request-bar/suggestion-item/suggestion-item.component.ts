@@ -10,7 +10,7 @@ import { SuggestionsService } from '../services/suggestions.service';
 })
 export class SuggestionItemComponent {
     @Input()
-    public suggestion: ISuggestion;
+    public suggestion: ISuggestion | null = null;
 
     @Output()
     public suggestionClicked: EventEmitter<ISuggestion> = new EventEmitter<ISuggestion>();

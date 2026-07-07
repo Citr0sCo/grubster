@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
     standalone: false
 })
 export class HistoryViewComponent implements OnInit, OnDestroy {
-    public entries: ITab[];
+    public entries: ITab[] = [];
 
     private _subscriptions: Subscription = new Subscription();
     private _historyService: HistoryService;

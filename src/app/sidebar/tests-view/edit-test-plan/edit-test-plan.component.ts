@@ -22,7 +22,7 @@ export interface ILocalTest {
     standalone: false
 })
 export class EditTestPlanComponent implements OnInit, OnDestroy {
-    public test: ITestPlan;
+    public test: ITestPlan | null = null;
     public localTests: ILocalTest[] = [];
     public isRunning: boolean = false;
 
@@ -45,7 +45,7 @@ export class EditTestPlanComponent implements OnInit, OnDestroy {
         this._subscriptions.add(
             this._activatedRoute.params.subscribe((params: any) => {
                 this._testsService.tests.pipe(first()).subscribe((tests: ITestPlan[]) => {
-                    this.test = tests.find((x) => x.id === params.id);
+                    this.test = tests.find((x) => x.id === params.id) ?? null;
 
                     if (!this.test) {
                         this._router.navigate(['dashboard']);
@@ -68,16 +68,16 @@ export class EditTestPlanComponent implements OnInit, OnDestroy {
     }
 
     public isValid(): boolean {
-        return this.test.name.length > 0;
+        return this.test!.name.length > 0;
     }
 
     public updateTest(): void {
-        this._testsService.updateTest(this.test).subscribe();
-        this._notificationService.logSuccess('Saved!', `"${this.test.name}" has been saved.`);
+        this._testsService.updateTest(this.test!).subscribe();
+        this._notificationService.logSuccess('Saved!', `"${this.test!.name}" has been saved.`);
     }
 
     public deleteTest(): void {
-        this._testsService.removeTest(this.test).subscribe();
+        this._testsService.removeTest(this.test!).subscribe();
         this._router.navigate(['dashboard']);
     }
 

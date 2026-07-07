@@ -11,7 +11,7 @@ import * as headers from '../../../../../assets/data/headers.json';
 })
 export class HeadersItemComponent implements OnInit {
     @Input()
-    public header: IHeader;
+    public header: IHeader | null = null;
 
     @Input()
     public isEditable: boolean = true;
@@ -34,9 +34,9 @@ export class HeadersItemComponent implements OnInit {
     private _allSuggestions: ISuggestion[] = [];
 
     constructor() {
-        /*this._allSuggestions = headers.map((x: string) => {
+        this._allSuggestions = headers.map((x: string) => {
             return { id: '', value: x } as ISuggestion;
-        });*/
+        });
     }
 
     public ngOnInit(): void {
@@ -70,6 +70,6 @@ export class HeadersItemComponent implements OnInit {
     }
 
     public isValid(): boolean {
-        return this.header.key !== '' && this.header.value !== '';
+        return this.header!.key !== '' && this.header!.value !== '';
     }
 }

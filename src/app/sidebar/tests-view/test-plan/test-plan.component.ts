@@ -17,31 +17,22 @@ import { HttpVerbs } from '../../../../core/http-verbs';
 })
 export class TestPlanComponent implements OnInit, OnDestroy {
     @Input()
-    public test: ITestPlan;
+    public test: ITestPlan | null = null;
 
     public isTestsOpen: boolean = true;
     public numberOfTestItems: number = 0;
 
     private _subscriptions: Subscription = new Subscription();
     private _router: Router;
-    private _tabsService: TabsService;
     private _testsService: TestsService;
-    private _currentTab: ITab;
 
-    constructor(router: Router, tabsService: TabsService, testsService: TestsService) {
+    constructor(router: Router, testsService: TestsService) {
         this._router = router;
-        this._tabsService = tabsService;
         this._testsService = testsService;
     }
 
     public ngOnInit(): void {
-        this._subscriptions.add(
-            this._tabsService.activeTab.subscribe((currentTab) => {
-                this._currentTab = currentTab;
-            })
-        );
-
-        this.numberOfTestItems = this.test.tests.length;
+        this.numberOfTestItems = this.test!.tests.length;
     }
 
     public createNewTest(test: ITestPlan): void {
@@ -62,14 +53,22 @@ export class TestPlanComponent implements OnInit, OnDestroy {
             id: Guid.new(),
             name: 'New Test Case',
             method: HttpVerbs.all()[0],
+            url: '',
             request: {
-                headers: [
-                    {
-                        key: 'Content-Type',
-                        value: 'application/json'
-                    }
-                ],
-                auth: {}
+                headers: [{ key: 'Content-Type', value: 'application/json' }],
+                body: '',
+                language: 'JSON',
+                auth: { username: '', password: '' }
+            },
+            response: {
+                headers: [],
+                body: '',
+                language: 'JSON',
+                statusCode: 0,
+                statusText: '',
+                timeTaken: new Date(),
+                occurredAt: new Date(),
+                size: '0 Bytes'
             },
             asserts: []
         } as ITestCase;

@@ -15,7 +15,7 @@ export class TestCaseHelper {
             return [];
         }
 
-        const matchingResult = test.asserts.filter((x) => x.result.isSuccessful);
+        const matchingResult = test.asserts.filter((x) => x.result!.isSuccessful);
 
         if (!matchingResult) {
             return [];

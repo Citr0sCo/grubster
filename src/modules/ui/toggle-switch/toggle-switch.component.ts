@@ -8,10 +8,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ToggleSwitchComponent {
     @Input()
-    public switchValue: boolean;
+    public switchValue: boolean = false;
 
     @Input()
-    public isDisabled: boolean;
+    public isDisabled: boolean = false;
 
     @Output()
     public switchValueChange: EventEmitter<boolean> = new EventEmitter();

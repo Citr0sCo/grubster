@@ -13,7 +13,7 @@
                             </small>
                         }
                         @if (getStatusOfTest(test) !== 'UNKNOWN') {
-                            <small class="text--italic text--grey"> Last ran {{ test.asserts[0].result.timestamp | timeago }}. </small>
+                            <small class="text--italic text--grey"> Last ran {{ test.asserts[0].result!.timestamp | timeago }}. </small>
                         }
                     </div>
                 }

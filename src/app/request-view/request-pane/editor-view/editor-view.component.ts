@@ -12,7 +12,7 @@ import { EditorResizeService } from '../services/editor-resize-service';
 })
 export class EditorViewComponent implements OnInit, OnDestroy {
     @Input()
-    public requestBody: string;
+    public requestBody: string = '';
 
     @Input()
     public isReadOnly: boolean = false;
@@ -30,7 +30,7 @@ export class EditorViewComponent implements OnInit, OnDestroy {
 
     private _subscriptions: Subscription = new Subscription();
     private _settingsService: SettingsService;
-    private _settings: ISettings;
+    private _settings: ISettings | null = null;
     private _rawElement: any;
     private _editorResizeService: EditorResizeService;
 

@@ -24,7 +24,7 @@ export class WebCollectionManagement implements ICollectionManagementProvider {
     public importCollections(): void {
         const element: HTMLInputElement = document.getElementById('import-collections-field') as HTMLInputElement;
         element.onchange = () => {
-            this.importCollectionData(element.files[0], this._collectionsService, this._suggestionsService, this._notificationService);
+            this.importCollectionData(element.files![0], this._collectionsService, this._suggestionsService, this._notificationService);
             element.onchange = null;
         };
         element.click();
@@ -50,7 +50,7 @@ export class WebCollectionManagement implements ICollectionManagementProvider {
 
             reader.onloadend = (e) => {
                 try {
-                    const data = JSON.parse(reader.result.toString());
+                    const data = JSON.parse(reader.result?.toString() ?? '{}');
                     this._collectionsService.importFileCollections(data);
                     this._suggestionsService.importFileSuggestions(data);
                     this._notificationService.logSuccess('Collection imported!', 'Collections have been imported successfully.');

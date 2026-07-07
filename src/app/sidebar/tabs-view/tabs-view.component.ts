@@ -11,7 +11,7 @@ import { ITab } from '../../toolbar/tabs/types/tab.model';
     standalone: false
 })
 export class TabsViewComponent implements OnInit, OnDestroy {
-    public tabs: ITab[];
+    public tabs: ITab[] | null = null;
 
     private _subscriptions: Subscription = new Subscription();
     private _tabsService: TabsService;

@@ -18,10 +18,10 @@ export class CollectionItemComponent implements OnInit, OnDestroy, OnChanges {
     public isOpened: boolean = false;
 
     @Input()
-    public collection: ICollection;
+    public collection: ICollection | null = null;
 
     @Input()
-    public filter: string;
+    public filter: string = '';
 
     public isCollectionsOpen: boolean = false;
     public numberOfCollectionItems: number = 0;
@@ -30,7 +30,7 @@ export class CollectionItemComponent implements OnInit, OnDestroy, OnChanges {
     private _router: Router;
     private _tabsService: TabsService;
     private _collectionsService: CollectionsService;
-    private _currentTab: ITab;
+    private _currentTab: ITab | null = null;
     private _notificationService: NotificationService;
 
     constructor(router: Router, tabsService: TabsService, collectionsService: CollectionsService, notificationService: NotificationService) {
@@ -47,7 +47,7 @@ export class CollectionItemComponent implements OnInit, OnDestroy, OnChanges {
             })
         );
 
-        this.numberOfCollectionItems = this.collection.tabs.length;
+        this.numberOfCollectionItems = this.collection!.tabs.length;
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -57,7 +57,7 @@ export class CollectionItemComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     public get filterMatches(): boolean {
-        return this.collection.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1;
+        return this.collection!.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1;
     }
 
     public get filterIndex(): number {
@@ -65,7 +65,7 @@ export class CollectionItemComponent implements OnInit, OnDestroy, OnChanges {
             return 0;
         }
 
-        return this.collection.name.toLowerCase().indexOf(this.filter.toLowerCase());
+        return this.collection!.name.toLowerCase().indexOf(this.filter.toLowerCase());
     }
 
     public addTabToCollection(collection: ICollection): void {

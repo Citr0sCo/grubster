@@ -31,13 +31,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
     public numberOfCollectionItems: number = 0;
     public numberOfTestsItems: number = 0;
     public isSidebarLocked: boolean = true;
-    public isSyncing: boolean = false;
     public version: string = version;
 
     private _subscriptions: Subscription = new Subscription();
     private _sidebarService: SidebarService;
     private _settingsService: SettingsService;
-    private _settings: ISettings;
+    private _settings: ISettings | null = null;
     private _historyService: HistoryService;
     private _collectionsService: CollectionsService;
     private _tabsService: TabsService;
@@ -110,40 +109,40 @@ export class SidebarComponent implements OnInit, OnDestroy {
         e.preventDefault();
         this.isHistoryOpen = !this.isHistoryOpen;
 
-        this._settings.isHistoryOpen = this.isHistoryOpen;
-        this._settingsService.update(this._settings);
+        this._settings!.isHistoryOpen = this.isHistoryOpen;
+        this._settingsService.update(this._settings!);
     }
 
     public toggleCollectionsDropdown(e: MouseEvent): void {
         e.preventDefault();
         this.isCollectionsOpen = !this.isCollectionsOpen;
 
-        this._settings.isCollectionsOpen = this.isCollectionsOpen;
-        this._settingsService.update(this._settings);
+        this._settings!.isCollectionsOpen = this.isCollectionsOpen;
+        this._settingsService.update(this._settings!);
     }
 
     public toggleTestsDropdown(e: MouseEvent): void {
         e.preventDefault();
         this.isTestsOpen = !this.isTestsOpen;
 
-        this._settings.isTestsOpen = this.isTestsOpen;
-        this._settingsService.update(this._settings);
+        this._settings!.isTestsOpen = this.isTestsOpen;
+        this._settingsService.update(this._settings!);
     }
 
     public toggleTabsDropdown(e: MouseEvent): void {
         e.preventDefault();
         this.isTabsOpen = !this.isTabsOpen;
 
-        this._settings.isTabsOpen = this.isTabsOpen;
-        this._settingsService.update(this._settings);
+        this._settings!.isTabsOpen = this.isTabsOpen;
+        this._settingsService.update(this._settings!);
     }
 
     public toggleSidebarLock(e: MouseEvent): void {
         e.preventDefault();
         this.isSidebarLocked = !this.isSidebarLocked;
 
-        this._settings.isSidebarLocked = this.isSidebarLocked;
-        this._settingsService.update(this._settings);
+        this._settings!.isSidebarLocked = this.isSidebarLocked;
+        this._settingsService.update(this._settings!);
     }
 
     public hasContentToShow(): boolean {

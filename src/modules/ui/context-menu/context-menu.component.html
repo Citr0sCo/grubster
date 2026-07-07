@@ -1,7 +1,7 @@
 @if (isShowing) {
-    <div class="context-menu" [ngStyle]="{ 'top.px': contextMenu.y, 'left.px': contextMenu.x }">
+    <div class="context-menu" [ngStyle]="{ 'top.px': contextMenu!.y, 'left.px': contextMenu!.x }">
         <ul>
-            @for (action of contextMenu.actions; track action) {
+            @for (action of contextMenu!.actions; track action) {
                 <li (mousedown)="execute(action)"><i class="{{ action.icon }}"></i> {{ action.name }}</li>
             }
         </ul>

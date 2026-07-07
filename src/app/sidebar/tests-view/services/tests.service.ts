@@ -107,7 +107,12 @@ export class TestsService {
                                 response: {
                                     headers: [],
                                     body: '',
-                                    language: 'JSON'
+                                    language: 'JSON',
+                                    statusCode: 0,
+                                    statusText: '',
+                                    timeTaken: new Date(),
+                                    occurredAt: new Date(),
+                                    size: '0 Bytes'
                                 },
                                 asserts: test.asserts.map((assert: any) => {
                                     return {

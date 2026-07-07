@@ -72,5 +72,7 @@ export class TestRunnerService {
         if (assert.comparisonStrategy === ComparisonStrategy.NotExists) {
             return parsedResult.length === 0;
         }
+
+        return false;
     }
 }

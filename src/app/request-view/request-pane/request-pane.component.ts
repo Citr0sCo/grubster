@@ -16,16 +16,16 @@ import { BeautifyHelper } from '../../../core/beautify.helper';
 })
 export class RequestPaneComponent implements OnInit, OnDestroy {
     @Input()
-    public currentTab: ITab;
+    public currentTab: ITab | null = null;
 
     @Input()
-    public requestBody: string;
+    public requestBody: string = '';
 
     @Input()
-    public requestHeaders: IHeader[];
+    public requestHeaders: IHeader[] = [];
 
     @Input()
-    public requestLanguage: string;
+    public requestLanguage: string = 'JSON';
 
     @Input()
     public areHeadersEditable: boolean = true;
@@ -34,7 +34,7 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
     public isReadOnly: boolean = false;
 
     @Input()
-    public extraTabs: string[];
+    public extraTabs: string[] = [];
 
     @Input()
     public isVertical: boolean = true;
@@ -43,7 +43,7 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
     public isFilterable: boolean = false;
 
     @Input()
-    public requestUrl: string;
+    public requestUrl: string = '';
 
     @Output()
     public bodyChanged: EventEmitter<string> = new EventEmitter<string>();
@@ -54,9 +54,9 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
     @Output()
     public languageChanged: EventEmitter<string> = new EventEmitter<string>();
 
-    public settings: ISettings;
-    public credentialLocations: string;
-    public selectedTab: IRequestTypeModel;
+    public settings: ISettings | null = null;
+    public credentialLocations: string = '';
+    public selectedTab: IRequestTypeModel | null = null;
     public tabs: IRequestTypeModel[] = [
         { id: 'body', name: 'Body' },
         { id: 'headers', name: 'Headers' }
@@ -81,7 +81,7 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
             return this.requestBody;
         }
 
-        const requestFilter = this.currentTab.jsonPathQuery?.trim();
+        const requestFilter = this.currentTab!.jsonPathQuery?.trim();
 
         if (requestFilter === '' || !this.requestBody) {
             return '';
@@ -133,7 +133,7 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
     public hasMultipleCredentials(): boolean {
         const foundCredentials = [];
 
-        if (this.hasAuth(this.currentTab)) {
+        if (this.hasAuth(this.currentTab!)) {
             foundCredentials.push('basic auth');
         }
 
@@ -158,13 +158,13 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
     }
 
     public toggleDirection(): void {
-        this.settings.isEditorVertical = !this.isVertical;
-        this._settingsService.update(this.settings);
+        this.settings!.isEditorVertical = !this.isVertical;
+        this._settingsService.update(this.settings!);
     }
 
     public toggleWordWrap(): void {
-        this.settings.editorWordWrap = !this.settings.editorWordWrap;
-        this._settingsService.update(this.settings);
+        this.settings!.editorWordWrap = !this.settings!.editorWordWrap;
+        this._settingsService.update(this.settings!);
     }
 
     public ngOnDestroy(): void {

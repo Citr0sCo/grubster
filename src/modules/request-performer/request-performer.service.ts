@@ -13,7 +13,7 @@ import { environment } from '../../environments/environment';
 export class RequestPerformerService implements OnDestroy {
     private _httpClient: HttpClient;
     private _historyService: HistoryService;
-    private _settings: ISettings;
+    private _settings: ISettings | null = null;
     private _httpResponseMapper: HttpResponseMapper;
     private _subscriptions: Subscription = new Subscription();
 
@@ -38,7 +38,7 @@ export class RequestPerformerService implements OnDestroy {
                 body: { Method: tab.method, Url: url, Headers: tab.request.headers, Body: tab.request.body, Settings: {} },
                 observe: 'response'
             })
-            .pipe(timeoutWhen(this._settings.requestTimeoutInMs && `${this._settings.requestTimeoutInMs}` !== '0', this._settings.requestTimeoutInMs))
+            .pipe(timeoutWhen(`${this._settings!.requestTimeoutInMs}` !== '0', this._settings!.requestTimeoutInMs))
             .pipe(
                 map((payload: any) => {
                     tab.response = this._httpResponseMapper.map(payload.body);
@@ -70,6 +70,6 @@ export class RequestPerformerService implements OnDestroy {
         if (url.startsWith('http://') || url.startsWith('https://')) {
             return url;
         }
-        return `http${this._settings.defaultToHttps ? 's' : ''}://${url}`;
+        return `http${this._settings!.defaultToHttps ? 's' : ''}://${url}`;
     }
 }

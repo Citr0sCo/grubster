@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class TabItemComponent implements OnInit, OnDestroy {
     @Input()
-    public entry: ITab;
+    public entry: ITab | null = null;
 
     @Input()
     public isEditable: boolean = false;
@@ -28,9 +28,9 @@ export class TabItemComponent implements OnInit, OnDestroy {
     public isRemoved: EventEmitter<ITab> = new EventEmitter<ITab>();
 
     @Input()
-    public filter: string;
+    public filter: string = '';
 
-    public currentTab: ITab;
+    public currentTab: ITab | null = null;
 
     private _subscriptions: Subscription = new Subscription();
     private _router: Router;
@@ -43,7 +43,7 @@ export class TabItemComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this._subscriptions.add(
-            this._tabsService.activeTab.subscribe((currentTab: ITab) => {
+            this._tabsService.activeTab.subscribe((currentTab: ITab | null) => {
                 this.currentTab = currentTab;
             })
         );
@@ -85,7 +85,7 @@ export class TabItemComponent implements OnInit, OnDestroy {
 
     public get filterMatches(): boolean {
         if (this.filter) {
-            return this.entry.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1;
+            return this.entry!.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1;
         }
         return false;
     }
@@ -95,7 +95,7 @@ export class TabItemComponent implements OnInit, OnDestroy {
             return 0;
         }
 
-        return this.entry.name.toLowerCase().indexOf(this.filter.toLowerCase());
+        return this.entry!.name.toLowerCase().indexOf(this.filter.toLowerCase());
     }
 
     public ngOnDestroy(): void {

@@ -14,7 +14,7 @@ import { Store } from '../../core/database/store';
 })
 export class SettingsViewComponent implements OnInit, OnDestroy {
     public version: string;
-    public settings: ISettings;
+    public settings: ISettings | null = null;
 
     private _subscriptions: Subscription = new Subscription();
     private _settingsService: SettingsService;
@@ -39,59 +39,59 @@ export class SettingsViewComponent implements OnInit, OnDestroy {
     }
 
     public toggleDarkMode(): void {
-        this.settings.isDarkModeEnabled = !this.settings.isDarkModeEnabled;
-        this.settings.isThemeManuallyOverridden = true;
-        this.applySettings(this.settings);
+        this.settings!.isDarkModeEnabled = !this.settings!.isDarkModeEnabled;
+        this.settings!.isThemeManuallyOverridden = true;
+        this.applySettings(this.settings!);
     }
 
     public toggleSidebar(): void {
-        this.settings.isSidebarLocked = !this.settings.isSidebarLocked;
-        this.applySettings(this.settings);
+        this.settings!.isSidebarLocked = !this.settings!.isSidebarLocked;
+        this.applySettings(this.settings!);
     }
 
     public toggleCollections(): void {
-        this.settings.isCollectionsOpen = !this.settings.isCollectionsOpen;
-        this.applySettings(this.settings);
+        this.settings!.isCollectionsOpen = !this.settings!.isCollectionsOpen;
+        this.applySettings(this.settings!);
     }
 
     public toggleTests(): void {
-        this.settings.isTestsOpen = !this.settings.isTestsOpen;
-        this.applySettings(this.settings);
+        this.settings!.isTestsOpen = !this.settings!.isTestsOpen;
+        this.applySettings(this.settings!);
     }
 
     public toggleHistory(): void {
-        this.settings.isHistoryOpen = !this.settings.isHistoryOpen;
-        this.applySettings(this.settings);
+        this.settings!.isHistoryOpen = !this.settings!.isHistoryOpen;
+        this.applySettings(this.settings!);
     }
 
     public toggleVerticalEditors(): void {
-        this.settings.isEditorVertical = !this.settings.isEditorVertical;
-        this.applySettings(this.settings);
+        this.settings!.isEditorVertical = !this.settings!.isEditorVertical;
+        this.applySettings(this.settings!);
     }
 
     public toggleTabsInSidebar(): void {
-        this.settings.isTabsInSidebar = !this.settings.isTabsInSidebar;
-        this.applySettings(this.settings);
+        this.settings!.isTabsInSidebar = !this.settings!.isTabsInSidebar;
+        this.applySettings(this.settings!);
     }
 
     public toggleEditorWordWrap(): void {
-        this.settings.editorWordWrap = !this.settings.editorWordWrap;
-        this.applySettings(this.settings);
+        this.settings!.editorWordWrap = !this.settings!.editorWordWrap;
+        this.applySettings(this.settings!);
     }
 
     public toggleAutoBeautifyRequestOnSend(): void {
-        this.settings.autoBeautifyRequestBodyOnSend = !this.settings.autoBeautifyRequestBodyOnSend;
-        this.applySettings(this.settings);
+        this.settings!.autoBeautifyRequestBodyOnSend = !this.settings!.autoBeautifyRequestBodyOnSend;
+        this.applySettings(this.settings!);
     }
 
     public toggleAutoBeautifyResponseOnSend(): void {
-        this.settings.autoBeautifyResponseBodyOnSend = !this.settings.autoBeautifyResponseBodyOnSend;
-        this.applySettings(this.settings);
+        this.settings!.autoBeautifyResponseBodyOnSend = !this.settings!.autoBeautifyResponseBodyOnSend;
+        this.applySettings(this.settings!);
     }
 
     public toggleDefaultToHttps(): void {
-        this.settings.defaultToHttps = !this.settings.defaultToHttps;
-        this.applySettings(this.settings);
+        this.settings!.defaultToHttps = !this.settings!.defaultToHttps;
+        this.applySettings(this.settings!);
     }
 
     public applySettings(settings: ISettings): void {
