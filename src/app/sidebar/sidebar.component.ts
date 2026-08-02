@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { SidebarService } from './services/sidebar.service';
 import { Subscription } from 'rxjs';
 import { Animations } from '../../core/animations';
@@ -21,17 +21,84 @@ import { ITestPlan } from './tests-view/types/test.model';
     standalone: false
 })
 export class SidebarComponent implements OnInit, OnDestroy {
-    public isSidebarOpen: boolean = true;
-    public hasTabsInSidebar: boolean = false;
-    public isTabsOpen: boolean = true;
-    public numberOfTabItems: number = 0;
-    public isHistoryOpen: boolean = true;
-    public numberOfHistoryItems: number = 0;
-    public isCollectionsOpen: boolean = true;
-    public isTestsOpen: boolean = false;
-    public numberOfCollectionItems: number = 0;
-    public numberOfTestsItems: number = 0;
-    public isSidebarLocked: boolean = true;
+    private readonly _isSidebarOpen = signal(true);
+    private readonly _hasTabsInSidebar = signal(false);
+    private readonly _isTabsOpen = signal(true);
+    private readonly _numberOfTabItems = signal(0);
+    private readonly _isHistoryOpen = signal(true);
+    private readonly _numberOfHistoryItems = signal(0);
+    private readonly _isCollectionsOpen = signal(true);
+    private readonly _isTestsOpen = signal(false);
+    private readonly _numberOfCollectionItems = signal(0);
+    private readonly _numberOfTestsItems = signal(0);
+    private readonly _isSidebarLocked = signal(true);
+
+    public get isSidebarOpen(): boolean {
+        return this._isSidebarOpen();
+    }
+    public set isSidebarOpen(value: boolean) {
+        this._isSidebarOpen.set(value);
+    }
+    public get hasTabsInSidebar(): boolean {
+        return this._hasTabsInSidebar();
+    }
+    public set hasTabsInSidebar(value: boolean) {
+        this._hasTabsInSidebar.set(value);
+    }
+    public get isTabsOpen(): boolean {
+        return this._isTabsOpen();
+    }
+    public set isTabsOpen(value: boolean) {
+        this._isTabsOpen.set(value);
+    }
+    public get numberOfTabItems(): number {
+        return this._numberOfTabItems();
+    }
+    public set numberOfTabItems(value: number) {
+        this._numberOfTabItems.set(value);
+    }
+    public get isHistoryOpen(): boolean {
+        return this._isHistoryOpen();
+    }
+    public set isHistoryOpen(value: boolean) {
+        this._isHistoryOpen.set(value);
+    }
+    public get numberOfHistoryItems(): number {
+        return this._numberOfHistoryItems();
+    }
+    public set numberOfHistoryItems(value: number) {
+        this._numberOfHistoryItems.set(value);
+    }
+    public get isCollectionsOpen(): boolean {
+        return this._isCollectionsOpen();
+    }
+    public set isCollectionsOpen(value: boolean) {
+        this._isCollectionsOpen.set(value);
+    }
+    public get isTestsOpen(): boolean {
+        return this._isTestsOpen();
+    }
+    public set isTestsOpen(value: boolean) {
+        this._isTestsOpen.set(value);
+    }
+    public get numberOfCollectionItems(): number {
+        return this._numberOfCollectionItems();
+    }
+    public set numberOfCollectionItems(value: number) {
+        this._numberOfCollectionItems.set(value);
+    }
+    public get numberOfTestsItems(): number {
+        return this._numberOfTestsItems();
+    }
+    public set numberOfTestsItems(value: number) {
+        this._numberOfTestsItems.set(value);
+    }
+    public get isSidebarLocked(): boolean {
+        return this._isSidebarLocked();
+    }
+    public set isSidebarLocked(value: boolean) {
+        this._isSidebarLocked.set(value);
+    }
     public version: string = version;
 
     private _subscriptions: Subscription = new Subscription();

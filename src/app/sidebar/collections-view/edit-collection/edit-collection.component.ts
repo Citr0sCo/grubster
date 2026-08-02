@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CollectionsService } from '../services/collections.service';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,15 @@ import { ICollection } from '../types/collection.model';
     standalone: false
 })
 export class EditCollectionComponent implements OnInit, OnDestroy {
-    public collection: ICollection | null = null;
+    private readonly _collection = signal<ICollection | null>(null, { equal: () => false });
+
+    public get collection(): ICollection | null {
+        return this._collection();
+    }
+
+    public set collection(value: ICollection | null) {
+        this._collection.set(value);
+    }
 
     private _subscriptions: Subscription = new Subscription();
     private _activatedRoute: ActivatedRoute;

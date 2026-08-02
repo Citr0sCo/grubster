@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ITestCase } from '../types/test-item.model';
 import { UrlParser } from '../../../../modules/utility/url-parser/url-parser.service';
@@ -16,7 +16,14 @@ export class TestCaseComponent {
     @Input()
     public testCase: ITestCase | null = null;
 
-    public isRunning: boolean = false;
+    private readonly _isRunning = signal(false);
+
+    public get isRunning(): boolean {
+        return this._isRunning();
+    }
+    public set isRunning(value: boolean) {
+        this._isRunning.set(value);
+    }
 
     private _router: Router;
     private _testRunner: TestRunnerService;

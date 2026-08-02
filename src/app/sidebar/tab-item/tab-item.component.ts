@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, signal } from '@angular/core';
 import { ITab } from '../../toolbar/tabs/types/tab.model';
 import { UrlParser } from '../../../modules/utility/url-parser/url-parser.service';
 import { Router } from '@angular/router';
@@ -31,7 +31,14 @@ export class TabItemComponent implements OnInit, OnDestroy {
     @Input()
     public filter: string = '';
 
-    public currentTab: ITab | null = null;
+    private readonly _currentTab = signal<ITab | null>(null, { equal: () => false });
+
+    public get currentTab(): ITab | null {
+        return this._currentTab();
+    }
+    public set currentTab(value: ITab | null) {
+        this._currentTab.set(value);
+    }
 
     private _subscriptions: Subscription = new Subscription();
     private _router: Router;

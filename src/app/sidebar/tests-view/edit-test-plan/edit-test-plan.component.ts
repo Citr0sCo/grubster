@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, from, of, Subscription, throwError } from 'rxjs';
 import { ITestPlan } from '../types/test.model';
@@ -23,9 +23,28 @@ export interface ILocalTest {
     standalone: false
 })
 export class EditTestPlanComponent implements OnInit, OnDestroy {
-    public test: ITestPlan | null = null;
-    public localTests: ILocalTest[] = [];
-    public isRunning: boolean = false;
+    private readonly _test = signal<ITestPlan | null>(null, { equal: () => false });
+    private readonly _localTests = signal<ILocalTest[]>([], { equal: () => false });
+    private readonly _isRunning = signal(false);
+
+    public get test(): ITestPlan | null {
+        return this._test();
+    }
+    public set test(value: ITestPlan | null) {
+        this._test.set(value);
+    }
+    public get localTests(): ILocalTest[] {
+        return this._localTests();
+    }
+    public set localTests(value: ILocalTest[]) {
+        this._localTests.set(value);
+    }
+    public get isRunning(): boolean {
+        return this._isRunning();
+    }
+    public set isRunning(value: boolean) {
+        this._isRunning.set(value);
+    }
 
     private _subscriptions: Subscription = new Subscription();
     private _activatedRoute: ActivatedRoute;
@@ -87,6 +106,7 @@ export class EditTestPlanComponent implements OnInit, OnDestroy {
 
         this._testRunner.runTest(localTest.test).subscribe(() => {
             localTest.isRunning = false;
+            this.localTests = [...this.localTests];
         });
     }
 
@@ -107,6 +127,7 @@ export class EditTestPlanComponent implements OnInit, OnDestroy {
             )
             .subscribe(([localTest, testResult]) => {
                 localTest.isRunning = false;
+                this.localTests = [...this.localTests];
                 this.isRunning = false;
             });
     }

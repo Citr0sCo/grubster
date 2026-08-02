@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ITestPlan } from '../types/test.model';
@@ -22,10 +22,29 @@ import { TestCaseHelper } from '../services/test-case.helper';
     standalone: false
 })
 export class EditTestCaseComponent implements OnInit, OnDestroy {
-    public test: ITestCase | null = null;
-    public parentTest: ITestPlan | null = null;
+    private readonly _test = signal<ITestCase | null>(null, { equal: () => false });
+    private readonly _parentTest = signal<ITestPlan | null>(null, { equal: () => false });
     public verbs: string[] = HttpVerbs.all();
-    public isRunning: boolean = false;
+    private readonly _isRunning = signal(false);
+
+    public get test(): ITestCase | null {
+        return this._test();
+    }
+    public set test(value: ITestCase | null) {
+        this._test.set(value);
+    }
+    public get parentTest(): ITestPlan | null {
+        return this._parentTest();
+    }
+    public set parentTest(value: ITestPlan | null) {
+        this._parentTest.set(value);
+    }
+    public get isRunning(): boolean {
+        return this._isRunning();
+    }
+    public set isRunning(value: boolean) {
+        this._isRunning.set(value);
+    }
     public comparisonStrategy: any = ComparisonStrategy;
 
     private _subscriptions: Subscription = new Subscription();

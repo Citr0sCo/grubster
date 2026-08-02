@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit, signal, SimpleChanges } from '@angular/core';
 import { ICollection } from '../types/collection.model';
 import { ITab } from '../../../toolbar/tabs/types/tab.model';
 import { TabsService } from '../../../toolbar/tabs/services/tabs.service';
@@ -24,7 +24,14 @@ export class CollectionItemComponent implements OnInit, OnDestroy, OnChanges {
     @Input()
     public filter: string = '';
 
-    public isCollectionsOpen: boolean = false;
+    private readonly _isCollectionsOpen = signal(false);
+
+    public get isCollectionsOpen(): boolean {
+        return this._isCollectionsOpen();
+    }
+    public set isCollectionsOpen(value: boolean) {
+        this._isCollectionsOpen.set(value);
+    }
     public numberOfCollectionItems: number = 0;
 
     private _subscriptions: Subscription = new Subscription();

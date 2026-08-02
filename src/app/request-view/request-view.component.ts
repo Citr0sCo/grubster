@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, Subscription } from 'rxjs';
 import { TabsService } from '../toolbar/tabs/services/tabs.service';
@@ -17,8 +17,24 @@ import { EditorResizeService } from './request-pane/services/editor-resize-servi
     standalone: false
 })
 export class RequestViewComponent implements OnInit, OnDestroy {
-    public currentTab: ITab | null = null;
-    public settings: ISettings | null = null;
+    private readonly _currentTab = signal<ITab | null>(null, { equal: () => false });
+    private readonly _settings = signal<ISettings | null>(null, { equal: () => false });
+
+    public get currentTab(): ITab | null {
+        return this._currentTab();
+    }
+
+    public set currentTab(value: ITab | null) {
+        this._currentTab.set(value);
+    }
+
+    public get settings(): ISettings | null {
+        return this._settings();
+    }
+
+    public set settings(value: ISettings | null) {
+        this._settings.set(value);
+    }
 
     private _subscriptions: Subscription = new Subscription();
     private _activatedRoute: ActivatedRoute;
