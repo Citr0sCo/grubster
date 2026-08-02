@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ITab } from '../../toolbar/tabs/types/tab.model';
@@ -13,7 +13,15 @@ import { ICollection } from '../collections-view/types/collection.model';
     standalone: false
 })
 export class EditTabComponent implements OnInit, OnDestroy {
-    public tab: ITab | null = null;
+    private readonly _tab = signal<ITab | null>(null, { equal: () => false });
+
+    public get tab(): ITab | null {
+        return this._tab();
+    }
+
+    public set tab(value: ITab | null) {
+        this._tab.set(value);
+    }
 
     private _subscriptions: Subscription = new Subscription();
     private _activatedRoute: ActivatedRoute;

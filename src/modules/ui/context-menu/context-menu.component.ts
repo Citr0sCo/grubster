@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { ContextMenuService } from './services/context-menu.service';
 import { Subscription } from 'rxjs';
 import { IContextMenu } from './types/context-menu.model';
@@ -12,8 +12,21 @@ import { IContextMenuAction } from './types/context-menu-action.model';
     standalone: false
 })
 export class ContextMenuComponent implements OnInit, OnDestroy {
-    public isShowing: boolean = false;
-    public contextMenu: IContextMenu | null = null;
+    private readonly _isShowing = signal(false);
+    private readonly _contextMenu = signal<IContextMenu | null>(null, { equal: () => false });
+
+    public get isShowing(): boolean {
+        return this._isShowing();
+    }
+    public set isShowing(value: boolean) {
+        this._isShowing.set(value);
+    }
+    public get contextMenu(): IContextMenu | null {
+        return this._contextMenu();
+    }
+    public set contextMenu(value: IContextMenu | null) {
+        this._contextMenu.set(value);
+    }
 
     private _contextMenuService: ContextMenuService;
     private _subscriptions: Subscription = new Subscription();

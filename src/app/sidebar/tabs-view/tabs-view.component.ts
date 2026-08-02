@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TabsService } from '../../toolbar/tabs/services/tabs.service';
 import { Router } from '@angular/router';
@@ -12,7 +12,14 @@ import { ITab } from '../../toolbar/tabs/types/tab.model';
     standalone: false
 })
 export class TabsViewComponent implements OnInit, OnDestroy {
-    public tabs: ITab[] | null = null;
+    private readonly _tabs = signal<ITab[] | null>(null, { equal: () => false });
+
+    public get tabs(): ITab[] | null {
+        return this._tabs();
+    }
+    public set tabs(value: ITab[] | null) {
+        this._tabs.set(value);
+    }
 
     private _subscriptions: Subscription = new Subscription();
     private _tabsService: TabsService;

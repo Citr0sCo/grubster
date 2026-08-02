@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, signal } from '@angular/core';
 import { ITab } from '../../toolbar/tabs/types/tab.model';
 import { IRequestTypeModel } from './types/request-type.model';
 import { IHeader } from '../../toolbar/tabs/types/header.model';
@@ -55,9 +55,9 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
     @Output()
     public languageChanged: EventEmitter<string> = new EventEmitter<string>();
 
-    public settings: ISettings | null = null;
-    public credentialLocations: string = '';
-    public selectedTab: IRequestTypeModel | null = null;
+    private readonly _settings = signal<ISettings | null>(null, { equal: () => false });
+    private readonly _credentialLocations = signal('');
+    private readonly _selectedTab = signal<IRequestTypeModel | null>(null, { equal: () => false });
     public tabs: IRequestTypeModel[] = [
         { id: 'body', name: 'Body' },
         { id: 'headers', name: 'Headers' }
@@ -69,6 +69,25 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
         { id: 'preview', name: 'Preview' }
     ];
     public languages: string[] = HttpResponseMapper.languages;
+
+    public get settings(): ISettings | null {
+        return this._settings();
+    }
+    public set settings(value: ISettings | null) {
+        this._settings.set(value);
+    }
+    public get credentialLocations(): string {
+        return this._credentialLocations();
+    }
+    public set credentialLocations(value: string) {
+        this._credentialLocations.set(value);
+    }
+    public get selectedTab(): IRequestTypeModel | null {
+        return this._selectedTab();
+    }
+    public set selectedTab(value: IRequestTypeModel | null) {
+        this._selectedTab.set(value);
+    }
 
     private _subscriptions: Subscription = new Subscription();
     private _settingsService: SettingsService;

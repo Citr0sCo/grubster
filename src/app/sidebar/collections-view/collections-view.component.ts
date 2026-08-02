@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { CollectionsService } from './services/collections.service';
 import { Subject, Subscription } from 'rxjs';
 import { TabsService } from '../../toolbar/tabs/services/tabs.service';
@@ -16,7 +16,14 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class CollectionsViewComponent implements OnInit, OnDestroy {
     public filter: string = '';
-    public filteredCollections: ICollection[] = [];
+    private readonly _filteredCollections = signal<ICollection[]>([], { equal: () => false });
+
+    public get filteredCollections(): ICollection[] {
+        return this._filteredCollections();
+    }
+    public set filteredCollections(value: ICollection[]) {
+        this._filteredCollections.set(value);
+    }
 
     private _queryString: Subject<string> = new Subject();
     private _collections: ICollection[] = [];

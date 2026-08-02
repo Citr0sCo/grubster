@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { TabsService } from '../../toolbar/tabs/services/tabs.service';
 import { Router } from '@angular/router';
@@ -15,7 +15,14 @@ import { ITestCase } from './types/test-item.model';
     standalone: false
 })
 export class TestsViewComponent implements OnInit, OnDestroy {
-    public tests: ITestPlan[] = [];
+    private readonly _tests = signal<ITestPlan[]>([], { equal: () => false });
+
+    public get tests(): ITestPlan[] {
+        return this._tests();
+    }
+    public set tests(value: ITestPlan[]) {
+        this._tests.set(value);
+    }
 
     private _queryString: Subject<string> = new Subject();
     private _subscriptions: Subscription = new Subscription();

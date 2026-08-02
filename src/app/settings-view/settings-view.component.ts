@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { version } from './../../../package.json';
 import { ISettings, SettingsService } from '../settings.service';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,14 @@ import { Store } from '../../core/database/store';
 })
 export class SettingsViewComponent implements OnInit, OnDestroy {
     public version: string;
-    public settings: ISettings | null = null;
+    private readonly _settings = signal<ISettings | null>(null, { equal: () => false });
+
+    public get settings(): ISettings | null {
+        return this._settings();
+    }
+    public set settings(value: ISettings | null) {
+        this._settings.set(value);
+    }
 
     private _subscriptions: Subscription = new Subscription();
     private _settingsService: SettingsService;

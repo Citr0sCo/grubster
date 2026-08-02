@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, signal } from '@angular/core';
 import { editorOptions } from '../../../editor.options';
 import { ISettings, SettingsService } from '../../../settings.service';
 import { Subscription } from 'rxjs';
@@ -27,7 +27,14 @@ export class EditorViewComponent implements OnInit, OnDestroy {
     @Output()
     public bodyChanged: EventEmitter<string> = new EventEmitter<string>();
 
-    public options: any;
+    private readonly _options = signal<any>(undefined);
+
+    public get options(): any {
+        return this._options();
+    }
+    public set options(value: any) {
+        this._options.set(value);
+    }
 
     private _subscriptions: Subscription = new Subscription();
     private _settingsService: SettingsService;

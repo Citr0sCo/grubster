@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NotificationService } from './notification.service';
 import { INotification } from './types/notification.model';
@@ -15,15 +15,20 @@ import { Animations } from '../../../core/animations';
     standalone: false
 })
 export class NotificationComponent implements OnInit, OnDestroy {
-    public notifications: INotification[] = [];
+    private readonly _notifications = signal<INotification[]>([]);
+
+    public get notifications(): INotification[] {
+        return this._notifications();
+    }
+    public set notifications(value: INotification[]) {
+        this._notifications.set(value);
+    }
 
     private _notificationService: NotificationService;
     private _subscriptions: Subscription = new Subscription();
-    private _changeDetector: ChangeDetectorRef;
 
-    constructor(notificationService: NotificationService, changeDetector: ChangeDetectorRef) {
+    constructor(notificationService: NotificationService) {
         this._notificationService = notificationService;
-        this._changeDetector = changeDetector;
     }
 
     public ngOnInit(): void {
@@ -31,13 +36,11 @@ export class NotificationComponent implements OnInit, OnDestroy {
             this._notificationService.notifications
                 .pipe(
                     tap((notification) => {
-                        this.notifications.push(notification);
-                        this._changeDetector.detectChanges();
+                        this.notifications = [...this.notifications, notification];
                     }),
                     delay(Times.SECOND * 3),
                     tap(() => {
-                        this.notifications.shift();
-                        this._changeDetector.detectChanges();
+                        this.notifications = this.notifications.slice(1);
                     })
                 )
                 .subscribe()

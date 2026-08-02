@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IHeader } from '../../toolbar/tabs/types/header.model';
@@ -26,13 +26,56 @@ export class RequestBarComponent implements OnInit, OnDestroy {
     @Input()
     public currentTab: ITab | null = null;
 
-    public urlbarFocused: boolean = true;
-    public suggestionsHovered: boolean = true;
-    public suggestions: ISuggestion[] = [];
-    public runningTotal: string = '';
-    public showSendOptions: boolean = false;
-    public isSubmitting: boolean = false;
-    public isAlmostReady: boolean = false;
+    private readonly _urlbarFocused = signal(true);
+    private readonly _suggestionsHovered = signal(true);
+    private readonly _suggestions = signal<ISuggestion[]>([], { equal: () => false });
+    private readonly _runningTotal = signal('');
+    private readonly _showSendOptions = signal(false);
+    private readonly _isSubmitting = signal(false);
+    private readonly _isAlmostReady = signal(false);
+
+    public get urlbarFocused(): boolean {
+        return this._urlbarFocused();
+    }
+    public set urlbarFocused(value: boolean) {
+        this._urlbarFocused.set(value);
+    }
+    public get suggestionsHovered(): boolean {
+        return this._suggestionsHovered();
+    }
+    public set suggestionsHovered(value: boolean) {
+        this._suggestionsHovered.set(value);
+    }
+    public get suggestions(): ISuggestion[] {
+        return this._suggestions();
+    }
+    public set suggestions(value: ISuggestion[]) {
+        this._suggestions.set(value);
+    }
+    public get runningTotal(): string {
+        return this._runningTotal();
+    }
+    public set runningTotal(value: string) {
+        this._runningTotal.set(value);
+    }
+    public get showSendOptions(): boolean {
+        return this._showSendOptions();
+    }
+    public set showSendOptions(value: boolean) {
+        this._showSendOptions.set(value);
+    }
+    public get isSubmitting(): boolean {
+        return this._isSubmitting();
+    }
+    public set isSubmitting(value: boolean) {
+        this._isSubmitting.set(value);
+    }
+    public get isAlmostReady(): boolean {
+        return this._isAlmostReady();
+    }
+    public set isAlmostReady(value: boolean) {
+        this._isAlmostReady.set(value);
+    }
     public verbs: string[] = HttpVerbs.all();
 
     private _subscriptions: Subscription = new Subscription();

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit, signal } from '@angular/core';
 import { ITab } from './types/tab.model';
 import { TabsService } from './services/tabs.service';
 import { Subscription } from 'rxjs';
@@ -15,9 +15,28 @@ import { ContextMenuService } from '../../../modules/ui/context-menu/services/co
     standalone: false
 })
 export class TabsComponent implements OnInit, OnDestroy {
-    public tabs: ITab[] = [];
-    public currentTab: ITab | null = null;
-    public isTabsInSidebar: boolean = false;
+    private readonly _tabs = signal<ITab[]>([], { equal: () => false });
+    private readonly _currentTab = signal<ITab | null>(null, { equal: () => false });
+    private readonly _isTabsInSidebar = signal(false);
+
+    public get tabs(): ITab[] {
+        return this._tabs();
+    }
+    public set tabs(value: ITab[]) {
+        this._tabs.set(value);
+    }
+    public get currentTab(): ITab | null {
+        return this._currentTab();
+    }
+    public set currentTab(value: ITab | null) {
+        this._currentTab.set(value);
+    }
+    public get isTabsInSidebar(): boolean {
+        return this._isTabsInSidebar();
+    }
+    public set isTabsInSidebar(value: boolean) {
+        this._isTabsInSidebar.set(value);
+    }
 
     private _subscriptions: Subscription = new Subscription();
     private _tabsService: TabsService;

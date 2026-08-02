@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { HistoryService } from './services/history.service';
 import { ITab } from '../../toolbar/tabs/types/tab.model';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,14 @@ import { Router } from '@angular/router';
     standalone: false
 })
 export class HistoryViewComponent implements OnInit, OnDestroy {
-    public entries: ITab[] = [];
+    private readonly _entries = signal<ITab[]>([], { equal: () => false });
+
+    public get entries(): ITab[] {
+        return this._entries();
+    }
+    public set entries(value: ITab[]) {
+        this._entries.set(value);
+    }
 
     private _subscriptions: Subscription = new Subscription();
     private _historyService: HistoryService;
