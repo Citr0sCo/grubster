@@ -1,4 +1,4 @@
-import * as jsonpath from 'jsonpath';
+import jsonpath from 'jsonpath';
 
 export class JsonPathHelper {
     public static apply(text: string, jsonPathQuery: string): string {
