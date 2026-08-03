@@ -16,6 +16,7 @@
     "build": "ng build --configuration production --subresource-integrity",
     "serve": "ng serve",
     "test": "jest --ci --no-colors --no-cache",
+    "test:coverage": "jest --ci --coverage --no-colors --no-cache",
     "lint": "run-p lint:* --max-parallel 4",
     "lint:scripts": "eslint ./src/**/*.ts ./src/**/*.html --quiet",
     "lint:styles": "stylelint ./src/**/*.scss --quiet",
@@ -23,6 +24,7 @@
     "format": "prettier --write ./src --loglevel silent"
   },
   "jest": {
+    "preset": "jest-preset-angular",
     "roots": [
       "src"
     ]
@@ -73,6 +75,7 @@
     "eslint-plugin-rxjs-angular": "^2.0.1",
     "eslint-plugin-unicorn": "^63.0.0",
     "jest": "30.4.2",
+    "jest-environment-jsdom": "30.4.1",
     "jest-preset-angular": "16.2.0",
     "jest-zone-patch": "^0.0.10",
     "npm-run-all2": "^8.0.4",

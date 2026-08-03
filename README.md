@@ -12,6 +12,10 @@
 <a href="https://hub.docker.com/r/citr0s/grubster"><img src="https://img.shields.io/docker/v/citr0s/grubster?sort=semver" alt="Docker version"></a>
 </p>
 
+<p align="center">
+  <a href="https://codecov.io/gh/Citr0sCo/grubster"><img src="https://codecov.io/gh/Citr0sCo/grubster/branch/main/graph/badge.svg" alt="Code Coverage"></a>
+</p>
+
 ---
 
 <h4 align="center">Grubster is a simple self-hosted HTTP client.</h4>
