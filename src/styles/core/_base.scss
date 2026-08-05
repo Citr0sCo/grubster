@@ -1,34 +1,40 @@
 @import 'mixins';
 
 :root {
-    --box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.4);
-    --transition-speed: 200ms;
-    --action-button-bg: -webkit-linear-gradient(top right, hsl(153, 60%, 31%) 0%, hsl(153, 60%, 31%) 0%, hsl(140, 44%, 26%) 100%, hsl(140, 44%, 26%) 100%);
+    --box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    --transition-speed: 180ms;
+    --action-button-bg: linear-gradient(135deg, #45c58a 0%, #278a63 100%);
 
     .theme--light {
-        --body-background-color: #ffffff;
-        --text-color: #000;
-        --text-color-alt: #333;
-        --card-bg-color: #e3e3e3;
-        --card-bg-color-alt: #e6e6e6;
-        --card-bg-alt: -webkit-linear-gradient(top right, #ffffff 0%, #ffffff 0%, #e6e6e6 100%, #e6e6e6 100%);
-        --theme-rgba-contrast: 0, 0, 0;
-        --transparent-hover-bg: rgba(0, 0, 0, 0.05);
-        --transparent-active-bg: rgba(0, 0, 0, 0.25);
-        --border-color: #ababab;
+        --body-background-color: #f3f6f4;
+        --text-color: #14231f;
+        --text-color-alt: #58716a;
+        --card-bg-color: #e4ece8;
+        --card-bg-color-alt: #d8e4de;
+        --card-bg-alt: linear-gradient(135deg, #ffffff 0%, #e8f0ec 100%);
+        --input-background: #ffffff;
+        --autofill-color: #ffffff;
+        --link-color: #237956;
+        --theme-rgba-contrast: 20, 35, 31;
+        --transparent-hover-bg: rgba(20, 35, 31, 0.06);
+        --transparent-active-bg: rgba(20, 35, 31, 0.14);
+        --border-color: #c7d5ce;
     }
 
     .theme--dark {
-        --body-background-color: #1c1e29ff;
-        --text-color: #fff;
-        --text-color-alt: #f3f3f3;
-        --card-bg-color: #282a3a;
-        --card-bg-color-alt: #12121b;
-        --card-bg-alt: -webkit-linear-gradient(top right, #1c1e29ff 0%, #1c1e29ff 0%, #282a3a 100%, #282a3a 100%);
-        --theme-rgba-contrast: 255, 255, 255;
-        --transparent-hover-bg: rgba(255, 255, 255, 0.05);
-        --transparent-active-bg: rgba(255, 255, 255, 0.25);
-        --border-color: #4b4b4b;
+        --body-background-color: #101917;
+        --text-color: #ecf5f0;
+        --text-color-alt: #9ab4aa;
+        --card-bg-color: #192825;
+        --card-bg-color-alt: #223732;
+        --card-bg-alt: linear-gradient(135deg, #17221f 0%, #21342f 100%);
+        --input-background: #101a18;
+        --autofill-color: #101a18;
+        --link-color: #73d8a7;
+        --theme-rgba-contrast: 236, 245, 240;
+        --transparent-hover-bg: rgba(236, 245, 240, 0.06);
+        --transparent-active-bg: rgba(236, 245, 240, 0.14);
+        --border-color: #2f4740;
     }
 }
 

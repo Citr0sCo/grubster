@@ -1,42 +1,30 @@
 @import './variables';
 
 .icon {
+    align-items: center;
     text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
     -webkit-app-region: no-drag;
 
     img {
-        height: calc($toolbar-height - 10px);
-        margin: 5px;
+        display: block;
+        width: calc($toolbar-height - 12px);
+        height: calc($toolbar-height - 12px);
+        margin: 6px;
+        image-rendering: auto;
     }
 
     h1 {
         margin: 0;
-        font-size: 1.2rem;
+        color: var(--text-color);
+        font-size: 1.15rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
         line-height: $toolbar-height;
     }
 
-    &:hover {
-        animation: rumble 200ms infinite;
-        animation-timing-function: linear;
-    }
-
-    @keyframes rumble {
-        0% {
-            transform: rotate(-2deg);
-        }
-        25% {
-            transform: rotate(-1deg);
-        }
-        50% {
-            transform: rotate(0deg);
-        }
-        75% {
-            transform: rotate(-1deg);
-        }
-        100% {
-            transform: rotate(-2deg);
-        }
+    &:hover h1 {
+        color: $brand-primary;
     }
 }

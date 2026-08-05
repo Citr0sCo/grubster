@@ -1,102 +1,60 @@
-<div class="dashboard-view o-container">
-    <div class="o-grid">
-        <div class="o-grid__col">
-            <h1>Dashboard</h1>
-        </div>
-        <div class="o-grid__col o-grid__col--fixed">
-            <h2>
-                <small>Grubster {{ version }}</small>
-            </h2>
-        </div>
-    </div>
-
-    <div class="o-grid">
-        <quick-action (clicked)="createNewTab()" [icon]="'fa-plus'" [isPrimary]="true" [label]="'New Request'" class="o-grid__col o-grid__col--fixed"></quick-action>
-        <quick-action [icon]="'fa-cog'" [label]="'View Settings'" [routerLink]="['/settings']" class="o-grid__col o-grid__col--fixed"></quick-action>
-    </div>
-
-    <hr />
-
-    <div class="o-grid">
-        <quick-action (clicked)="openImportBox()" [icon]="'fa-file-import'" [label]="'Import Collection'" class="o-grid__col o-grid__col--fixed"></quick-action>
-        <input type="file" id="import-collections-field" style="display: none" />
-        <quick-action (clicked)="exportCollections()" [icon]="'fa-file-export'" [label]="'Export Collection'" class="o-grid__col o-grid__col--fixed"></quick-action>
-    </div>
-
-    <hr />
-
-    <div class="o-grid">
-        <a href="https://discord.com/invite/h6yzaWx8An" target="_blank" title="Open Grubster Discord">
-            <quick-action [icon]="'fa-discord'" [label]="'Discord'" [prefix]="'fab'" class="o-grid__col o-grid__col--fixed"></quick-action>
-        </a>
-    </div>
-
-    <hr />
-
-    <div class="o-grid">
-        <div class="o-grid__col">
-            <h3 class="u-mt-0 u-mb-0">Shortcuts</h3>
-        </div>
-    </div>
-
-    <div class="o-grid">
-        <div class="o-grid__col">
-            <h4 class="u-mt-1 u-mb-0">Tabs</h4>
-
-            <div class="o-grid u-m-1">
-                <div class="o-grid__col o-grid__col--fixed">New Tab -</div>
-                <div class="o-grid__col o-grid__col--fixed">
-                    <div class="o-grid">
-                        <div class="o-grid__col o-grid__col--fixed key">Ctrl</div>
-                        <div class="o-grid__col o-grid__col--fixed">+</div>
-                        <div class="o-grid__col o-grid__col--fixed key">T</div>
-                    </div>
-                </div>
+<main class="dashboard-view o-container">
+    <section class="dashboard-view__hero">
+        <div class="dashboard-view__eyebrow"><span></span> READY TO SEND</div>
+        <div class="o-grid o-grid--horizontal-align">
+            <div class="o-grid__col">
+                <h1>Build the request.<br /><em>See it clearly.</em></h1>
+                <p>One focused workspace for exploring APIs, collections, and response data.</p>
             </div>
-
-            <div class="o-grid u-m-1">
-                <div class="o-grid__col o-grid__col--fixed">Close Tab -</div>
-                <div class="o-grid__col o-grid__col--fixed">
-                    <div class="o-grid">
-                        <div class="o-grid__col o-grid__col--fixed key">Middle Mouse Click On Tab</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="o-grid u-m-1">
-                <div class="o-grid__col o-grid__col--fixed">Duplicate Tab -</div>
-                <div class="o-grid__col o-grid__col--fixed">
-                    <div class="o-grid">
-                        <div class="o-grid__col o-grid__col--fixed key">Right Mouse Click On Tab</div>
-                    </div>
-                </div>
+            <div class="o-grid__col o-grid__col--fixed dashboard-view__version">
+                <strong>GRUBSTER</strong>
+                <small>v{{ version }}</small>
             </div>
         </div>
+        <div class="o-grid dashboard-view__primary-actions">
+            <quick-action (clicked)="createNewTab()" [icon]="'fa-plus'" [isPrimary]="true" [label]="'New Request'" class="o-grid__col o-grid__col--fixed"></quick-action>
+            <quick-action [icon]="'fa-cog'" [label]="'View Settings'" [routerLink]="['/settings']" class="o-grid__col o-grid__col--fixed"></quick-action>
+        </div>
+    </section>
 
-        <div class="o-grid__col">
-            <h4 class="u-mt-1 u-mb-0">Debug</h4>
-
-            <div class="o-grid u-m-1">
-                <div class="o-grid__col o-grid__col--fixed">Refresh App -</div>
-                <div class="o-grid__col o-grid__col--fixed">
-                    <div class="o-grid">
-                        <div class="o-grid__col o-grid__col--fixed key">F5</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="o-grid u-m-1">
-                <div class="o-grid__col o-grid__col--fixed">Dev Tools -</div>
-                <div class="o-grid__col o-grid__col--fixed">
-                    <div class="o-grid">
-                        <div class="o-grid__col o-grid__col--fixed key">Ctrl</div>
-                        <div class="o-grid__col o-grid__col--fixed">+</div>
-                        <div class="o-grid__col o-grid__col--fixed key">Shift</div>
-                        <div class="o-grid__col o-grid__col--fixed">+</div>
-                        <div class="o-grid__col o-grid__col--fixed key">I</div>
-                    </div>
-                </div>
+    <section class="dashboard-view__section">
+        <div class="dashboard-view__section-heading">
+            <span class="dashboard-view__section-index">01</span>
+            <div>
+                <h2>Workspace tools</h2>
+                <p>Move requests in and out of your local workspace.</p>
             </div>
         </div>
-    </div>
-</div>
+        <div class="o-grid dashboard-view__actions">
+            <quick-action (clicked)="openImportBox()" [icon]="'fa-file-import'" [label]="'Import Collection'" class="o-grid__col o-grid__col--fixed"></quick-action>
+            <input id="import-collections-field" type="file" hidden />
+            <quick-action (clicked)="exportCollections()" [icon]="'fa-file-export'" [label]="'Export Collection'" class="o-grid__col o-grid__col--fixed"></quick-action>
+            <a href="https://discord.com/invite/h6yzaWx8An" target="_blank" title="Open Grubster Discord">
+                <quick-action [icon]="'fa-discord'" [label]="'Community'" [prefix]="'fab'" class="o-grid__col o-grid__col--fixed"></quick-action>
+            </a>
+        </div>
+    </section>
+
+    <section class="dashboard-view__section dashboard-view__shortcuts">
+        <div class="dashboard-view__section-heading">
+            <span class="dashboard-view__section-index">02</span>
+            <div>
+                <h2>Keyboard map</h2>
+                <p>Keep your hands on the request surface.</p>
+            </div>
+        </div>
+        <div class="dashboard-view__shortcut-grid">
+            <div class="dashboard-view__shortcut-card">
+                <h3>Tabs</h3>
+                <div class="dashboard-view__shortcut"><span>New tab</span><kbd>Ctrl</kbd><b>+</b><kbd>T</kbd></div>
+                <div class="dashboard-view__shortcut"><span>Close tab</span><kbd>Middle click</kbd></div>
+                <div class="dashboard-view__shortcut"><span>Duplicate tab</span><kbd>Right click</kbd></div>
+            </div>
+            <div class="dashboard-view__shortcut-card">
+                <h3>Debug</h3>
+                <div class="dashboard-view__shortcut"><span>Refresh app</span><kbd>F5</kbd></div>
+                <div class="dashboard-view__shortcut"><span>Dev tools</span><kbd>Ctrl</kbd><b>+</b><kbd>Shift</kbd><b>+</b><kbd>I</kbd></div>
+            </div>
+        </div>
+    </section>
+</main>

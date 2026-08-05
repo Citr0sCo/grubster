@@ -2,6 +2,8 @@
 @import './mixins';
 
 .request-view {
+    background: var(--body-background-color);
+
     &--half {
         height: calc(50vh - 50px);
     }

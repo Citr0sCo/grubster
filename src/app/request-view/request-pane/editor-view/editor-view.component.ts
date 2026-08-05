@@ -27,7 +27,7 @@ export class EditorViewComponent implements OnInit, OnDestroy {
     @Output()
     public bodyChanged: EventEmitter<string> = new EventEmitter<string>();
 
-    private readonly _options = signal<any>(undefined);
+    private readonly _options = signal<any>({ ...editorOptions, readOnly: false, wordWrap: false, theme: 'vs-dark' });
 
     public get options(): any {
         return this._options();
@@ -87,22 +87,23 @@ export class EditorViewComponent implements OnInit, OnDestroy {
     }
 
     public triggerResize(): void {
-        this._rawElement.layout();
+        this._rawElement?.layout();
     }
 
     public undo($event: any): void {
         if ($event.ctrlKey && $event.browserEvent.key.toUpperCase() === 'Z') {
-            this._rawElement.trigger('Editor View', 'undo', {});
+            this._rawElement?.trigger('Editor View', 'undo', {});
         }
     }
 
     public redo($event: any): void {
         if ($event.ctrlKey && $event.browserEvent.key.toUpperCase() === 'Y') {
-            this._rawElement.trigger('Editor View', 'redo', {});
+            this._rawElement?.trigger('Editor View', 'redo', {});
         }
     }
 
     public ngOnDestroy(): void {
         this._subscriptions.unsubscribe();
+        this._rawElement = undefined;
     }
 }

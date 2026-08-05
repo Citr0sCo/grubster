@@ -4,7 +4,26 @@
     z-index: 101;
     position: relative;
     height: $toolbar-height;
+    align-items: center;
+    gap: 0.35rem;
+    padding-right: 0.5rem;
     background: var(--card-bg-alt);
-    box-shadow: var(--box-shadow);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
     -webkit-app-region: drag;
+
+    &__workspace {
+        color: var(--text-color-alt);
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        opacity: 0.75;
+        white-space: nowrap;
+        -webkit-app-region: no-drag;
+
+        span {
+            color: $brand-primary;
+            padding: 0 0.25rem;
+        }
+    }
 }

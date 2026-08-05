@@ -5,7 +5,8 @@
     height: calc(100vh - #{$toolbar-height});
     position: absolute;
     background: var(--card-bg-alt);
-    box-shadow: var(--box-shadow);
+    border-right: 1px solid var(--border-color);
+    box-shadow: 14px 0 36px rgba(0, 0, 0, 0.16);
     overflow: auto;
 
     &--locked {
@@ -20,11 +21,12 @@
 
         &__item {
             list-style: none;
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             line-height: 50px;
             width: 50px;
             height: 50px;
             text-align: center;
+            border: 1px solid transparent;
             border-radius: $border-radius;
             overflow: hidden;
             margin: 0 10px 5px;
@@ -47,6 +49,7 @@
             &--active,
             &:hover {
                 background-color: var(--transparent-active-bg);
+                border-color: var(--border-color);
             }
         }
     }
