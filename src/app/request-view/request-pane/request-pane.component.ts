@@ -56,7 +56,6 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
     public languageChanged: EventEmitter<string> = new EventEmitter<string>();
 
     private readonly _settings = signal<ISettings | null>(null, { equal: () => false });
-    private readonly _credentialLocations = signal('');
     private readonly _selectedTab = signal<IRequestTypeModel | null>(null, { equal: () => false });
     public tabs: IRequestTypeModel[] = [
         { id: 'body', name: 'Body' },
@@ -77,10 +76,7 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
         this._settings.set(value);
     }
     public get credentialLocations(): string {
-        return this._credentialLocations();
-    }
-    public set credentialLocations(value: string) {
-        this._credentialLocations.set(value);
+        return this.getCredentialLocations().join(', ');
     }
     public get selectedTab(): IRequestTypeModel | null {
         return this._selectedTab();
@@ -138,8 +134,8 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
         this.languageChanged.emit($event);
     }
 
-    public hasAuth(currentTab: ITab): boolean {
-        return currentTab.request.auth?.username !== '';
+    public hasAuth(currentTab: ITab | null): boolean {
+        return !!currentTab?.request.auth?.username;
     }
 
     public hasHeaders(): boolean {
@@ -150,10 +146,10 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
         return this.requestBody?.length > 0;
     }
 
-    public hasMultipleCredentials(): boolean {
-        const foundCredentials = [];
+    private getCredentialLocations(): string[] {
+        const foundCredentials: string[] = [];
 
-        if (this.hasAuth(this.currentTab!)) {
+        if (this.hasAuth(this.currentTab)) {
             foundCredentials.push('basic auth');
         }
 
@@ -162,11 +158,14 @@ export class RequestPaneComponent implements OnInit, OnDestroy {
                 foundCredentials.push('body');
             }
         } catch (e) {
-            // do nothing
+            // Invalid request bodies do not contain detectable credentials.
         }
 
-        this.credentialLocations = foundCredentials.join(', ');
-        return foundCredentials.length > 1;
+        return foundCredentials;
+    }
+
+    public hasMultipleCredentials(): boolean {
+        return this.getCredentialLocations().length > 1;
     }
 
     public beautifyRequestBody(): void {
