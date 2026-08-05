@@ -4,8 +4,9 @@
     background: var(--card-bg-color);
     border: 1px solid var(--border-color);
     border-radius: $border-radius;
-    padding: 15px;
+    padding: 18px;
     margin: 15px 0;
+    box-shadow: var(--box-shadow);
 
     h3 {
         margin: 0;

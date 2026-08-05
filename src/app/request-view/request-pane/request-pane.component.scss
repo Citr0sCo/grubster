@@ -12,6 +12,7 @@
 
     &__tabs {
         height: $request-pane-tabs-height;
+        align-items: center;
         color: var(--text-color);
         background: var(--card-bg-color);
         width: 100%;
@@ -24,7 +25,8 @@
         }
 
         &__tab {
-            padding: 10px 15px;
+            padding: 0 15px;
+            line-height: $request-pane-tabs-height;
             border-right: 1px solid;
             border-color: var(--border-color);
             cursor: pointer;

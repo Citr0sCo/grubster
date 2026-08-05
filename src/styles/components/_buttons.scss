@@ -10,8 +10,9 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    padding: 15px;
+    padding: 10px 15px;
     border-radius: $border-radius;
+    font-family: inherit;
     transition:
         color 0.15s ease-in-out,
         background-color 0.15s ease-in-out,
