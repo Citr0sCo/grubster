@@ -97,8 +97,14 @@ export class EditTestPlanComponent implements OnInit, OnDestroy {
     }
 
     public deleteTest(): void {
-        this._testsService.removeTest(this.test!).subscribe();
-        this._router.navigate(['dashboard']);
+        const test = this.test;
+        if (!test) {
+            return;
+        }
+
+        this._testsService.removeTest(test).subscribe(() => {
+            this._router.navigate(['/dashboard']);
+        });
     }
 
     public runTest(localTest: ILocalTest): void {

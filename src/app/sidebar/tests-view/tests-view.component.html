@@ -1,5 +1,5 @@
 <div class="tests-view">
-    @for (test of tests; track test) {
+    @for (test of tests; track test.id) {
         <test-plan [test]="test"></test-plan>
     }
     <div (click)="addTest()" class="o-grid tests-view__item">
