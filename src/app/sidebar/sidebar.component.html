@@ -92,6 +92,6 @@
         }
     </div>
 }
-@if (isSidebarOpen && (!isSidebarLocked || isCompactViewport)) {
+@if (isSidebarOpen && !isSidebarLocked) {
     <div (click)="toggleSidebar()" [@fadeIn] class="blackout"></div>
 }
