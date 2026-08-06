@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { IHeader } from '../../../../toolbar/tabs/types/header.model';
 import { ISuggestion } from '../../../request-bar/types/suggestion.model';
-import * as headers from '../../../../../assets/data/headers.json';
+import headers from '../../../../../assets/data/headers.json';
 
 @Component({
     selector: 'headers-item',
