@@ -96,9 +96,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
     public get isSidebarLocked(): boolean {
         return this._isSidebarLocked();
     }
-    public get isCompactViewport(): boolean {
-        return window.innerWidth <= 768;
-    }
     public set isSidebarLocked(value: boolean) {
         this._isSidebarLocked.set(value);
     }
@@ -171,7 +168,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
 
     public toggleSidebar(): void {
-        if (!this.isSidebarLocked || this.isCompactViewport) {
+        if (!this.isSidebarLocked) {
             this._sidebarService.toggleSidebar();
         }
     }
