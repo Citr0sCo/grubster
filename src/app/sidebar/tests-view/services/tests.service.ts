@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { defer, firstValueFrom, from, Observable, ReplaySubject } from 'rxjs';
 import { first, map, mergeMap, tap } from 'rxjs/operators';
 import { Guid } from '../../../../core/guid';
 import { IHeader } from '../../../toolbar/tabs/types/header.model';
@@ -11,31 +11,53 @@ import { ITestCase } from '../types/test-item.model';
 export class TestsService {
     public tests: ReplaySubject<ITestPlan[]> = new ReplaySubject<ITestPlan[]>();
     private _testsRepository: TestsRepository;
+    private _currentTests: ITestPlan[] = [];
+    private _testsReady: Promise<void>;
+    private _mutationQueue: Promise<void> = Promise.resolve();
 
     constructor(testsRepository: TestsRepository) {
         this._testsRepository = testsRepository;
 
-        this._testsRepository.getAll().subscribe((entries: ITestPlan[]) => {
+        this._testsReady = firstValueFrom(this._testsRepository.getAll()).then((entries: ITestPlan[]) => {
+            this._currentTests = entries;
             this.tests.next(entries);
         });
     }
 
     public addTest(test: ITestPlan): Observable<void> {
-        return this.tests.pipe(
-            first(),
-            tap((entries) => this.tests.next([...entries.filter((x) => x.id !== test.id), test])),
-            mergeMap(() => this._testsRepository.saveOrUpdate([test]))
-        );
+        return this.enqueueMutation(() => this.addTestOperation(test));
     }
 
     public removeTest(test: ITestPlan): Observable<void> {
-        return this.tests.pipe(
-            first(),
-            mergeMap(() => this._testsRepository.delete(test)),
+        return this.enqueueMutation(() => this.removeTestOperation(test));
+    }
+
+    private addTestOperation(test: ITestPlan): Observable<void> {
+        this._currentTests = [...this._currentTests.filter((x) => x.id !== test.id), test];
+        this.tests.next(this._currentTests);
+        return this._testsRepository.saveOrUpdate([test]);
+    }
+
+    private removeTestOperation(test: ITestPlan): Observable<void> {
+        return this._testsRepository.delete(test).pipe(
             mergeMap(() => this._testsRepository.getAll()),
-            tap((entries) => this.tests.next(entries)),
+            tap((entries) => {
+                this._currentTests = entries;
+                this.tests.next(entries);
+            }),
             map(() => undefined)
         );
+    }
+
+    private enqueueMutation(operation: () => Observable<void>): Observable<void> {
+        return defer(() => {
+            const completion = this._mutationQueue.then(() => this._testsReady).then(() => firstValueFrom(operation()));
+            this._mutationQueue = completion.then(
+                () => undefined,
+                () => undefined
+            );
+            return from(completion);
+        });
     }
 
     public newEntry(): Observable<void> {
@@ -68,12 +90,13 @@ export class TestsService {
     }
 
     public updateTest(test: ITestPlan): Observable<void> {
-        return this.removeTest(test).pipe(mergeMap(() => this.addTest(test)));
+        return this.enqueueMutation(() => this.removeTestOperation(test).pipe(mergeMap(() => this.addTestOperation(test))));
     }
 
     public importTests(tests: ITestPlan[]): Promise<boolean> {
         return new Promise((resolve) => {
-            this.tests.next(tests ?? []);
+            this._currentTests = tests ?? [];
+            this.tests.next(this._currentTests);
             this._testsRepository.deleteAll().subscribe();
             this._testsRepository.saveOrUpdate(tests ?? []).subscribe();
             resolve(true);
