@@ -31,9 +31,10 @@ export class TestsService {
     public removeTest(test: ITestPlan): Observable<void> {
         return this.tests.pipe(
             first(),
-            map((entries) => entries.filter((x: ITestPlan) => x.id !== test.id)),
+            mergeMap(() => this._testsRepository.delete(test)),
+            mergeMap(() => this._testsRepository.getAll()),
             tap((entries) => this.tests.next(entries)),
-            mergeMap(() => this._testsRepository.delete(test))
+            map(() => undefined)
         );
     }
 
