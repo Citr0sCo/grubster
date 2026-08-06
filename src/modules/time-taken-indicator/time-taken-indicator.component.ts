@@ -9,7 +9,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 })
 export class TimeTakenIndicatorComponent {
     @Input()
-    public timeTaken: Date = new Date();
+    public timeTaken: Date = new Date(0);
 
     @Input()
     public isSmall: boolean = false;
@@ -34,7 +34,7 @@ export class TimeTakenIndicatorComponent {
         }
 
         if (response.length === 0) {
-            response = '<small>ms</small>';
+            response = '0<small>s</small>';
         }
 
         return response;

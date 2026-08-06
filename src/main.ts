@@ -4,9 +4,18 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 import { DEPLOY_URL } from './app/deploy-url';
+import { init, trackViews } from 'swetrix';
 
 if (environment.production) {
     enableProdMode();
+    const analytics = environment.analytics as { projectId: string; apiUrl: string } | undefined;
+    if (analytics?.projectId && analytics.apiUrl) {
+        init(analytics.projectId, {
+            apiURL: analytics.apiUrl,
+            respectDNT: true
+        });
+        void trackViews().catch(() => undefined);
+    }
 }
 
 const deployUrl = (() => {

@@ -31,3 +31,15 @@
         }
     }
 }
+
+@media (max-width: $mobile-width) {
+    .editor-view,
+    .editor-view--vertical {
+        height: calc(100% - #{$request-pane-tabs-height} - #{$request-pane-footer-height}) !important;
+    }
+
+    .editor-view--vertical__editor,
+    .editor-view__editor {
+        height: 100% !important;
+    }
+}

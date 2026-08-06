@@ -73,3 +73,14 @@ $add-button-width: calc(#{$toolbar-height} - 0.5rem);
         }
     }
 }
+
+@media (max-width: $mobile-width) {
+    .tabs {
+        gap: 0.2rem;
+        padding: 0 0.15rem;
+
+        &__tab {
+            width: min(52vw, 180px);
+        }
+    }
+}

@@ -34,7 +34,7 @@ export class LogoComponent implements OnInit, OnDestroy {
     }
 
     public toggleSidebar(): void {
-        if (!this._settings!.isSidebarLocked) {
+        if (!this._settings!.isSidebarLocked || window.innerWidth <= 768) {
             this._sidebarService.toggleSidebar();
         }
     }

@@ -125,3 +125,49 @@
         height: calc(100vh - #{$toolbar-height});
     }
 }
+
+@media (max-width: $mobile-width) {
+    .request-bar {
+        height: 104px;
+        padding: 0.25rem;
+
+        & > .o-grid {
+            align-content: space-between;
+            flex-wrap: wrap;
+            height: 100%;
+        }
+
+        &__verb {
+            width: 76px;
+        }
+
+        &__url {
+            order: 4;
+            flex: 0 0 100%;
+            padding: 0.25rem !important;
+        }
+
+        &__send__wrapper {
+            padding: 0.25rem !important;
+        }
+
+        &__metrics {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex: 1 1 auto;
+            min-width: 0;
+            padding: 0.25rem !important;
+            white-space: nowrap;
+
+            .badge-wrapper {
+                margin-right: 2px;
+
+                .badge {
+                    padding: 3px 5px;
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}

@@ -21,3 +21,10 @@ $add-button-width: calc(#{$toolbar-height} - 0.5rem);
         }
     }
 }
+
+@media (max-width: $mobile-width) {
+    .preview-view,
+    .preview-view iframe {
+        height: calc(100% - #{$request-pane-tabs-height} - #{$request-pane-footer-height}) !important;
+    }
+}

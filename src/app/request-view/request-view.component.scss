@@ -34,3 +34,28 @@
 .splitter-right {
     overflow: hidden;
 }
+
+@media (max-width: $mobile-width) {
+    .request-view {
+        overflow: hidden;
+    }
+
+    .splitter-container {
+        flex-direction: column !important;
+        height: calc(100vh - #{$toolbar-height} - 104px);
+        min-height: 0;
+    }
+
+    .splitter-left,
+    .splitter-right {
+        width: 100% !important;
+        height: calc(50% - 2.5px) !important;
+        min-height: 0;
+    }
+
+    .splitter {
+        flex: 0 0 5px;
+        height: 5px !important;
+        width: 100%;
+    }
+}

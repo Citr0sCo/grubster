@@ -14,52 +14,51 @@ export class PayloadSizeIndicatorComponent {
     @Input()
     public isSmall: boolean = false;
 
-    public getResponseSize(payloadSize: any): string {
+    public getResponseSize(payloadSize: string | number | undefined | null): string {
         const size = this.formatResponseSize(payloadSize);
-
-        if (typeof size.value === 'string') {
-            if (size.value.indexOf('B') > -1) {
-                return `${size.value.replace('B', '')}<small>bytes</small>`;
-            }
-            if (size.value.indexOf('KiB') > -1) {
-                return `${size.value.replace('KiB', '')}<small>Kb</small>`;
-            }
-            if (size.value.indexOf('MiB') > -1) {
-                return `${size.value.replace('MiB', '')}<small>Mb</small>`;
-            }
-            if (size.value.indexOf('GiB') > -1) {
-                return `${size.value.replace('GiB', '')}<small>Gb</small>`;
-            }
-        }
-
         return `${size.value} <small>${size.type}</small>`;
     }
 
-    public formatResponseSize(bytes: any): { value: string; type: string } {
-        let formattedResponseSize = bytes;
-
-        if (bytes === undefined) {
-            return {
-                value: '0',
-                type: 'bytes'
-            };
+    public formatResponseSize(payloadSize: string | number | undefined | null): { value: string; type: string } {
+        if (payloadSize === undefined || payloadSize === null || payloadSize === '') {
+            return { value: '0', type: 'bytes' };
         }
 
-        let formattedResponseSizeType = 'bytes';
-        if (formattedResponseSize > Math.pow(1000, 3)) {
-            formattedResponseSize = formattedResponseSize / Math.pow(1000, 3);
-            formattedResponseSizeType = 'Gb';
-        } else if (formattedResponseSize > Math.pow(1000, 2)) {
-            formattedResponseSize = formattedResponseSize / Math.pow(1000, 2);
-            formattedResponseSizeType = 'Mb';
-        } else if (formattedResponseSize > 1000) {
-            formattedResponseSize = formattedResponseSize / 1000;
-            formattedResponseSizeType = 'Kb';
+        if (typeof payloadSize === 'string') {
+            const formatted = payloadSize.trim().match(/^(-?\d+(?:\.\d+)?)\s*(bytes?|b|kib|kb|mib|mb|gib|gb)$/i);
+            if (formatted) {
+                const type = formatted[2].toLowerCase();
+                const units: { [key: string]: string } = {
+                    b: 'bytes',
+                    byte: 'bytes',
+                    bytes: 'bytes',
+                    kib: 'KB',
+                    kb: 'KB',
+                    mib: 'MB',
+                    mb: 'MB',
+                    gib: 'GB',
+                    gb: 'GB'
+                };
+                return { value: formatted[1], type: units[type] };
+            }
+        }
+
+        const bytes = Number(payloadSize);
+        if (!Number.isFinite(bytes)) {
+            return { value: String(payloadSize), type: 'bytes' };
+        }
+
+        const units = ['bytes', 'KB', 'MB', 'GB'];
+        let value = Math.abs(bytes);
+        let unitIndex = 0;
+        while (value >= 1000 && unitIndex < units.length - 1) {
+            value /= 1000;
+            unitIndex++;
         }
 
         return {
-            value: formattedResponseSize,
-            type: formattedResponseSizeType
+            value: unitIndex === 0 ? String(bytes) : value.toFixed(1),
+            type: units[unitIndex]
         };
     }
 }
