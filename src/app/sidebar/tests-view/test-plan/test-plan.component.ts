@@ -46,7 +46,7 @@ export class TestPlanComponent implements OnInit, OnDestroy {
 
     public editTest(e: MouseEvent, test: ITestPlan): void {
         e.stopPropagation();
-        this._router.navigate(['test', 'plan', test.id, 'edit']);
+        this._router.navigate(['/test/plan', test.id, 'edit']);
     }
 
     public newTestItem(): ITestCase {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'preview-view',
@@ -7,9 +7,9 @@ import { AfterViewInit, Component, ElementRef, Input, ViewChild, ChangeDetection
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class PreviewViewComponent implements AfterViewInit {
+export class PreviewViewComponent implements AfterViewInit, OnChanges {
     @ViewChild('iframe')
-    public iframe!: ElementRef;
+    public iframe!: ElementRef<HTMLIFrameElement>;
 
     @Input()
     public requestBody: string = '';
@@ -20,14 +20,61 @@ export class PreviewViewComponent implements AfterViewInit {
     @Input()
     public requestUrl: string = '';
 
-    public ngAfterViewInit() {
-        if (this.requestBody.indexOf('<!DOCTYPE') === 0) {
-            this.iframe.nativeElement.setAttribute('src', this.requestUrl);
-        } else {
-            const iframeDoc = this.iframe.nativeElement.contentDocument || this.iframe.nativeElement.contentWindow.document;
-            iframeDoc.open();
-            iframeDoc.write(this.requestBody);
-            iframeDoc.close();
+    public ngAfterViewInit(): void {
+        this.renderPreview();
+    }
+
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes['requestBody'] || changes['requestUrl']) {
+            this.renderPreview();
         }
+    }
+
+    private renderPreview(): void {
+        if (!this.iframe?.nativeElement) {
+            return;
+        }
+
+        const frame = this.iframe.nativeElement;
+        if (this.isHtmlDocument(this.requestBody)) {
+            frame.removeAttribute('src');
+            frame.srcdoc = this.prepareHtmlDocument(this.requestBody);
+            return;
+        }
+
+        frame.removeAttribute('srcdoc');
+        const iframeDoc = frame.contentDocument || frame.contentWindow?.document;
+        if (!iframeDoc) {
+            return;
+        }
+
+        iframeDoc.open();
+        iframeDoc.write(this.requestBody);
+        iframeDoc.close();
+    }
+
+    private isHtmlDocument(body: string): boolean {
+        return /^\s*(?:<!doctype\s+html|<html(?:\s|>))/i.test(body);
+    }
+
+    private prepareHtmlDocument(body: string): string {
+        if (!this.requestUrl) {
+            return body;
+        }
+
+        const baseTag = `<base href="${this.escapeAttribute(this.requestUrl)}">`;
+        if (/<base\b[^>]*>/i.test(body)) {
+            return body.replace(/<base\b[^>]*>/i, baseTag);
+        }
+
+        if (/<head(?:\s[^>]*)?>/i.test(body)) {
+            return body.replace(/<head(?:\s[^>]*)?>/i, (headTag) => `${headTag}${baseTag}`);
+        }
+
+        return `${baseTag}${body}`;
+    }
+
+    private escapeAttribute(value: string): string {
+        return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 }
