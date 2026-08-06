@@ -67,7 +67,7 @@ export class TestPlanComponent implements OnInit, OnDestroy {
                 language: 'JSON',
                 statusCode: 0,
                 statusText: '',
-                timeTaken: new Date(),
+                timeTaken: new Date(0),
                 occurredAt: new Date(),
                 size: '0 Bytes'
             },

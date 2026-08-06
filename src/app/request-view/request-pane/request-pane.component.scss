@@ -106,3 +106,15 @@
         }
     }
 }
+
+@media (max-width: $mobile-width) {
+    .request-pane__tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+
+        &__tab {
+            flex: 0 0 auto;
+            padding: 0 10px;
+        }
+    }
+}

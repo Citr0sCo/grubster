@@ -63,3 +63,9 @@ $add-button-width: calc(#{$toolbar-height} - 0.5rem);
         padding-bottom: 10px;
     }
 }
+
+@media (max-width: $mobile-width) {
+    .headers-view {
+        height: calc(100% - #{$request-pane-tabs-height} - #{$request-pane-footer-height}) !important;
+    }
+}

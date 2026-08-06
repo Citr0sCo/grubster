@@ -13,6 +13,7 @@
         height: calc($toolbar-height - 12px);
         margin: 6px;
         image-rendering: auto;
+        image-rendering: -webkit-optimize-contrast;
     }
 
     h1 {

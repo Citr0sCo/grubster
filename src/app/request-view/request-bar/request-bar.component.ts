@@ -248,6 +248,10 @@ export class RequestBarComponent implements OnInit, OnDestroy {
             response += ` ${ms}<small>ms</small>`;
         }
 
+        if (response.length === 0) {
+            response = '0<small>s</small>';
+        }
+
         return response;
     }
 

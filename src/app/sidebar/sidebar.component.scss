@@ -116,3 +116,14 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.6);
 }
+
+@media (max-width: $mobile-width) {
+    .sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: min(92vw, 420px);
+        max-width: calc(100vw - 16px);
+        height: calc(100vh - #{$toolbar-height});
+    }
+}

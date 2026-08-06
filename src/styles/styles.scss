@@ -18,3 +18,21 @@
 @import 'components/badges';
 @import 'components/text';
 @import 'components/cards';
+
+.app-shell {
+    min-width: 0;
+
+    & > .o-grid__col:last-child {
+        min-width: 0;
+    }
+
+    @media (max-width: $mobile-width) {
+        & > .o-grid__col:first-child {
+            flex: 0 0 auto;
+        }
+
+        & > .o-grid__col:last-child {
+            flex: 1 1 0;
+        }
+    }
+}
