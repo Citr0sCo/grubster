@@ -39,7 +39,7 @@ export class TestCaseComponent {
 
     public editTest(e: MouseEvent, test: ITestCase): void {
         e.stopPropagation();
-        this._router.navigate(['test', 'case', test.id, 'edit']);
+        this._router.navigate(['/test/case', test.id, 'edit']);
     }
 
     public getStatusOfTest(test: ITestCase): string {

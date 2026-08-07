@@ -21,4 +21,14 @@ describe('EditTestPlanComponent', () => {
 
         expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
     });
+
+    it('opens a test case editor with an absolute route', () => {
+        const router = { navigate: jest.fn() };
+        const component = new EditTestPlanComponent({} as any, {} as any, router as any, {} as any, {} as any);
+        const test = { id: 'case-id' } as any;
+
+        component.editTab(test);
+
+        expect(router.navigate).toHaveBeenCalledWith(['/test/case', 'case-id', 'edit']);
+    });
 });
