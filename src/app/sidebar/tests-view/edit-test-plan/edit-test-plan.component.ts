@@ -139,7 +139,7 @@ export class EditTestPlanComponent implements OnInit, OnDestroy {
     }
 
     public editTab(tab: ITestCase): void {
-        this._router.navigate(['test', 'case', tab.id, 'edit']);
+        this._router.navigate(['/test/case', tab.id, 'edit']);
     }
 
     public getStatusOfTest(test: ILocalTest): string {
