@@ -9,7 +9,7 @@ import { ITestCase } from '../types/test-item.model';
 
 @Injectable()
 export class TestsService {
-    public tests: ReplaySubject<ITestPlan[]> = new ReplaySubject<ITestPlan[]>();
+    public tests: ReplaySubject<ITestPlan[]> = new ReplaySubject<ITestPlan[]>(1);
     private _testsRepository: TestsRepository;
     private _currentTests: ITestPlan[] = [];
     private _testsReady: Promise<void>;
