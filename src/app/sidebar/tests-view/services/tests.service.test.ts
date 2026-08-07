@@ -61,4 +61,22 @@ describe('TestsService', () => {
         expect(repository.records).toHaveLength(6);
         expect(repository.records).toEqual(expect.arrayContaining(tests.slice(5)));
     });
+
+    it('replays the latest Test Plan state to a late subscriber after adding a test case', async () => {
+        const test = { id: 'plan-id', name: 'Plan', tests: [] } as ITestPlan;
+        const testItem = { id: 'case-id', name: 'New Test Case' } as any;
+        const repository = new InMemoryTestsRepository();
+        repository.records = [test];
+        const service = new TestsService(repository as any);
+
+        await firstValueFrom(service.createNewTest(test, testItem));
+
+        let latestTests: ITestPlan[] = [];
+        service.tests.subscribe((entries) => {
+            latestTests = entries;
+        });
+
+        expect(latestTests).toEqual([test]);
+        expect(latestTests[0].tests).toContain(testItem);
+    });
 });
