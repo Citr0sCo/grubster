@@ -10503,10 +10503,10 @@ svg-tags@^1.0.0:
   resolved "https://registry.yarnpkg.com/svg-tags/-/svg-tags-1.0.0.tgz#58f71cee3bd519b59d4b2a843b6c7de64ac04764"
   integrity sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==
 
-swetrix@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/swetrix/-/swetrix-4.5.0.tgz#bcb3ec791dde6a6229bc3771b73d10d713a1d00c"
-  integrity sha512-kzFmwEE7LeGtvWCkDcF2UZ/yeG1ScRn+BHBcT0SOWcNKVBZSqIkarY8kuHniW9f7QYiUXwHIAjQ3vQ0EwYpQoA==
+swetrix@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/swetrix/-/swetrix-4.6.0.tgz#e624a8dbdebf9eecdc05bf13ed118350226d1172"
+  integrity sha512-5NNq0JHN3H0I7XZ1hvWZvM83Ks7lcZnJNZ6+p7oERpR42+VtTjhJ3aThi5jr1lzB3LeUEyhAzgDYuYURHeWInw==
   dependencies:
     "@rrweb/record" "2.1.1"
 
