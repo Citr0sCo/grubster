@@ -55,7 +55,7 @@
     "@angular-eslint/eslint-plugin-template": "21.4.0",
     "@angular-eslint/schematics": "21.4.0",
     "@angular-eslint/template-parser": "21.4.0",
-    "@angular/cli": "~22.2.5",
+    "@angular/cli": "~22.2.6",
     "@angular/compiler-cli": "~22.2.4",
     "@angular/language-service": "~22.2.4",
     "@types/gapi": "^0.0.47",
